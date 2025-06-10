@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour {
 
     [SerializeField] private PlayerLaneMovement movement;
     [SerializeField] private PlayerJumpMovement jumpMovement;
+    [SerializeField] private PlayerItemPicker itemPicker;
     //[SerializeField] private PlayerSwipeInput input;
 
 
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour {
     {
         movement = GetComponent<PlayerLaneMovement>();
         jumpMovement = GetComponent<PlayerJumpMovement>();
+        itemPicker = GetComponent<PlayerItemPicker>();
         //input = GetComponent<PlayerSwipeInput>();
     }
 
@@ -41,5 +44,11 @@ public class Player : MonoBehaviour {
         movement.Move();
         jumpMovement.ApplyGravity();
         jumpMovement.MoveVertical();
+    }
+
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        itemPicker.PickItem(hit.gameObject);
     }
 }
