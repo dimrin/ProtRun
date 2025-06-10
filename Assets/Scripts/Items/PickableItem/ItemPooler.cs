@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour, IPickable {
-    public void Picked()
+public class ItemPooler : MonoBehaviour
+{
+    public void PoolOut()
     {
-        Debug.Log("Pick");
         Destroy(gameObject);
     }
-
 }

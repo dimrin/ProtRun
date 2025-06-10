@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+
 public class PlayerItemPicker : MonoBehaviour
 {
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+
+    public void PickItem(GameObject item)
     {
-        if(hit.gameObject.TryGetComponent<IPickable>(out IPickable pickable))
+        if(item.TryGetComponent(out IPickable pickableItem))
         {
-            pickable.Picked();
+            pickableItem.Picked();
         }
-        
     }
 }
