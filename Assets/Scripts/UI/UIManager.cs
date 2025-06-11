@@ -1,0 +1,92 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UIManager : MonoBehaviour
+{
+    [SerializeField] private GameUIManager gameUIManager;
+    [SerializeField] private PauseUIManager pauseUIManager;
+    [SerializeField] private FinalUIManager finalUIManager;
+
+    public static event Action PauseTheGame;
+    public static event Action ResumeTheGame;
+    public static event Action GoToMainMenu;
+
+    private void Awake()
+    {
+        SetNullValues();
+
+        SetBaseUI();
+    }
+
+    private void OnEnable()
+    {
+        PauseUIManager.Resume += Resume;
+        PauseUIManager.GoToMenuFromPause += GoToMenuFromPause;
+        FinalUIManager.GoToMenu += GoToMenu;
+        GameUIManager.PauseGame += Pause;
+    }
+
+
+    private void OnDisable()
+    {
+        PauseUIManager.Resume -= Resume;
+        PauseUIManager.GoToMenuFromPause -= GoToMenuFromPause;
+        FinalUIManager.GoToMenu -= GoToMenu;
+        GameUIManager.PauseGame -= Pause;
+    }
+
+    private void SetNullValues()
+    {
+        if (gameUIManager == null) gameUIManager = GetComponentInChildren<GameUIManager>();
+        if (pauseUIManager == null) pauseUIManager = GetComponentInChildren<PauseUIManager>();
+        if (finalUIManager == null) finalUIManager = GetComponentInChildren<FinalUIManager>();
+    }
+
+    private void SetBaseUI()
+    {
+        gameUIManager.OpenUI();
+        pauseUIManager.CloseUI();
+        finalUIManager.CloseUI();
+
+        gameUIManager.OpenUI(() =>
+        {
+            Debug.Log("asdsad");
+        });
+    }
+
+    private void Resume()
+    {
+        
+        pauseUIManager.CloseUI(() =>
+        {
+            ResumeTheGame?.Invoke();
+        });
+    }
+
+    private void Pause()
+    {
+        pauseUIManager.OpenUI(() =>
+        {
+            PauseTheGame?.Invoke();
+        });
+    }
+
+    private void GoToMenu()
+    {
+        finalUIManager.CloseUI(() =>
+        {
+            GoToMainMenu?.Invoke();
+        });
+    }
+
+    private void GoToMenuFromPause()
+    {
+        pauseUIManager.CloseUI(() =>
+        {
+            ResumeTheGame?.Invoke();
+            GoToMainMenu?.Invoke();
+        });
+    }
+}
