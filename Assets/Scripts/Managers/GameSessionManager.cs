@@ -25,7 +25,6 @@ public class GameSessionManager : MonoBehaviour
         Player.OnPickedPoint -= IncreasePoints;
     }
 
-
     private void IncreasePoints(int point)
     {
         gamePointsManager.IncreasePoints(point);
