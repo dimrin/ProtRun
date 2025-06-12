@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerItemPicker itemPicker;
     //[SerializeField] private PlayerSwipeInput input;
 
-
+    public static event Action<int> OnPickedPoint;
 
     private void OnEnable()
     {
@@ -35,8 +36,6 @@ public class Player : MonoBehaviour {
         //input = GetComponent<PlayerSwipeInput>();
     }
 
-
-
     private void Update()
     {
         movement.IncreaseSpeed();
@@ -49,6 +48,15 @@ public class Player : MonoBehaviour {
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        itemPicker.PickItem(hit.gameObject);
+        itemPicker.PickItem(hit.gameObject, (itemType, itemValue) =>
+        {
+            switch (itemType) {
+                default:
+                    Debug.LogWarning("No Type like that"); break;
+                case ItemType.Value:
+                    OnPickedPoint(itemValue); break;
+            }
+            Debug.Log("lsls");
+        });
     }
 }
