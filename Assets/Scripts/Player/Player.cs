@@ -64,6 +64,7 @@ public class Player : MonoBehaviour {
         playerHealth.GetHit(hit.gameObject, () =>
         {
             Debug.Log("Hitted");
+            OnPlayerCrushed?.Invoke();
         });
     }
 

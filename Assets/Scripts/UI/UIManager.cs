@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
         FinalUIManager.GoToMenu += GoToMenu;
         GameUIManager.PauseGame += Pause;
         GameSessionManager.PointsIncreased += PointsToUI;
+        GameSessionManager.OnGameEnded += SetFinalUI;
     }
 
 
@@ -37,6 +38,7 @@ public class UIManager : MonoBehaviour
         FinalUIManager.GoToMenu -= GoToMenu;
         GameUIManager.PauseGame -= Pause;
         GameSessionManager.PointsIncreased -= PointsToUI;
+        GameSessionManager.OnGameEnded -= SetFinalUI;
     }
 
     private void SetNullValues()
@@ -95,5 +97,11 @@ public class UIManager : MonoBehaviour
     private void PointsToUI(int points)
     {
         gameUIManager.SetCurrentPoinsToUIText(points);
+    }
+
+    private void SetFinalUI(int points)
+    {
+        finalUIManager.SetPointsToUIText(points);
+        finalUIManager.OpenUI();
     }
 }

@@ -29,7 +29,9 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator ChangeHittableState(int timerTime)
     {
         isHittable = false;
+        Debug.Log("is not hittable");
         yield return new WaitForSeconds(timerTime);
+        Debug.Log("is hittable");
         isHittable = true;
     }
 }
