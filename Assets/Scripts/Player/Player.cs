@@ -9,9 +9,11 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerLaneMovement movement;
     [SerializeField] private PlayerJumpMovement jumpMovement;
     [SerializeField] private PlayerItemPicker itemPicker;
+    [SerializeField] private PlayerHealth playerHealth;
     //[SerializeField] private PlayerSwipeInput input;
 
     public static event Action<int> OnPickedPoint;
+    public static event Action OnPlayerCrushed;
 
     private void OnEnable()
     {
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour {
         movement = GetComponent<PlayerLaneMovement>();
         jumpMovement = GetComponent<PlayerJumpMovement>();
         itemPicker = GetComponent<PlayerItemPicker>();
+        playerHealth = GetComponent<PlayerHealth>();
         //input = GetComponent<PlayerSwipeInput>();
     }
 
@@ -56,7 +59,15 @@ public class Player : MonoBehaviour {
                 case ItemType.Value:
                     OnPickedPoint(itemValue); break;
             }
-            Debug.Log("lsls");
+        });
+
+        playerHealth.GetHit(hit.gameObject, () =>
+        {
+            Debug.Log("Hitted");
+            OnPlayerCrushed?.Invoke();
         });
     }
+
+
+
 }

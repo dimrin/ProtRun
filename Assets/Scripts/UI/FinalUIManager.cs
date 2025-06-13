@@ -17,7 +17,7 @@ public class FinalUIManager : MonoBehaviour {
         }
     }
 
-    public void PointsToUIText(int points)
+    public void SetPointsToUIText(int points)
     {
         finalPointsText.text = points.ToString();
     }

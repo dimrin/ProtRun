@@ -8,6 +8,7 @@ public class GameSessionManager : MonoBehaviour
     [SerializeField] private GamePointsManager gamePointsManager;
 
     public static event Action<int> PointsIncreased;
+    public static event Action<int> OnGameEnded;
 
     private void Awake()
     {
@@ -18,11 +19,13 @@ public class GameSessionManager : MonoBehaviour
     private void OnEnable()
     {
         Player.OnPickedPoint += IncreasePoints;
+        Player.OnPlayerCrushed += EndTheGame;
     }
 
     private void OnDisable()
     {
         Player.OnPickedPoint -= IncreasePoints;
+        Player.OnPlayerCrushed -= EndTheGame;
     }
 
     private void IncreasePoints(int point)
@@ -36,4 +39,9 @@ public class GameSessionManager : MonoBehaviour
         PointsIncreased?.Invoke(gamePointsManager.GetPoints());
     }
 
+
+    private void EndTheGame()
+    {
+        OnGameEnded?.Invoke(gamePointsManager.GetPoints());
+    }
 }
