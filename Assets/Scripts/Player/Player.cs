@@ -60,9 +60,16 @@ public class Player : MonoBehaviour {
                 case ItemType.Value:
                     OnPickedPoint(itemValue); break;
                 case ItemType.Shield:
-                    Debug.Log("Shield"); break;
+                    Debug.Log("Shield");
+                    int shieldTime = itemValue;
+                    playerHealth.MakeUnhittable(shieldTime);
+                    break;
                 case ItemType.Ultimate:
-                    Debug.Log("Ultimate"); break;
+                    Debug.Log("Ultimate");
+                    int ultimateTime = itemValue;
+                    playerHealth.MakeUnhittable(ultimateTime);
+                    movement.ActivateSpeedBuff(ultimateTime);
+                    break;
             }
         });
 
