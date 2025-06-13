@@ -53,11 +53,16 @@ public class Player : MonoBehaviour {
     {
         itemPicker.PickItem(hit.gameObject, (itemType, itemValue) =>
         {
-            switch (itemType) {
+            switch (itemType)
+            {
                 default:
                     Debug.LogWarning("No Type like that"); break;
                 case ItemType.Value:
                     OnPickedPoint(itemValue); break;
+                case ItemType.Shield:
+                    Debug.Log("Shield"); break;
+                case ItemType.Ultimate:
+                    Debug.Log("Ultimate"); break;
             }
         });
 
