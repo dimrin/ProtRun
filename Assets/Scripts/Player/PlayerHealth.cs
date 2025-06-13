@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (gameObject.TryGetComponent(out IHittable hittable))
         {
-            hittable.Hit();
+            hittable.GetHit();
             if(isHittable)
             {
                 OnGetHit?.Invoke();
