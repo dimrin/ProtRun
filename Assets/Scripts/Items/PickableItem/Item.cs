@@ -8,7 +8,7 @@ public class Item : MonoBehaviour, IPickable {
 
     [SerializeField] private ItemType type;
 
-    [SerializeField] private int value = 1;
+    [SerializeField][Range(0, 15)] private int value = 1;
 
     [SerializeField] private ItemAnimationHandler animatorHandler;
     [SerializeField] private ItemPooler pooler;
