@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.HID;
 public class Player : MonoBehaviour {
 
     [SerializeField] private PlayerLaneMovement playerLaneMovement;
-    [SerializeField] private PlayerJumpMovement jumpMovement;
+    [SerializeField] private PlayerVerticalMovement playerVerticalMovement;
     [SerializeField] private PlayerItemPicker itemPicker;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerBuffManager playerBuffManager;
@@ -21,7 +21,8 @@ public class Player : MonoBehaviour {
     {
         PlayerSwipeInput.SwipeToLeft += playerLaneMovement.MoveLeft;
         PlayerSwipeInput.SwipeToRight += playerLaneMovement.MoveRight;
-        PlayerSwipeInput.SwipeToUp += jumpMovement.Jump;
+        PlayerSwipeInput.SwipeToUp += playerVerticalMovement.Jump;
+        PlayerSwipeInput.SwipeToDown += playerVerticalMovement.PushDown;
     }
 
 
@@ -29,13 +30,14 @@ public class Player : MonoBehaviour {
     {
         PlayerSwipeInput.SwipeToLeft -= playerLaneMovement.MoveLeft;
         PlayerSwipeInput.SwipeToRight -= playerLaneMovement.MoveRight;
-        PlayerSwipeInput.SwipeToUp -= jumpMovement.Jump;
+        PlayerSwipeInput.SwipeToUp -= playerVerticalMovement.Jump;
+        PlayerSwipeInput.SwipeToDown -= playerVerticalMovement.PushDown;
     }
 
     private void Awake()
     {
         playerLaneMovement = GetComponent<PlayerLaneMovement>();
-        jumpMovement = GetComponent<PlayerJumpMovement>();
+        playerVerticalMovement = GetComponent<PlayerVerticalMovement>();
         itemPicker = GetComponent<PlayerItemPicker>();
         playerHealth = GetComponent<PlayerHealth>();
         playerBuffManager = GetComponent<PlayerBuffManager>();
@@ -48,8 +50,8 @@ public class Player : MonoBehaviour {
         playerLaneMovement.IncreaseSpeed();
         playerLaneMovement.UpdateTargetPosition();
         playerLaneMovement.Move();
-        jumpMovement.ApplyGravity();
-        jumpMovement.MoveVertical();
+        playerVerticalMovement.ApplyGravity();
+        playerVerticalMovement.MoveUp();
         playerBuffManager.UpdateBuffsStates();
     }
 
