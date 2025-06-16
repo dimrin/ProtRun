@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldBuff : MonoBehaviour
+public class ShieldBuff: IBuff
 {
-    // Start is called before the first frame update
-    void Start()
+    private readonly PlayerHealth _playerHealth;
+
+    public ShieldBuff(PlayerHealth playerHealth)
     {
-        
+        _playerHealth = playerHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Apply(int value)
     {
-        
+        Debug.Log("Applying Shield Buff");
+        _playerHealth.MakeUnhittable(value);
     }
 }

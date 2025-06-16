@@ -40,7 +40,8 @@ public class Item : MonoBehaviour, IPickable {
 public enum ItemType { 
     Value,
     Shield,
-    Ultimate
+    Ultimate,
+    Magnet
 }
 
 

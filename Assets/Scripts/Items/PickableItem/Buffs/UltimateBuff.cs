@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UltimateBuff : MonoBehaviour
+public class UltimateBuff: IBuff
 {
-    // Start is called before the first frame update
-    void Start()
+    private readonly PlayerHealth _playerHealth;
+    private readonly PlayerLaneMovement _movement;
+
+    public UltimateBuff(PlayerHealth playerHealth, PlayerLaneMovement movement)
     {
-        
+        _playerHealth = playerHealth;
+        _movement = movement;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Apply(int value)
     {
-        
+        Debug.Log("Applying Ultimate Buff");
+        _playerHealth.MakeUnhittable(value);
+        _movement.ActivateSpeedBuff(value);
     }
 }

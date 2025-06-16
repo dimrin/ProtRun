@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerJumpMovement jumpMovement;
     [SerializeField] private PlayerItemPicker itemPicker;
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PlayerBuffManager playerBuffManager;
     //[SerializeField] private PlayerSwipeInput input;
 
     public static event Action<int> OnPickedPoint;
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour {
         jumpMovement = GetComponent<PlayerJumpMovement>();
         itemPicker = GetComponent<PlayerItemPicker>();
         playerHealth = GetComponent<PlayerHealth>();
+        playerBuffManager = GetComponent<PlayerBuffManager>();
         //input = GetComponent<PlayerSwipeInput>();
     }
 
@@ -48,11 +50,11 @@ public class Player : MonoBehaviour {
         jumpMovement.MoveVertical();
     }
 
-
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         itemPicker.PickItem(hit.gameObject, (itemType, itemValue) =>
         {
+            /*
             switch (itemType)
             {
                 default:
@@ -71,6 +73,22 @@ public class Player : MonoBehaviour {
                     movement.ActivateSpeedBuff(ultimateTime);
                     break;
             }
+            */
+            switch (itemType)
+            {
+                case ItemType.Value:
+                    OnPickedPoint?.Invoke(itemValue);
+                    break;
+                case ItemType.Shield:
+                case ItemType.Ultimate:
+                case ItemType.Magnet:
+                    playerBuffManager.ApplyBuff(itemType, itemValue);
+                    break;
+                default:
+                    Debug.LogWarning("Unhandled item type: " + itemType);
+                    break;
+            }
+
         });
 
         playerHealth.GetHit(hit.gameObject, () =>
