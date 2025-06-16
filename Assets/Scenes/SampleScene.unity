@@ -135,6 +135,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
       propertyPath: animator
@@ -354,7 +364,7 @@ GameObject:
   - component: {fileID: 205438983}
   - component: {fileID: 205438984}
   - component: {fileID: 205438986}
-  - component: {fileID: 205438985}
+  - component: {fileID: 205438987}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -421,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521c8aa40bbac334297b45074c2ac54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 0}
+  playerLaneMovement: {fileID: 0}
   jumpMovement: {fileID: 0}
   itemPicker: {fileID: 0}
   playerHealth: {fileID: 0}
@@ -504,20 +514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHittable: 1
---- !u!114 &205438985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205438975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 411a4d6a22d6ce745aea3c009f02f8ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attractionRadius: 5
-  attractionSpeed: 10
 --- !u!114 &205438986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,9 +526,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045ebca974fe0b64c9fd97b19bbcf780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  movement: {fileID: 0}
-  magnetBuff: {fileID: 0}
+  playerHealth: {fileID: 205438984}
+  movement: {fileID: 205438977}
+  playerTransform: {fileID: 205438976}
+--- !u!65 &205438987
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205438975}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7043966, y: 0.27393934, z: 0.26290917}
+  m_Center: {x: -0.0039259912, y: 0.036082245, z: -0.008067847}
 --- !u!1 &209455727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,6 +2102,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magnet Item
       objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
       propertyPath: animator
@@ -2213,6 +2235,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Item (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
@@ -2804,6 +2836,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield Item
       objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
       propertyPath: animator
@@ -2932,6 +2969,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Item (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
@@ -3090,12 +3137,17 @@ PrefabInstance:
     - target: {fileID: 2958407696856958147, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
       propertyPath: m_Name
-      value: Ultimate Item
+      value: Speed Item
       objectReference: {fileID: 0}
     - target: {fileID: 2958407696856958147, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
@@ -3135,7 +3187,7 @@ PrefabInstance:
     - target: {fileID: 5419041963123520794, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 5419041963123520794, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
@@ -3225,6 +3277,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Item (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
@@ -4143,6 +4200,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
       propertyPath: animator
@@ -4256,6 +4323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Item (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
@@ -4761,6 +4833,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
       propertyPath: animator
@@ -5191,6 +5273,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}
       propertyPath: animator
@@ -5274,6 +5366,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Item (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142496193329050964, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
+        type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463784447679896530, guid: 8e3eb1e2d2928c84fbf106e7930abe03,
         type: 3}

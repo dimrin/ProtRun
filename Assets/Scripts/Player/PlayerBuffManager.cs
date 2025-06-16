@@ -6,24 +6,36 @@ public class PlayerBuffManager : MonoBehaviour
 {
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerLaneMovement movement;
-    [SerializeField] private MagnetBuff magnetBuff;
+    [SerializeField] private Transform playerTransform;
 
     private Dictionary<ItemType, IBuff> _buffs;
 
-    private void Awake()
+
+
+    private void Start()
     {
-        if (playerHealth == null) playerHealth = GetComponent<PlayerHealth>();
-        if (movement == null) movement = GetComponent<PlayerLaneMovement>();
-        if (magnetBuff == null) magnetBuff = GetComponent<MagnetBuff>();
-
-        magnetBuff.Initialize(transform);
-
         _buffs = new Dictionary<ItemType, IBuff>
         {
             { ItemType.Shield, new ShieldBuff(playerHealth) },
-            { ItemType.Ultimate, new UltimateBuff(playerHealth, movement) },
-            { ItemType.Magnet, magnetBuff }
+            { ItemType.Speed, new SpeedBuff(playerHealth, movement) },
+            { ItemType.Magnet, new MagnetBuff(playerTransform) }
         };
+    }
+
+    public void SetComponentsOnAwake(PlayerHealth playerHealth, PlayerLaneMovement movement, Transform playerTransform)
+    {
+        this.playerHealth = playerHealth;
+        this.movement = movement;
+        this.playerTransform = playerTransform;
+    }
+
+    public void UpdateBuffsStates()
+    {
+        foreach (var buff in _buffs.Values)
+        {
+            if (buff.IsActive)
+                buff.Update();
+        }
     }
 
     public void ApplyBuff(ItemType itemType, int value)
@@ -34,7 +46,7 @@ public class PlayerBuffManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No buff handler for item type: {itemType}");
+            Debug.LogWarning($"No buff for item type: {itemType}");
         }
     }
 }

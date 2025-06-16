@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour {
 
-    [SerializeField] private PlayerLaneMovement movement;
+    [SerializeField] private PlayerLaneMovement playerLaneMovement;
     [SerializeField] private PlayerJumpMovement jumpMovement;
     [SerializeField] private PlayerItemPicker itemPicker;
     [SerializeField] private PlayerHealth playerHealth;
@@ -18,69 +19,51 @@ public class Player : MonoBehaviour {
 
     private void OnEnable()
     {
-        PlayerSwipeInput.SwipeToLeft += movement.MoveLeft;
-        PlayerSwipeInput.SwipeToRight += movement.MoveRight;
+        PlayerSwipeInput.SwipeToLeft += playerLaneMovement.MoveLeft;
+        PlayerSwipeInput.SwipeToRight += playerLaneMovement.MoveRight;
         PlayerSwipeInput.SwipeToUp += jumpMovement.Jump;
     }
 
 
     private void OnDisable()
     {
-        PlayerSwipeInput.SwipeToLeft -= movement.MoveLeft;
-        PlayerSwipeInput.SwipeToRight -= movement.MoveRight;
+        PlayerSwipeInput.SwipeToLeft -= playerLaneMovement.MoveLeft;
+        PlayerSwipeInput.SwipeToRight -= playerLaneMovement.MoveRight;
         PlayerSwipeInput.SwipeToUp -= jumpMovement.Jump;
     }
 
     private void Awake()
     {
-        movement = GetComponent<PlayerLaneMovement>();
+        playerLaneMovement = GetComponent<PlayerLaneMovement>();
         jumpMovement = GetComponent<PlayerJumpMovement>();
         itemPicker = GetComponent<PlayerItemPicker>();
         playerHealth = GetComponent<PlayerHealth>();
         playerBuffManager = GetComponent<PlayerBuffManager>();
+        playerBuffManager.SetComponentsOnAwake(playerHealth, playerLaneMovement, transform);
         //input = GetComponent<PlayerSwipeInput>();
     }
 
     private void Update()
     {
-        movement.IncreaseSpeed();
-        movement.UpdateTargetPosition();
-        movement.Move();
+        playerLaneMovement.IncreaseSpeed();
+        playerLaneMovement.UpdateTargetPosition();
+        playerLaneMovement.Move();
         jumpMovement.ApplyGravity();
         jumpMovement.MoveVertical();
+        playerBuffManager.UpdateBuffsStates();
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnTriggerEnter(Collider other)
     {
-        itemPicker.PickItem(hit.gameObject, (itemType, itemValue) =>
+        itemPicker.PickItem(other.gameObject, (itemType, itemValue) =>
         {
-            /*
-            switch (itemType)
-            {
-                default:
-                    Debug.LogWarning("No Type like that"); break;
-                case ItemType.Value:
-                    OnPickedPoint(itemValue); break;
-                case ItemType.Shield:
-                    Debug.Log("Shield");
-                    int shieldTime = itemValue;
-                    playerHealth.MakeUnhittable(shieldTime);
-                    break;
-                case ItemType.Ultimate:
-                    Debug.Log("Ultimate");
-                    int ultimateTime = itemValue;
-                    playerHealth.MakeUnhittable(ultimateTime);
-                    movement.ActivateSpeedBuff(ultimateTime);
-                    break;
-            }
-            */
             switch (itemType)
             {
                 case ItemType.Value:
                     OnPickedPoint?.Invoke(itemValue);
                     break;
                 case ItemType.Shield:
-                case ItemType.Ultimate:
+                case ItemType.Speed:
                 case ItemType.Magnet:
                     playerBuffManager.ApplyBuff(itemType, itemValue);
                     break;
@@ -90,7 +73,10 @@ public class Player : MonoBehaviour {
             }
 
         });
+    }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
         playerHealth.GetHit(hit.gameObject, () =>
         {
             Debug.Log("Hitted");
