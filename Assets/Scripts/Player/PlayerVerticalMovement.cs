@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJumpMovement : MonoBehaviour
+public class PlayerVerticalMovement : MonoBehaviour
 {
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float gravity = -20f;
+    [SerializeField] private float pushDownForce = -30f;
 
     private CharacterController characterController;
     private float verticalVelocity = 0f;
-
+    private bool isPushedDown = false;
     public bool IsJumping => !characterController.isGrounded;
 
     private void Awake()
@@ -24,13 +25,18 @@ public class PlayerJumpMovement : MonoBehaviour
         {
             verticalVelocity = -1f; // Keep grounded
         }
+        else if (isPushedDown)
+        {
+            verticalVelocity = pushDownForce;
+            isPushedDown = false;
+        }
         else
         {
             verticalVelocity += gravity * Time.deltaTime;
         }
     }
 
-    public void MoveVertical()
+    public void MoveUp()
     {
         Vector3 verticalMove = Vector3.up * verticalVelocity * Time.deltaTime;
         characterController.Move(verticalMove);
@@ -42,4 +48,10 @@ public class PlayerJumpMovement : MonoBehaviour
 
         verticalVelocity = jumpForce;
     }
+
+    public void PushDown()
+    {
+        isPushedDown = true;
+    }
+
 }

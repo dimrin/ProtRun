@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLaneMovement: {fileID: 0}
-  jumpMovement: {fileID: 0}
+  playerVerticalMovement: {fileID: 0}
   itemPicker: {fileID: 0}
   playerHealth: {fileID: 0}
   playerBuffManager: {fileID: 0}
@@ -489,6 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 10
   gravity: -20
+  slamForce: -30
 --- !u!114 &205438983
 MonoBehaviour:
   m_ObjectHideFlags: 0

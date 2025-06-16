@@ -15,6 +15,7 @@ public class PlayerSwipeInput : MonoBehaviour {
     public static event Action SwipeToLeft;
     public static event Action SwipeToRight;
     public static event Action SwipeToUp;
+    public static event Action SwipeToDown;
     private void Awake()
     {
         inputs = new PlayerControls();
@@ -77,9 +78,13 @@ public class PlayerSwipeInput : MonoBehaviour {
                 Debug.Log("Swipe Up");
                 SwipeToUp?.Invoke();
             }
-
             else
+            {
                 Debug.Log("Swipe Down");
+                SwipeToDown?.Invoke();
+            }
+
+
         }
     }
 
