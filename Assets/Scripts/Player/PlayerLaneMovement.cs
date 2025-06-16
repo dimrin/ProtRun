@@ -71,18 +71,11 @@ public class PlayerLaneMovement : MonoBehaviour {
 
     }
 
-    public void ActivateSpeedBuff(int timerTime)
+    public void ChangeBuffActivationState(bool state)
     {
-        StartCoroutine(StartBuffDuration(timerTime));
-    }
-
-    private IEnumerator StartBuffDuration(int timerTime)
-    {
-        isBuffActivated = true;
-        forwardSpeed = buffSpeed;
-        yield return new WaitForSeconds(timerTime);
-        isBuffActivated = false;
-        forwardSpeed = currentSpeed;
+        isBuffActivated = state;
+        forwardSpeed = isBuffActivated ? buffSpeed : currentSpeed;
+        Debug.Log("isBuffActivated " + isBuffActivated);
     }
 
     public void MoveLeft()

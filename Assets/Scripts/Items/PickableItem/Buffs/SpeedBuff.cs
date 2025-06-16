@@ -18,11 +18,11 @@ public class SpeedBuff: IBuff
 
     public void Apply(int value)
     {
-        _playerHealth.MakeUnhittable(value);
-        _movement.ActivateSpeedBuff(value);
         _duration = value;
         _timer = 0f;
         IsActive = true;
+        _playerHealth.ChangeHittableState(IsActive);
+        _movement.ChangeBuffActivationState(IsActive);
     }
 
     public void Update()
@@ -32,6 +32,8 @@ public class SpeedBuff: IBuff
         if (_timer >= _duration)
         {
             IsActive = false;
+            _playerHealth.ChangeHittableState(IsActive);
+            _movement.ChangeBuffActivationState(IsActive);
         }
     }
 }

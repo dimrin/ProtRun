@@ -20,18 +20,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-
-    public void MakeUnhittable(int timerTime)
+    public void ChangeHittableState(bool state)
     {
-        StartCoroutine(ChangeHittableState(timerTime));
-    }
-
-    private IEnumerator ChangeHittableState(int timerTime)
-    {
-        isHittable = false;
-        Debug.Log("is not hittable");
-        yield return new WaitForSeconds(timerTime);
-        Debug.Log("is hittable");
-        isHittable = true;
+        isHittable = !state;
+        Debug.Log("isHittable " + isHittable);
     }
 }

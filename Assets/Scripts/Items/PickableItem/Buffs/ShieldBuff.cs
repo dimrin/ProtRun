@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldBuff: IBuff
-{
+public class ShieldBuff : IBuff {
     private readonly PlayerHealth _playerHealth;
     private float _timer;
     private float _duration;
@@ -16,10 +15,10 @@ public class ShieldBuff: IBuff
 
     public void Apply(int value)
     {
-        _playerHealth.MakeUnhittable(value);
         _duration = value;
         _timer = 0f;
         IsActive = true;
+        _playerHealth.ChangeHittableState(IsActive);
     }
 
     public void Update()
@@ -29,6 +28,7 @@ public class ShieldBuff: IBuff
         if (_timer >= _duration)
         {
             IsActive = false;
+            _playerHealth.ChangeHittableState(IsActive);
         }
     }
 }
