@@ -6,6 +6,6 @@ public class ItemPooler : MonoBehaviour
 {
     public void PoolOut()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

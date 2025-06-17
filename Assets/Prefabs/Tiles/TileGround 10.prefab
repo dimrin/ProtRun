@@ -381,7 +381,7 @@ PrefabInstance:
     - target: {fileID: 1158126546858494539, guid: 3164940c43399c24dbd7f7e6d196b84a,
         type: 3}
       propertyPath: m_Name
-      value: TileGround (10) Variant
+      value: TileGround 10
       objectReference: {fileID: 0}
     - target: {fileID: 4608292244666539781, guid: 3164940c43399c24dbd7f7e6d196b84a,
         type: 3}
@@ -488,7 +488,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4799234695831587414}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1158126546858494539, guid: 3164940c43399c24dbd7f7e6d196b84a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8563057774872400794}
   m_SourcePrefab: {fileID: 100100000, guid: 3164940c43399c24dbd7f7e6d196b84a, type: 3}
 --- !u!4 &1361370995709343339 stripped
 Transform:
@@ -496,6 +500,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3249205106617297262}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4396924051469919013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1158126546858494539, guid: 3164940c43399c24dbd7f7e6d196b84a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3249205106617297262}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8563057774872400794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396924051469919013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f00b60e09feef4fab6292f2bec1556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3263167072666716585
 PrefabInstance:
   m_ObjectHideFlags: 0

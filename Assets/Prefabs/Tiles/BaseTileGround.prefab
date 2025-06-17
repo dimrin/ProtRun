@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 8896711756707677187}
   - component: {fileID: 1676134455586183154}
   - component: {fileID: 7311521145959237455}
+  - component: {fileID: 4260124718649520675}
   m_Layer: 0
   m_Name: BaseTileGround
   m_TagString: Untagged
@@ -215,6 +216,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &4260124718649520675
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158126546858494539}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.09, y: 8.29, z: 6.262697}
+  m_Center: {x: 0, y: 0, z: 5.6313486}
 --- !u!1 &1292853984153888925
 GameObject:
   m_ObjectHideFlags: 0

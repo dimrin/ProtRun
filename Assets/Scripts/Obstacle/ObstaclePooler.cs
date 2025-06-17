@@ -6,6 +6,6 @@ public class ObstaclePooler : MonoBehaviour
 {
     public void PoolOut()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
