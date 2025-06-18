@@ -3355,7 +3355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePoolManager: {fileID: 856032820}
   tileLength: 10
-  tilesInRow: 3
+  tilesInRow: 10
   startSpawnZPosition: 10
   tileRecycler: {fileID: 1871722230}
   tileSpawner: {fileID: 1871722231}
