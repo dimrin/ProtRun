@@ -3,14 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TileRenderer), typeof(TileItemsHandler))]
 public class Tile : MonoBehaviour, ITile {
+
+    [SerializeField] private TileRenderer tileRenderer;
+    [SerializeField] private TileItemsHandler tileItemsHandler;
+
     public GameObject GameObject => gameObject;
 
     public static event Action TileExited;
 
+    private void Awake()
+    {
+        tileRenderer = GetComponent<TileRenderer>();
+        tileItemsHandler = GetComponent<TileItemsHandler>();
+    }
+
     public void OnSpawn()
     {
         gameObject.SetActive(true);
+        
     }
 
     public void OnRecycle()
@@ -21,10 +33,8 @@ public class Tile : MonoBehaviour, ITile {
 
     private void ResetAllChildren()
     {
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(true);
-        }
+        tileRenderer.ResetRenderer();
+        tileItemsHandler.ResetPositions();
     }
 
     private void OnTriggerExit(Collider other)
