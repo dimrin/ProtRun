@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
         FinalUIManager.GoToMenu += GoToMenu;
         GameUIManager.PauseGame += Pause;
         GameSessionManager.PointsIncreased += PointsToUI;
+        GameSessionManager.GamePauseOnHide += Pause;
         GameSessionManager.OnGameEnded += SetFinalUI;
     }
 
@@ -38,6 +39,7 @@ public class UIManager : MonoBehaviour
         FinalUIManager.GoToMenu -= GoToMenu;
         GameUIManager.PauseGame -= Pause;
         GameSessionManager.PointsIncreased -= PointsToUI;
+        GameSessionManager.GamePauseOnHide -= Pause;
         GameSessionManager.OnGameEnded -= SetFinalUI;
     }
 

@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class GamePauseManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GamePauseManager Instance;
+
+    private void Awake()
     {
-        
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Pause()
     {
-        
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
     }
 }
