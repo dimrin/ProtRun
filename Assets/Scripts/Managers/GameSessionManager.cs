@@ -3,21 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSessionManager : MonoBehaviour
-{
+public class GameSessionManager : MonoBehaviour {
     [SerializeField] private GamePointsManager gamePointsManager;
     [SerializeField] private GamePauseManager gamePauseManager;
 
     public static event Action<int> PointsIncreased;
-    public static event Action<int> OnGameEnded;
+    public static event Action<int> SentPointsOnGameEnded;
     public static event Action GamePauseOnHide;
+    public static event Action OnGameStarted;
+    public static event Action OnGameRun;
+    public static event Action OnGamePaused;
+    public static event Action OnGameFinished;
+
+
+    public GameState CurrentGameState { get; private set; }
 
     private void Awake()
     {
-        if(gamePointsManager == null) gamePointsManager = FindAnyObjectByType<GamePointsManager>();
-        if(gamePauseManager == null) gamePauseManager = FindAnyObjectByType<GamePauseManager>();
+        if (gamePointsManager == null) gamePointsManager = FindAnyObjectByType<GamePointsManager>();
+        if (gamePauseManager == null) gamePauseManager = FindAnyObjectByType<GamePauseManager>();
+
     }
 
+    private void Start()
+    {
+        ChangeGameState(GameState.Start, () =>
+        {
+            OnGameStarted?.Invoke();
+        });
+    }
 
     private void OnEnable()
     {
@@ -25,6 +39,7 @@ public class GameSessionManager : MonoBehaviour
         Player.OnPlayerCrushed += EndTheGame;
         UIManager.PauseTheGame += Pause;
         UIManager.ResumeTheGame += Resume;
+        LevelGeneratorManager.OnStartLevelGenerated += RunGame;
     }
 
     private void OnDisable()
@@ -33,6 +48,7 @@ public class GameSessionManager : MonoBehaviour
         Player.OnPlayerCrushed -= EndTheGame;
         UIManager.PauseTheGame -= Pause;
         UIManager.ResumeTheGame -= Resume;
+        LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
     }
 
     private void IncreasePoints(int point)
@@ -41,19 +57,67 @@ public class GameSessionManager : MonoBehaviour
         SetPointsToUI();
     }
 
+    private void RunGame()
+    {
+        ChangeGameState(GameState.Run, () =>
+        {
+            OnGameRun?.Invoke();
+        });
+    }
+
     public void Pause()
     {
-        gamePauseManager.Pause();
+        if (CurrentGameState == GameState.Run)
+        {
+            ChangeGameState(GameState.Pause, () =>
+            {
+                gamePauseManager.Pause();
+                OnGamePaused?.Invoke();
+            });
+        }
+
     }
 
     public void Resume()
     {
-        gamePauseManager.Resume();
+        if (CurrentGameState == GameState.Pause)
+        {
+            ChangeGameState(GameState.Run, () =>
+            {
+                gamePauseManager.Resume();
+                OnGameRun?.Invoke();
+            });
+        }
     }
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) GamePauseOnHide?.Invoke();
+        //if (pause) GamePauseOnHide?.Invoke();
+
+        if (pause)
+        {
+            Debug.Log("OnHidePause");
+            if (CurrentGameState == GameState.Run)
+            {
+                Pause();
+            }
+            else
+            {
+                gamePauseManager.Pause();
+            }
+        }
+        else
+        {
+            Debug.Log("OnHideResume");
+            if (CurrentGameState == GameState.Pause)
+            {
+                Resume();
+            }
+            else
+            {
+                gamePauseManager.Resume();
+            }
+        }
     }
 
     private void SetPointsToUI()
@@ -64,6 +128,26 @@ public class GameSessionManager : MonoBehaviour
 
     private void EndTheGame()
     {
-        OnGameEnded?.Invoke(gamePointsManager.GetPoints());
+        ChangeGameState(GameState.Finish, () =>
+        {
+            OnGameFinished?.Invoke();
+            SentPointsOnGameEnded?.Invoke(gamePointsManager.GetPoints());
+        });
+
+    }
+
+    private void ChangeGameState(GameState state, Action OnStateChanged)
+    {
+        CurrentGameState = state;
+        OnStateChanged?.Invoke();
     }
 }
+
+[Serializable]
+public enum GameState {
+    Start,
+    Run,
+    Pause,
+    Finish
+}
+

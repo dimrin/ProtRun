@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,11 @@ public class LevelGeneratorManager : MonoBehaviour {
     [SerializeField] private LevelTileRecycler tileRecycler;
     [SerializeField] private LevelTileSpawner tileSpawner;
 
+    public static event Action OnStartLevelGenerated;
+
     private readonly Queue<ITile> activeTiles = new Queue<ITile>();
     private float nextSpawnZ = 0f;
+
 
     private void Awake()
     {
@@ -25,16 +29,13 @@ public class LevelGeneratorManager : MonoBehaviour {
     private void OnEnable()
     {
         Tile.TileExited += HandleTileExit;
+        GameSessionManager.OnGameStarted += GenerateStartLevel;
     }
 
     private void OnDisable()
     {
         Tile.TileExited -= HandleTileExit;
-    }
-
-    private void Start()
-    {
-        GenerateStartLevel();
+        GameSessionManager.OnGameStarted -= GenerateStartLevel;
     }
 
     private void GenerateStartLevel()
@@ -45,6 +46,8 @@ public class LevelGeneratorManager : MonoBehaviour {
         {
             SpawnNextTile();
         }
+
+        OnStartLevelGenerated?.Invoke();
     }
     
     private void SpawnNextTile()
