@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public static event Action PauseTheGame;
     public static event Action ResumeTheGame;
     public static event Action GoToMainMenu;
+    public static event Action OpenAdForRevive;
 
     private void Awake()
     {
@@ -25,10 +26,12 @@ public class UIManager : MonoBehaviour
         PauseUIManager.Resume += Resume;
         PauseUIManager.GoToMenuFromPause += GoToMenuFromPause;
         FinalUIManager.GoToMenu += GoToMenu;
+        FinalUIManager.ReviveOnAd += GoToAd;
         GameUIManager.PauseGame += Pause;
         GameSessionManager.PointsIncreased += PointsToUI;
         GameSessionManager.GamePauseOnHide += Pause;
         GameSessionManager.SentPointsOnGameEnded += SetFinalUI;
+        GameSessionManager.OnRevived += ClosesFinalUIOnRevive;
     }
 
 
@@ -37,10 +40,12 @@ public class UIManager : MonoBehaviour
         PauseUIManager.Resume -= Resume;
         PauseUIManager.GoToMenuFromPause -= GoToMenuFromPause;
         FinalUIManager.GoToMenu -= GoToMenu;
+        FinalUIManager.ReviveOnAd -= GoToAd;
         GameUIManager.PauseGame -= Pause;
         GameSessionManager.PointsIncreased -= PointsToUI;
         GameSessionManager.GamePauseOnHide -= Pause;
         GameSessionManager.SentPointsOnGameEnded -= SetFinalUI;
+        GameSessionManager.OnRevived -= ClosesFinalUIOnRevive;
     }
 
     private void SetNullValues()
@@ -87,6 +92,11 @@ public class UIManager : MonoBehaviour
         });
     }
 
+    private void GoToAd()
+    {
+        OpenAdForRevive?.Invoke();
+    }
+
     private void GoToMenuFromPause()
     {
         pauseUIManager.CloseUI(() =>
@@ -105,5 +115,10 @@ public class UIManager : MonoBehaviour
     {
         finalUIManager.SetPointsToUIText(points);
         finalUIManager.OpenUI();
+    }
+
+    private void ClosesFinalUIOnRevive()
+    {
+        finalUIManager.CloseUI();
     }
 }

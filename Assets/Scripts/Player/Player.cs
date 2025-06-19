@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour {
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerItemPicker itemPicker;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerBuffManager playerBuffManager;
+
+    [SerializeField] private int onReviveBuffTime = 5;
 
     public static event Action<int> OnPickedPoint;
     public static event Action OnPlayerCrushed;
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour {
         GameSessionManager.OnGameRun += AllowMove;
         GameSessionManager.OnGamePaused += StopMove;
         GameSessionManager.OnGameFinished += StopMove;
+        GameSessionManager.OnRevived += Revive;
     }
 
 
@@ -39,6 +43,7 @@ public class Player : MonoBehaviour {
         GameSessionManager.OnGameRun -= AllowMove;
         GameSessionManager.OnGamePaused -= StopMove;
         GameSessionManager.OnGameFinished -= StopMove;
+        GameSessionManager.OnRevived -= Revive;
     }
 
     private void Awake()
@@ -70,6 +75,12 @@ public class Player : MonoBehaviour {
     private void AllowMove()
     {
         canMove = true;
+    }
+
+    private void Revive()
+    {
+        AllowMove();
+        playerBuffManager.ApplyBuff(ItemType.Speed, onReviveBuffTime);
     }
 
     private void OnTriggerEnter(Collider other)

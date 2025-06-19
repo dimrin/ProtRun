@@ -14,6 +14,7 @@ public class GameSessionManager : MonoBehaviour {
     public static event Action OnGameRun;
     public static event Action OnGamePaused;
     public static event Action OnGameFinished;
+    public static event Action OnRevived;
 
 
     public GameState CurrentGameState { get; private set; }
@@ -39,6 +40,7 @@ public class GameSessionManager : MonoBehaviour {
         Player.OnPlayerCrushed += EndTheGame;
         UIManager.PauseTheGame += Pause;
         UIManager.ResumeTheGame += Resume;
+        UIManager.OpenAdForRevive += ContinueAfterRevive;
         LevelGeneratorManager.OnStartLevelGenerated += RunGame;
     }
 
@@ -48,6 +50,7 @@ public class GameSessionManager : MonoBehaviour {
         Player.OnPlayerCrushed -= EndTheGame;
         UIManager.PauseTheGame -= Pause;
         UIManager.ResumeTheGame -= Resume;
+        UIManager.OpenAdForRevive -= ContinueAfterRevive;
         LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
     }
 
@@ -99,6 +102,7 @@ public class GameSessionManager : MonoBehaviour {
             Debug.Log("OnHidePause");
             if (CurrentGameState == GameState.Run)
             {
+                GamePauseOnHide?.Invoke();
                 Pause();
             }
             else
@@ -125,6 +129,17 @@ public class GameSessionManager : MonoBehaviour {
         PointsIncreased?.Invoke(gamePointsManager.GetPoints());
     }
 
+    private void ContinueAfterRevive()
+    {
+        if (CurrentGameState == GameState.Finish) {
+            ChangeGameState(GameState.Run, () =>
+            {
+                //gamePauseManager.Resume();
+                OnGameRun?.Invoke();
+                OnRevived?.Invoke();
+            });
+        }
+    }
 
     private void EndTheGame()
     {

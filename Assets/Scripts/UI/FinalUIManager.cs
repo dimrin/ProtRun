@@ -8,6 +8,7 @@ public class FinalUIManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI finalPointsText;
 
     public static event Action GoToMenu;
+    public static event Action ReviveOnAd;
 
     private void Awake()
     {
@@ -38,7 +39,8 @@ public class FinalUIManager : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
-    public void CloseUI(Action OnUIClose) {
+    public void CloseUI(Action OnUIClose)
+    {
         CloseUI();
         OnUIClose?.Invoke();
     }
@@ -48,4 +50,9 @@ public class FinalUIManager : MonoBehaviour {
         GoToMenu?.Invoke();
     }
 
+
+    public void ReviveOnAdOnClick()
+    {
+        ReviveOnAd?.Invoke();
+    }
 }
