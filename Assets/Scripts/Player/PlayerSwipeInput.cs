@@ -23,18 +23,31 @@ public class PlayerSwipeInput : MonoBehaviour {
 
     private void OnEnable()
     {
+        GameSessionManager.OnGameRun += EnableInput;
+        GameSessionManager.OnGamePaused += DisableInput;
+        GameSessionManager.OnGameFinished += DisableInput;
+    }
+
+    private void OnDisable()
+    {
+        GameSessionManager.OnGameRun -= EnableInput;
+        GameSessionManager.OnGamePaused -= DisableInput;
+        GameSessionManager.OnGameFinished -= DisableInput;
+    }
+
+    private void EnableInput()
+    {
         inputs.Enable();
         inputs.PlayerTouchActions.TouchPress.started += ctx => StartTouch();
         inputs.PlayerTouchActions.TouchPress.canceled += ctx => EndTouch();
     }
 
-    private void OnDisable()
+    private void DisableInput()
     {
         inputs.PlayerTouchActions.TouchPress.started -= ctx => StartTouch();
         inputs.PlayerTouchActions.TouchPress.canceled -= ctx => EndTouch();
         inputs.Disable();
     }
-
 
     private void StartTouch()
     {
