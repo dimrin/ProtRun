@@ -34,6 +34,11 @@ public class LevelGeneratorManager : MonoBehaviour {
 
     private void Start()
     {
+        GenerateStartLevel();
+    }
+
+    private void GenerateStartLevel()
+    {
         nextSpawnZ = startSpawnZPosition;
 
         for (int i = 0; i < tilesInRow; i++)

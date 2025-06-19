@@ -12,7 +12,6 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerItemPicker itemPicker;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerBuffManager playerBuffManager;
-    //[SerializeField] private PlayerSwipeInput input;
 
     public static event Action<int> OnPickedPoint;
     public static event Action OnPlayerCrushed;
@@ -42,7 +41,6 @@ public class Player : MonoBehaviour {
         playerHealth = GetComponent<PlayerHealth>();
         playerBuffManager = GetComponent<PlayerBuffManager>();
         playerBuffManager.SetComponentsOnAwake(playerHealth, playerLaneMovement, transform);
-        //input = GetComponent<PlayerSwipeInput>();
     }
 
     private void Update()
