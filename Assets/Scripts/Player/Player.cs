@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerItemPicker itemPicker;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerBuffManager playerBuffManager;
+    [SerializeField] private PlayerSoundsManager playerSoundsManager;
 
     [SerializeField] private int onReviveBuffTime = 5;
 
@@ -23,9 +24,13 @@ public class Player : MonoBehaviour {
 
     private void OnEnable()
     {
+        PlayerSwipeInput.SwipeToLeft += playerSoundsManager.PlaySoundOnLeftRightSwipe;
         PlayerSwipeInput.SwipeToLeft += playerLaneMovement.MoveLeft;
+        PlayerSwipeInput.SwipeToRight += playerSoundsManager.PlaySoundOnLeftRightSwipe;
         PlayerSwipeInput.SwipeToRight += playerLaneMovement.MoveRight;
+        PlayerSwipeInput.SwipeToUp += playerSoundsManager.PlaySoundOnSwipeUp;
         PlayerSwipeInput.SwipeToUp += playerVerticalMovement.Jump;
+        PlayerSwipeInput.SwipeToDown += playerSoundsManager.PlaySoundOnSwipeDown;
         PlayerSwipeInput.SwipeToDown += playerVerticalMovement.PushDown;
         GameSessionManager.OnGameRun += AllowMove;
         GameSessionManager.OnGamePaused += StopMove;
@@ -36,9 +41,13 @@ public class Player : MonoBehaviour {
 
     private void OnDisable()
     {
+        PlayerSwipeInput.SwipeToLeft -= playerSoundsManager.PlaySoundOnLeftRightSwipe;
         PlayerSwipeInput.SwipeToLeft -= playerLaneMovement.MoveLeft;
+        PlayerSwipeInput.SwipeToRight -= playerSoundsManager.PlaySoundOnLeftRightSwipe;
         PlayerSwipeInput.SwipeToRight -= playerLaneMovement.MoveRight;
+        PlayerSwipeInput.SwipeToUp -= playerSoundsManager.PlaySoundOnSwipeUp;
         PlayerSwipeInput.SwipeToUp -= playerVerticalMovement.Jump;
+        PlayerSwipeInput.SwipeToDown -= playerSoundsManager.PlaySoundOnSwipeDown;
         PlayerSwipeInput.SwipeToDown -= playerVerticalMovement.PushDown;
         GameSessionManager.OnGameRun -= AllowMove;
         GameSessionManager.OnGamePaused -= StopMove;
@@ -53,6 +62,7 @@ public class Player : MonoBehaviour {
         itemPicker = GetComponent<PlayerItemPicker>();
         playerHealth = GetComponent<PlayerHealth>();
         playerBuffManager = GetComponent<PlayerBuffManager>();
+        playerSoundsManager = GetComponent<PlayerSoundsManager>();
         playerBuffManager.SetComponentsOnAwake(playerHealth, playerLaneMovement, transform);
     }
 
@@ -91,11 +101,13 @@ public class Player : MonoBehaviour {
             {
                 case ItemType.Value:
                     OnPickedPoint?.Invoke(itemValue);
+                    playerSoundsManager.PlaySoundOnPickValue();
                     break;
                 case ItemType.Shield:
                 case ItemType.Speed:
                 case ItemType.Magnet:
                     playerBuffManager.ApplyBuff(itemType, itemValue);
+                    playerSoundsManager.PlaySoundOnPickBuf();
                     break;
                 default:
                     Debug.LogWarning("Unhandled item type: " + itemType);
@@ -109,8 +121,12 @@ public class Player : MonoBehaviour {
     {
         playerHealth.GetHit(hit.gameObject, () =>
         {
+            playerSoundsManager.PlaySoundOnDestroyObstacle();
+        },() =>
+        {
             Debug.Log("Hitted");
             OnPlayerCrushed?.Invoke();
+            playerSoundsManager.PlaySoundOnCrash();
         });
     }
 

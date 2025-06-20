@@ -8,12 +8,13 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private bool isHittable = true;
 
 
-    public void GetHit(GameObject gameObject, Action OnGetHit)
+    public void GetHit(GameObject gameObject,Action OnCrushObstacle ,Action OnGetHit)
     {
         if (gameObject.TryGetComponent(out IHittable hittable))
         {
             hittable.GetHit();
-            if(isHittable)
+            OnCrushObstacle?.Invoke();
+            if (isHittable)
             {
                 OnGetHit?.Invoke();
             }
