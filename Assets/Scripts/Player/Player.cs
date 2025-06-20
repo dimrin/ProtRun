@@ -28,10 +28,8 @@ public class Player : MonoBehaviour {
         PlayerSwipeInput.SwipeToLeft += playerLaneMovement.MoveLeft;
         PlayerSwipeInput.SwipeToRight += playerSoundsManager.PlaySoundOnLeftRightSwipe;
         PlayerSwipeInput.SwipeToRight += playerLaneMovement.MoveRight;
-        PlayerSwipeInput.SwipeToUp += playerSoundsManager.PlaySoundOnSwipeUp;
-        PlayerSwipeInput.SwipeToUp += playerVerticalMovement.Jump;
-        PlayerSwipeInput.SwipeToDown += playerSoundsManager.PlaySoundOnSwipeDown;
-        PlayerSwipeInput.SwipeToDown += playerVerticalMovement.PushDown;
+        PlayerSwipeInput.SwipeToUp += Jump;
+        PlayerSwipeInput.SwipeToDown += PushDown;
         GameSessionManager.OnGameRun += AllowMove;
         GameSessionManager.OnGamePaused += StopMove;
         GameSessionManager.OnGameFinished += StopMove;
@@ -45,10 +43,8 @@ public class Player : MonoBehaviour {
         PlayerSwipeInput.SwipeToLeft -= playerLaneMovement.MoveLeft;
         PlayerSwipeInput.SwipeToRight -= playerSoundsManager.PlaySoundOnLeftRightSwipe;
         PlayerSwipeInput.SwipeToRight -= playerLaneMovement.MoveRight;
-        PlayerSwipeInput.SwipeToUp -= playerSoundsManager.PlaySoundOnSwipeUp;
-        PlayerSwipeInput.SwipeToUp -= playerVerticalMovement.Jump;
-        PlayerSwipeInput.SwipeToDown -= playerSoundsManager.PlaySoundOnSwipeDown;
-        PlayerSwipeInput.SwipeToDown -= playerVerticalMovement.PushDown;
+        PlayerSwipeInput.SwipeToUp -= Jump;
+        PlayerSwipeInput.SwipeToDown -= PushDown;
         GameSessionManager.OnGameRun -= AllowMove;
         GameSessionManager.OnGamePaused -= StopMove;
         GameSessionManager.OnGameFinished -= StopMove;
@@ -85,6 +81,22 @@ public class Player : MonoBehaviour {
     private void AllowMove()
     {
         canMove = true;
+    }
+
+    private void Jump()
+    {
+        playerVerticalMovement.Jump(() =>
+        {
+            playerSoundsManager.PlaySoundOnSwipeUp();
+        });
+    }
+
+    private void PushDown()
+    {
+        playerVerticalMovement.PushDown(()=>
+        {
+            playerSoundsManager.PlaySoundOnSwipeDown();
+        });
     }
 
     private void Revive()

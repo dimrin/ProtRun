@@ -71,7 +71,7 @@ public class PlayerSoundsManager : MonoBehaviour
 
     private void PlaySound(AudioSource audioSource, AudioClip audioClip)
     {
-        if(!audioSource.isPlaying)
+        if(audioSource.isPlaying)
         {
             audioSource.Stop();
         }
