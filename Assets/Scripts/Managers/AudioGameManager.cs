@@ -8,7 +8,7 @@ public class AudioGameManager : MonoBehaviour {
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private AudioClip OnRunSound;
-    [SerializeField] private AudioClip OnFInishSound;
+    [SerializeField] private AudioClip OnFinishSound;
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class AudioGameManager : MonoBehaviour {
 
     private void PlayOnFinish()
     {
-        audioSource.clip = OnFInishSound;
+        audioSource.clip = OnFinishSound;
         audioSource.Play();
     }
 

@@ -10,9 +10,9 @@ public class PlayerSoundsManager : MonoBehaviour
     [SerializeField] private AudioSource pickingAudioSource;
 
     [Header("Swipe Sounds")]
-    [SerializeField] private AudioClip OnRunSound;
-    [SerializeField] private AudioClip OnJumpSound;
-    [SerializeField] private AudioClip OnPushDownSound;
+    [SerializeField] private AudioClip OnSidesSwipeSound;
+    [SerializeField] private AudioClip OnUpSwipeSound;
+    [SerializeField] private AudioClip OnSwipeDownSound;
     [SerializeField] private AudioClip OnCrashSound;
 
     [Header("Item Sounds")]
@@ -30,42 +30,42 @@ public class PlayerSoundsManager : MonoBehaviour
 
     public void PlaySoundOnLeftRightSwipe()
     {
-        //PlaySound(movementAudioSource, OnRunSound);
+        PlaySound(movementAudioSource, OnSidesSwipeSound);
         Debug.Log("Sides");
     }
 
     public void PlaySoundOnSwipeUp() {
-        //PlaySound(movementAudioSource, OnJumpSound);
+        PlaySound(movementAudioSource, OnUpSwipeSound);
         Debug.Log("Up");
     }
 
     public void PlaySoundOnCrash()
     {
-        //PlaySound(movementAudioSource, OnCrashSound);
+        PlaySound(movementAudioSource, OnCrashSound);
         Debug.Log("Boom");
     }
 
     public void PlaySoundOnSwipeDown()
     {
-        //PlaySound(movementAudioSource, OnPushDownSound);
+        PlaySound(movementAudioSource, OnSwipeDownSound);
         Debug.Log("Down");
     }
 
     public void PlaySoundOnPickValue()
     {
-        //PlaySound(pickingAudioSource, OnValueItemSound);
+        PlaySound(pickingAudioSource, OnValueItemSound);
         Debug.Log("Money");
     }
 
     public void PlaySoundOnPickBuf()
     {
-        //PlaySound(pickingAudioSource, OnBufItemSound);
+        PlaySound(pickingAudioSource, OnBufItemSound);
         Debug.Log("Buf");
     }
 
     public void PlaySoundOnDestroyObstacle()
     {
-        //PlaySound(pickingAudioSource, OnDestroyObstacleSound);
+        PlaySound(pickingAudioSource, OnDestroyObstacleSound);
         Debug.Log("Obstacle");
     }
 
