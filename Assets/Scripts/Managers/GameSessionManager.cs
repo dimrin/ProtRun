@@ -95,8 +95,6 @@ public class GameSessionManager : MonoBehaviour {
 
     private void OnApplicationPause(bool pause)
     {
-        //if (pause) GamePauseOnHide?.Invoke();
-
         if (pause)
         {
             Debug.Log("OnHidePause");

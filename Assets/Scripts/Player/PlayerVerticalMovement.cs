@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,16 +43,19 @@ public class PlayerVerticalMovement : MonoBehaviour
         characterController.Move(verticalMove);
     }
 
-    public void Jump()
+    public void Jump(Action OnJumped)
     {
         if (!characterController.isGrounded) return;
 
         verticalVelocity = jumpForce;
+        OnJumped?.Invoke();
     }
 
-    public void PushDown()
+    public void PushDown(Action OnPushedDown)
     {
+        if (characterController.isGrounded) return;
         isPushedDown = true;
+        OnPushedDown?.Invoke();
     }
 
 }
