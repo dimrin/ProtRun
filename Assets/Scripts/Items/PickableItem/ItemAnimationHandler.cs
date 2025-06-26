@@ -12,6 +12,6 @@ public class ItemAnimationHandler : MonoBehaviour
     }
     public void OnPickedAnimationPlay()
     {
-        Debug.Log("Anim");
+
     }
 }

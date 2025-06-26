@@ -23,7 +23,7 @@ public class GameSessionManager : MonoBehaviour {
     {
         if (gamePointsManager == null) gamePointsManager = FindAnyObjectByType<GamePointsManager>();
         if (gamePauseManager == null) gamePauseManager = FindAnyObjectByType<GamePauseManager>();
-
+        Application.targetFrameRate = 60;
     }
 
     private void Start()
