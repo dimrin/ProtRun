@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 
     public static event Action<int> OnPickedPoint;
     public static event Action OnPlayerCrushed;
+    public static event Action<ItemType, int> OnBuffApplied;
 
     private bool canMove = false;
 
@@ -103,6 +104,7 @@ public class Player : MonoBehaviour {
     {
         AllowMove();
         playerBuffManager.ApplyBuff(ItemType.Speed, onReviveBuffTime);
+        OnBuffApplied?.Invoke(ItemType.Speed, onReviveBuffTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -119,6 +121,7 @@ public class Player : MonoBehaviour {
                 case ItemType.Speed:
                 case ItemType.Magnet:
                     playerBuffManager.ApplyBuff(itemType, itemValue);
+                    OnBuffApplied?.Invoke(itemType, itemValue);
                     playerSoundsManager.PlaySoundOnPickBuf();
                     break;
                 default:
