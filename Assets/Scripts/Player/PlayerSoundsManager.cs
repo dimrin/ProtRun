@@ -31,42 +31,35 @@ public class PlayerSoundsManager : MonoBehaviour
     public void PlaySoundOnLeftRightSwipe()
     {
         PlaySound(movementAudioSource, OnSidesSwipeSound);
-        Debug.Log("Sides");
     }
 
     public void PlaySoundOnSwipeUp() {
         PlaySound(movementAudioSource, OnUpSwipeSound);
-        Debug.Log("Up");
     }
 
     public void PlaySoundOnCrash()
     {
         PlaySound(movementAudioSource, OnCrashSound);
-        Debug.Log("Boom");
     }
 
     public void PlaySoundOnSwipeDown()
     {
         PlaySound(movementAudioSource, OnSwipeDownSound);
-        Debug.Log("Down");
     }
 
     public void PlaySoundOnPickValue()
     {
         PlaySound(pickingAudioSource, OnValueItemSound);
-        Debug.Log("Money");
     }
 
     public void PlaySoundOnPickBuf()
     {
         PlaySound(pickingAudioSource, OnBufItemSound);
-        Debug.Log("Buf");
     }
 
     public void PlaySoundOnDestroyObstacle()
     {
         PlaySound(pickingAudioSource, OnDestroyObstacleSound);
-        Debug.Log("Obstacle");
     }
 
     private void PlaySound(AudioSource audioSource, AudioClip audioClip)

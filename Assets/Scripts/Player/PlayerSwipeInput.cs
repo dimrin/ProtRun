@@ -9,13 +9,14 @@ public class PlayerSwipeInput : MonoBehaviour {
 
     private PlayerControls inputs;
     private Vector2 startPos;
-    private Vector2 endPos;
-    private bool isSwiping;
+    private bool isSwiping = false;
+    private bool hasSwiped = false;
 
     public static event Action SwipeToLeft;
     public static event Action SwipeToRight;
     public static event Action SwipeToUp;
     public static event Action SwipeToDown;
+
     private void Awake()
     {
         inputs = new PlayerControls();
@@ -38,14 +39,14 @@ public class PlayerSwipeInput : MonoBehaviour {
     private void EnableInput()
     {
         inputs.Enable();
-        inputs.PlayerTouchActions.TouchPress.started += ctx => StartTouch();
-        inputs.PlayerTouchActions.TouchPress.canceled += ctx => EndTouch();
+        inputs.PlayerTouchActions.TouchPress.started += _ => StartTouch();
+        inputs.PlayerTouchActions.TouchPress.canceled += _ => EndTouch();
     }
 
     private void DisableInput()
     {
-        inputs.PlayerTouchActions.TouchPress.started -= ctx => StartTouch();
-        inputs.PlayerTouchActions.TouchPress.canceled -= ctx => EndTouch();
+        inputs.PlayerTouchActions.TouchPress.started -= _ => StartTouch();
+        inputs.PlayerTouchActions.TouchPress.canceled -= _ => EndTouch();
         inputs.Disable();
     }
 
@@ -53,21 +54,30 @@ public class PlayerSwipeInput : MonoBehaviour {
     {
         startPos = inputs.PlayerTouchActions.TouchMovement.ReadValue<Vector2>();
         isSwiping = true;
+        hasSwiped = false;
     }
 
     private void EndTouch()
     {
-        if (!isSwiping) return;
-        endPos = inputs.PlayerTouchActions.TouchMovement.ReadValue<Vector2>();
-        DetectSwipe();
         isSwiping = false;
     }
 
-    private void DetectSwipe()
+    private void Update()
     {
-        Vector2 swipe = endPos - startPos;
-        if (swipe.magnitude < swipeThreshold) return;
+        if (!isSwiping || hasSwiped) return;
 
+        Vector2 currentPos = inputs.PlayerTouchActions.TouchMovement.ReadValue<Vector2>();
+        Vector2 delta = currentPos - startPos;
+
+        if (delta.magnitude >= swipeThreshold)
+        {
+            DetectSwipe(delta);
+            hasSwiped = true;
+        }
+    }
+
+    private void DetectSwipe(Vector2 swipe)
+    {
         if (Mathf.Abs(swipe.x) > Mathf.Abs(swipe.y))
         {
             if (swipe.x > 0)
@@ -80,7 +90,6 @@ public class PlayerSwipeInput : MonoBehaviour {
                 Debug.Log("Swipe Left");
                 SwipeToLeft?.Invoke();
             }
-
         }
         else
         {
@@ -94,11 +103,7 @@ public class PlayerSwipeInput : MonoBehaviour {
                 Debug.Log("Swipe Down");
                 SwipeToDown?.Invoke();
             }
-
-
         }
     }
-
-
-
+    
 }

@@ -15,8 +15,6 @@ public class PlayerItemPicker : MonoBehaviour
             {
                 item.Picked();
                 OnItemPicked?.Invoke(item.GetItemType(), item.GetValue());
-
-                Debug.Log("Picked");
             }
         }
     }
