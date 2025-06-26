@@ -10,6 +10,7 @@ public class GameSessionManager : MonoBehaviour {
     public static event Action<int> PointsIncreased;
     public static event Action<int> SentPointsOnGameEnded;
     public static event Action GamePauseOnHide;
+    //public static event Action GameResumeOnWakeUp;
     public static event Action OnGameStarted;
     public static event Action OnGameRun;
     public static event Action OnGamePaused;
@@ -102,22 +103,35 @@ public class GameSessionManager : MonoBehaviour {
             {
                 GamePauseOnHide?.Invoke();
                 Pause();
+                Debug.Log($"Paused {pause} + State {CurrentGameState}");
             }
             else
             {
                 gamePauseManager.Pause();
+                Debug.Log($"Paused 1 {pause} + State {CurrentGameState}");
             }
         }
         else
         {
             Debug.Log("OnHideResume");
+            /*
             if (CurrentGameState == GameState.Pause)
             {
+                //GameResumeOnWakeUp?.Invoke();
                 Resume();
+                Debug.Log($"UnPaused {pause} + State {CurrentGameState}");
             }
             else
             {
                 gamePauseManager.Resume();
+                Debug.Log($"UnPaused 1 {pause} + State {CurrentGameState}");
+            }
+            */
+
+            if(CurrentGameState == GameState.Finish)
+            {
+                gamePauseManager.Resume();
+                Debug.Log($"UnPaused 1 {pause} + State {CurrentGameState}");
             }
         }
     }

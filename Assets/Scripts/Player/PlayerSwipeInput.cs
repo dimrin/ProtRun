@@ -82,12 +82,12 @@ public class PlayerSwipeInput : MonoBehaviour {
         {
             if (swipe.x > 0)
             {
-                Debug.Log("Swipe Right");
+                //Debug.Log("Swipe Right");
                 SwipeToRight?.Invoke();
             }
             else
             {
-                Debug.Log("Swipe Left");
+                //Debug.Log("Swipe Left");
                 SwipeToLeft?.Invoke();
             }
         }
@@ -95,12 +95,12 @@ public class PlayerSwipeInput : MonoBehaviour {
         {
             if (swipe.y > 0)
             {
-                Debug.Log("Swipe Up");
+                //Debug.Log("Swipe Up");
                 SwipeToUp?.Invoke();
             }
             else
             {
-                Debug.Log("Swipe Down");
+                //Debug.Log("Swipe Down");
                 SwipeToDown?.Invoke();
             }
         }

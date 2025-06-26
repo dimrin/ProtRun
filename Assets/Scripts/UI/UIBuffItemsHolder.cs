@@ -25,9 +25,9 @@ public class UIBuffItemsHolder : MonoBehaviour {
             {
                 item.ActivateBuffTimer(timeValue);
                 RunBuffUITimer += item.RunBuffTimer;
-                Debug.Log("SUBSCRIBED: " + item.name);
+                //Debug.Log("SUBSCRIBED: " + item.name);
                 item.OnTimerFinished += HandleBuffUITimerFinished;
-                Debug.Log("subscribers " + RunBuffUITimer.GetInvocationList().Length);
+                //Debug.Log("subscribers " + RunBuffUITimer.GetInvocationList().Length);
                 break;
             }
         }
@@ -43,6 +43,6 @@ public class UIBuffItemsHolder : MonoBehaviour {
         RunBuffUITimer -= item.RunBuffTimer;
         item.OnTimerFinished -= HandleBuffUITimerFinished;
 
-        Debug.Log("UNSUBSCRIBED: " + item.name);
+        //Debug.Log("UNSUBSCRIBED: " + item.name);
     }
 }
