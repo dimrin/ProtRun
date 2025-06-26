@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameUIManager gameUIManager;
     [SerializeField] private PauseUIManager pauseUIManager;
     [SerializeField] private FinalUIManager finalUIManager;
+    [SerializeField] private UIBuffItemsHolder itemsHolder;
 
     public static event Action PauseTheGame;
     public static event Action ResumeTheGame;
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
         GameSessionManager.GamePauseOnHide += Pause;
         GameSessionManager.SentPointsOnGameEnded += SetFinalUI;
         GameSessionManager.OnRevived += ClosesFinalUIOnRevive;
+        Player.OnBuffApplied += itemsHolder.ActivateBuffUI;
     }
 
 
@@ -46,6 +48,7 @@ public class UIManager : MonoBehaviour
         GameSessionManager.GamePauseOnHide -= Pause;
         GameSessionManager.SentPointsOnGameEnded -= SetFinalUI;
         GameSessionManager.OnRevived -= ClosesFinalUIOnRevive;
+        Player.OnBuffApplied -= itemsHolder.ActivateBuffUI;
     }
 
     private void SetNullValues()
@@ -65,6 +68,11 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log("asdsad");
         });
+    }
+
+    private void Update()
+    {
+        itemsHolder.UpdateBuffTimer();
     }
 
     private void Resume()

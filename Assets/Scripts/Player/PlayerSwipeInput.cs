@@ -73,13 +73,11 @@ public class PlayerSwipeInput : MonoBehaviour {
             if (swipe.x > 0)
             {
                 Debug.Log("Swipe Right");
-                Debug.Log(swipe.x);
                 SwipeToRight?.Invoke();
             }
             else
             {
                 Debug.Log("Swipe Left");
-                Debug.Log(swipe.x);
                 SwipeToLeft?.Invoke();
             }
 
