@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
         GameUIManager.PauseGame += Pause;
         GameSessionManager.PointsIncreased += PointsToUI;
         GameSessionManager.GamePauseOnHide += Pause;
+        //GameSessionManager.GameResumeOnWakeUp += Resume;
         GameSessionManager.SentPointsOnGameEnded += SetFinalUI;
         GameSessionManager.OnRevived += ClosesFinalUIOnRevive;
         Player.OnBuffApplied += itemsHolder.ActivateBuffUI;
@@ -46,6 +47,7 @@ public class UIManager : MonoBehaviour
         GameUIManager.PauseGame -= Pause;
         GameSessionManager.PointsIncreased -= PointsToUI;
         GameSessionManager.GamePauseOnHide -= Pause;
+        //GameSessionManager.GameResumeOnWakeUp -= Resume;
         GameSessionManager.SentPointsOnGameEnded -= SetFinalUI;
         GameSessionManager.OnRevived -= ClosesFinalUIOnRevive;
         Player.OnBuffApplied -= itemsHolder.ActivateBuffUI;

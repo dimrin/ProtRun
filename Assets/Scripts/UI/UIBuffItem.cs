@@ -19,7 +19,7 @@ public class UIBuffItem : MonoBehaviour {
 
     private void Awake()
     {
-        Debug.Log("ItemUI");
+        //Debug.Log("ItemUI");
     }
 
     public void RunBuffTimer()
