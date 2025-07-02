@@ -25,11 +25,11 @@ public class UIBuffItemsHolder : MonoBehaviour {
             {
                 if (item.IsActive())
                 {
-                    HandleBuffUITimerFinished(item);
+                    UnsubscribeBuffUITimer(item);
                 }
                 item.ActivateBuffTimer(timeValue);
                 RunBuffUITimer += item.RunBuffTimer;
-                item.OnTimerFinished += HandleBuffUITimerFinished;
+                item.OnTimerFinished += UnsubscribeBuffUITimer;
                 break;
             }
         }
@@ -40,9 +40,9 @@ public class UIBuffItemsHolder : MonoBehaviour {
         RunBuffUITimer?.Invoke();
     }
 
-    private void HandleBuffUITimerFinished(UIBuffItem item)
+    private void UnsubscribeBuffUITimer(UIBuffItem item)
     {
         RunBuffUITimer -= item.RunBuffTimer;
-        item.OnTimerFinished -= HandleBuffUITimerFinished;
+        item.OnTimerFinished -= UnsubscribeBuffUITimer;
     }
 }
