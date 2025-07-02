@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class ShieldBuff : IBuff {
         _playerHealth.ChangeHittableState(IsActive);
     }
 
-    public void Update()
+    public void Update(Action OnBuffEnded)
     {
         if (!IsActive) return;
         _timer += Time.deltaTime;
@@ -29,6 +30,7 @@ public class ShieldBuff : IBuff {
         {
             IsActive = false;
             _playerHealth.ChangeHittableState(IsActive);
+            OnBuffEnded?.Invoke();
         }
     }
 }
