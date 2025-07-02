@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,7 @@ public class MagnetBuff : IBuff {
         IsActive = true;
     }
 
-    public void Update()
+    public void Update(Action OnBuffEnded)
     {
         if (!IsActive) return;
 
@@ -32,6 +33,7 @@ public class MagnetBuff : IBuff {
         if (_timer >= _duration)
         {
             IsActive = false;
+            OnBuffEnded?.Invoke();
             return;
         }
 

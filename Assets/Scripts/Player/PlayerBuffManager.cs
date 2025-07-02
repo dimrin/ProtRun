@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,12 +30,12 @@ public class PlayerBuffManager : MonoBehaviour
         this.playerTransform = playerTransform;
     }
 
-    public void UpdateBuffsStates()
+    public void UpdateBuffsStates(Action OnBuffEnded)
     {
         foreach (var buff in _buffs.Values)
         {
             if (buff.IsActive)
-                buff.Update();
+                buff.Update(OnBuffEnded);
         }
     }
 

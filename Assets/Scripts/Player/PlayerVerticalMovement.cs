@@ -12,7 +12,10 @@ public class PlayerVerticalMovement : MonoBehaviour
 
     private CharacterController characterController;
     private float verticalVelocity = 0f;
-    private bool isPushedDown = false;
+    private bool _isPushedDown = false;
+
+    private bool _isGrounded = false;
+
     public bool IsJumping => !characterController.isGrounded;
 
     private void Awake()
@@ -26,10 +29,10 @@ public class PlayerVerticalMovement : MonoBehaviour
         {
             verticalVelocity = -1f; // Keep grounded
         }
-        else if (isPushedDown)
+        else if (_isPushedDown)
         {
             verticalVelocity = pushDownForce;
-            isPushedDown = false;
+            _isPushedDown = false;
         }
         else
         {
@@ -54,7 +57,7 @@ public class PlayerVerticalMovement : MonoBehaviour
     public void PushDown(Action OnPushedDown)
     {
         if (characterController.isGrounded) return;
-        isPushedDown = true;
+        _isPushedDown = true;
         OnPushedDown?.Invoke();
     }
 

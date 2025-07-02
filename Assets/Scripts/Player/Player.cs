@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerBuffManager playerBuffManager;
     [SerializeField] private PlayerSoundsManager playerSoundsManager;
+    [SerializeField] private PlayerAnimationHandler playerAnimationHandler;
+    [SerializeField] private PlayerEffectsManager playerEffectsManager;
 
     [SerializeField] private int onReviveBuffTime = 5;
 
@@ -21,7 +23,8 @@ public class Player : MonoBehaviour {
     public static event Action OnPlayerCrushed;
     public static event Action<ItemType, int> OnBuffApplied;
 
-    private bool canMove = false;
+    private bool _canMove = false;
+    private bool _isPlayedCrashed = false;
 
     private void OnEnable()
     {
@@ -60,42 +63,56 @@ public class Player : MonoBehaviour {
         playerHealth = GetComponent<PlayerHealth>();
         playerBuffManager = GetComponent<PlayerBuffManager>();
         playerSoundsManager = GetComponent<PlayerSoundsManager>();
+        playerEffectsManager = GetComponent<PlayerEffectsManager>();
         playerBuffManager.SetComponentsOnAwake(playerHealth, playerLaneMovement, transform);
     }
 
     private void Update()
     {
-        if (!canMove) return;
+        if (!_canMove) return;
         playerLaneMovement.IncreaseSpeed();
         playerLaneMovement.UpdateTargetPosition();
         playerLaneMovement.Move();
         playerVerticalMovement.ApplyGravity();
         playerVerticalMovement.MoveUp();
-        playerBuffManager.UpdateBuffsStates();
+        if(!playerVerticalMovement.IsJumping && !_isPlayedCrashed)
+        {
+            playerAnimationHandler.DeactivateJumpAnimation();
+            playerAnimationHandler.ActivateRunAnimation();
+        }
+        playerBuffManager.UpdateBuffsStates(() =>
+        {
+            //playerAnimationHandler.DeactivateSpinningAnimation();
+        });
     }
 
     private void StopMove()
     {
-        canMove = false;
+        _canMove = false;
     }
 
     private void AllowMove()
     {
-        canMove = true;
+        _canMove = true;
+        playerAnimationHandler.ActivateRunAnimation();
     }
 
     private void Jump()
     {
+
         playerVerticalMovement.Jump(() =>
         {
+            playerAnimationHandler.DeactivateRunAnimation();
+            playerAnimationHandler.ActivateJUmpAnimation();
             playerSoundsManager.PlaySoundOnSwipeUp();
         });
     }
 
     private void PushDown()
-    {
+    {  
         playerVerticalMovement.PushDown(()=>
         {
+            playerAnimationHandler.ActivateRunAnimation();
             playerSoundsManager.PlaySoundOnSwipeDown();
         });
     }
@@ -105,6 +122,8 @@ public class Player : MonoBehaviour {
         AllowMove();
         playerBuffManager.ApplyBuff(ItemType.Speed, onReviveBuffTime);
         OnBuffApplied?.Invoke(ItemType.Speed, onReviveBuffTime);
+        playerAnimationHandler.ActivateRunAnimation();
+        _isPlayedCrashed = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -118,9 +137,20 @@ public class Player : MonoBehaviour {
                     playerSoundsManager.PlaySoundOnPickValue();
                     break;
                 case ItemType.Shield:
+                    playerBuffManager.ApplyBuff(itemType, itemValue);
+                    playerAnimationHandler.ActivateSpinningAnimation(itemValue);
+                    OnBuffApplied?.Invoke(itemType, itemValue);
+                    playerSoundsManager.PlaySoundOnPickBuf();
+                    break;
                 case ItemType.Speed:
+                    playerBuffManager.ApplyBuff(itemType, itemValue);
+                    playerAnimationHandler.ActivateSpinningAnimation(itemValue);
+                    OnBuffApplied?.Invoke(itemType, itemValue);
+                    playerSoundsManager.PlaySoundOnPickBuf();
+                    break;
                 case ItemType.Magnet:
                     playerBuffManager.ApplyBuff(itemType, itemValue);
+                    playerEffectsManager.ActivateMangetObject(itemValue);
                     OnBuffApplied?.Invoke(itemType, itemValue);
                     playerSoundsManager.PlaySoundOnPickBuf();
                     break;
@@ -140,7 +170,10 @@ public class Player : MonoBehaviour {
         },() =>
         {
             Debug.Log("Hitted");
+            playerAnimationHandler.DeactivateRunAnimation();
+            playerAnimationHandler.ActivateDefeatAnimation();
             OnPlayerCrushed?.Invoke();
+            _isPlayedCrashed = true;
             playerSoundsManager.PlaySoundOnCrash();
         });
     }
