@@ -23,6 +23,10 @@ public class UIBuffItemsHolder : MonoBehaviour {
         foreach (var item in UIItems) { 
             if(item.ItemType == itemType)
             {
+                if (item.IsActive())
+                {
+                    HandleBuffUITimerFinished(item);
+                }
                 item.ActivateBuffTimer(timeValue);
                 RunBuffUITimer += item.RunBuffTimer;
                 item.OnTimerFinished += HandleBuffUITimerFinished;
