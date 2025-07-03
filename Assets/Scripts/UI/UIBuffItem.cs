@@ -17,11 +17,6 @@ public class UIBuffItem : MonoBehaviour {
 
     public event Action<UIBuffItem> OnTimerFinished;
 
-    private void Awake()
-    {
-        //Debug.Log("ItemUI");
-    }
-
     public void RunBuffTimer()
     {
         if (_isActive)
@@ -51,6 +46,7 @@ public class UIBuffItem : MonoBehaviour {
         timerDuration = maxTimerTime;
     }
 
+    public bool IsActive () => _isActive;
 
     public ItemType ItemType => itemType;
 }

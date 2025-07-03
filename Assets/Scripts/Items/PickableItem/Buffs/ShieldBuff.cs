@@ -19,7 +19,8 @@ public class ShieldBuff : IBuff {
         _duration = value;
         _timer = 0f;
         IsActive = true;
-        _playerHealth.ChangeHittableState(IsActive);
+        //_playerHealth.ChangeHittableState(IsActive);
+        _playerHealth.MakeUnhittable();
     }
 
     public void Update(Action OnBuffEnded)
@@ -29,7 +30,8 @@ public class ShieldBuff : IBuff {
         if (_timer >= _duration)
         {
             IsActive = false;
-            _playerHealth.ChangeHittableState(IsActive);
+            //_playerHealth.ChangeHittableState(IsActive);
+            _playerHealth.MakeHittable();
             OnBuffEnded?.Invoke();
         }
     }
