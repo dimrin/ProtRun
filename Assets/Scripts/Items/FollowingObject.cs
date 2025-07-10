@@ -2,13 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FollowingObjectLaneMovement))]
 public class FollowingObject : MonoBehaviour, IFollowable {
-    // Start is called before the first frame update
     [SerializeField] private Transform target;
-    private Vector3 offset;
-    void Start()
+    [SerializeField] private FollowingObjectLaneMovement laneMovement;
+
+    private void Awake()
     {
-        offset = transform.position - target.position;
+        if(laneMovement == null)
+        {
+            laneMovement = GetComponent<FollowingObjectLaneMovement>();
+        }
+    }
+
+    private void Start()
+    {
+        laneMovement.SetTargetOnStart(target);
+    }
+
+    private void OnEnable()
+    {
+        PlayerSwipeInput.SwipeToLeft += laneMovement.MoveLeft;
+        PlayerSwipeInput.SwipeToRight += laneMovement.MoveRight;
+    }
+
+    private void OnDisable()
+    {
+        PlayerSwipeInput.SwipeToLeft -= laneMovement.MoveLeft;
+        PlayerSwipeInput.SwipeToRight -= laneMovement.MoveRight;
     }
 
     // Update is called once per frame
@@ -19,7 +40,6 @@ public class FollowingObject : MonoBehaviour, IFollowable {
 
     public void Follow()
     {
-        Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, offset.z + target.position.z);
-        transform.position = Vector3.Lerp(transform.position, newPosition, 10 * Time.deltaTime);
+        laneMovement.Follow();
     }
 }
