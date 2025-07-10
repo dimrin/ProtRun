@@ -1243,6 +1243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222600541}
   - component: {fileID: 222600542}
+  - component: {fileID: 222600543}
   m_Layer: 0
   m_Name: Borders
   m_TagString: Untagged
@@ -1281,6 +1282,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 205438976}
+  laneMovement: {fileID: 222600543}
+--- !u!114 &222600543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222600540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c4c1dfb0dbe1047a83a286c906ed49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laneOffset: 1.5
+  laneChangeSpeed: 5
 --- !u!1 &232071967
 GameObject:
   m_ObjectHideFlags: 0
