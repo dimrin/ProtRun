@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1538261867055495619}
   - component: {fileID: 3693796626119984071}
   - component: {fileID: 2443040548027816113}
-  - component: {fileID: 7960456277168520189}
   - component: {fileID: 5780074159882268468}
   - component: {fileID: 2606063371456636991}
   - component: {fileID: 5337793863174597253}
@@ -123,18 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059995db80dc6144e891264d14112317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7960456277168520189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7680690339568569583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa46159c13277744b85e7e4fefbdbfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &5780074159882268468
 Animator:
   serializedVersion: 5
@@ -183,7 +170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 2443040548027816113}
   animationHandler: {fileID: 2606063371456636991}
-  pooler: {fileID: 7960456277168520189}
 --- !u!1001 &8411686096127530459
 PrefabInstance:
   m_ObjectHideFlags: 0

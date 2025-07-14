@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ObstacleHealth), typeof(ObstaclePooler), typeof(ObstacleAnimationHandler))]
+[RequireComponent(typeof(ObstaclePooler), typeof(ObstaclePooler), typeof(ObstacleAnimationHandler))]
 public class Obstacle : MonoBehaviour, IHittable {
 
-    [SerializeField] private ObstacleHealth health;
+    [SerializeField] private ObstaclePooler health;
     [SerializeField] private ObstacleAnimationHandler animationHandler;
-    [SerializeField] private ObstaclePooler pooler;
 
     private void Awake()
     {
@@ -16,8 +15,7 @@ public class Obstacle : MonoBehaviour, IHittable {
 
     private void SetNullParameters()
     {
-        if(health == null) health = GetComponent<ObstacleHealth>();
-        if(pooler == null) pooler = GetComponent<ObstaclePooler>();
+        if(health == null) health = GetComponent<ObstaclePooler>();
         if(animationHandler == null) animationHandler = GetComponent<ObstacleAnimationHandler>();
     }
 
@@ -26,7 +24,7 @@ public class Obstacle : MonoBehaviour, IHittable {
         health.GetDamage(() =>
         {
             animationHandler.OnHitAnimate();
-            pooler.PoolOut();
+            health.DeactivateOnDamage();
         });
     }
 }
