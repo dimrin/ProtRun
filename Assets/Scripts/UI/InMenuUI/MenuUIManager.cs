@@ -1,0 +1,142 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MenuUIManager : MonoBehaviour
+{
+    [SerializeField] private EnterScreenUIManager enterScreenUIManager;
+    [SerializeField] private MenuScreenUIManager menuScreenUIManager;
+    [SerializeField] private TopBarUIManager topBarUIManager;
+    [SerializeField] private CharacterSelectionUIManager characterSelectionUIManager;
+    [SerializeField] private SettingsUIManager settingsUIManager;
+
+
+    private void Awake()
+    {
+        enterScreenUIManager.OpenUI(() =>
+        {
+            menuScreenUIManager.CloseUI();
+            topBarUIManager.CloseUI();
+            characterSelectionUIManager.CloseUI();
+            settingsUIManager.CloseUI();
+        });
+    }
+
+    public event Action<int> SwitchCharacters;
+    public event Action OnGoPlay;
+    public event Action OnFinalVolumeSet;
+    public event Action<float> OnVolumeSet;
+    public event Action<bool> OnVibrationSet;
+    public event Action OnBuyCharacter;
+    public event Action OnSelectCharacter;
+
+    private void OnEnable()
+    {
+        enterScreenUIManager.EnterInMenu += EnterInMenu;
+        menuScreenUIManager.OpenCharacterSelectorUI += OpenCharacterSelection;
+        menuScreenUIManager.OpenSettingsUI += OpenSettings;
+        menuScreenUIManager.Play += GoPlay;
+        settingsUIManager.CloseOnClick += CloseSettings;
+        settingsUIManager.OnFinalVolumeValue += FinalVolumeValueSet;
+        settingsUIManager.OnVibrationChanged += VibrationChanged;
+        settingsUIManager.OnVolumeChanged += VolumeChanged;
+        characterSelectionUIManager.CloseOnClick += CloseCharacterSelector;
+        characterSelectionUIManager.SwitchToNext += SwitchUIToNextCharacter;
+        characterSelectionUIManager.SwitchToPrevious += SwitchUIToPreviousCharacter;
+        characterSelectionUIManager.OnBuy += BuyCharacter;
+        characterSelectionUIManager.OnSelect += SelectCharacter;
+    }
+
+    private void OnDisable()
+    {
+        enterScreenUIManager.EnterInMenu -= EnterInMenu;
+        menuScreenUIManager.OpenCharacterSelectorUI -= OpenCharacterSelection;
+        menuScreenUIManager.OpenSettingsUI -= OpenSettings;
+        menuScreenUIManager.Play -= GoPlay;
+        settingsUIManager.CloseOnClick -= CloseSettings;
+        settingsUIManager.OnFinalVolumeValue -= FinalVolumeValueSet;
+        settingsUIManager.OnVibrationChanged -= VibrationChanged;
+        settingsUIManager.OnVolumeChanged -= VolumeChanged;
+        characterSelectionUIManager.CloseOnClick -= CloseCharacterSelector;
+        characterSelectionUIManager.SwitchToNext -= SwitchUIToNextCharacter;
+        characterSelectionUIManager.SwitchToPrevious -= SwitchUIToPreviousCharacter;
+        characterSelectionUIManager.OnBuy -= BuyCharacter;
+        characterSelectionUIManager.OnSelect -= SelectCharacter;
+    }
+
+    private void EnterInMenu()
+    {
+        enterScreenUIManager.CloseUI(() =>{
+
+            menuScreenUIManager.OpenUI();
+            topBarUIManager.OpenUI();
+        });
+    }
+
+    private void OpenCharacterSelection()
+    {
+        menuScreenUIManager.CloseUI(() =>
+        {
+            characterSelectionUIManager.OpenUI();
+        });
+    }
+
+    private void CloseCharacterSelector()
+    {
+        characterSelectionUIManager.CloseUI(() =>
+        {
+            menuScreenUIManager.OpenUI();
+        });
+    }
+
+    private void SwitchUIToNextCharacter()
+    {
+        SwitchCharacters?.Invoke(1);
+    }
+
+    private void SwitchUIToPreviousCharacter()
+    {
+        SwitchCharacters?.Invoke(-1);
+    }
+
+    private void OpenSettings()
+    {
+       settingsUIManager.OpenUI();
+    }
+
+    private void CloseSettings()
+    {
+        settingsUIManager.CloseUI();
+    }
+
+    private void GoPlay()
+    {
+        OnGoPlay?.Invoke();
+    }
+
+    private void FinalVolumeValueSet()
+    {
+        OnFinalVolumeSet?.Invoke();
+    }
+
+    private void VibrationChanged(bool state)
+    {
+        OnVibrationSet?.Invoke(state);
+    }
+
+    private void VolumeChanged(float volume)
+    {
+        OnVolumeSet?.Invoke(volume);
+    }
+
+    private void BuyCharacter()
+    {
+        OnBuyCharacter?.Invoke();
+    }
+
+    private void SelectCharacter()
+    {
+        OnSelectCharacter?.Invoke();
+    }
+}
