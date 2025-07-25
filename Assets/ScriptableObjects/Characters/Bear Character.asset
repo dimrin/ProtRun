@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318972ddd38af5d44a9ab35c965aae1d, type: 3}
+  m_Name: Bear Character
+  m_EditorClassIdentifier: 
+  characterName: Bear
+  index: 0
+  priceInMoney: 0
+  characterForMenu: {fileID: 3927033358057019795, guid: c583cf5aee1e2db4cb0b55a2f49d9813,
+    type: 3}
+  characterForGame: {fileID: 3927033358057019795, guid: 558670ada593bdc4093f948141fb4411,
+    type: 3}
