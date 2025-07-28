@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318972ddd38af5d44a9ab35c965aae1d, type: 3}
+  m_Name: Duck Character
+  m_EditorClassIdentifier: 
+  characterName: Duck
+  index: 2
+  priceInMoney: 20
+  characterForMenu: {fileID: 7338500635459963186, guid: 964d60a1a2592af4b80bd7d14fd44530,
+    type: 3}
+  characterForGame: {fileID: 7338500635459963186, guid: c7d43ada480874441bd96782107a439f,
+    type: 3}
