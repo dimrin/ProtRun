@@ -9,8 +9,12 @@ public class CharacterSelectionUIManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterPriceText;
 
-    [SerializeField] private Button BuyButton;
-    [SerializeField] private Button SelectButton;
+    [SerializeField] private Button buyButton;
+    [SerializeField] private Button selectButton;
+
+    [SerializeField] private Button leftSwitchButton;
+    [SerializeField] private Button rightSwitchButton;
+    [SerializeField] private Button goMenuButton;
 
     public event Action SwitchToPrevious;
     public event Action SwitchToNext;
@@ -69,22 +73,22 @@ public class CharacterSelectionUIManager : MonoBehaviour {
 
     public void ActivateBuyButton()
     {
-        BuyButton.gameObject.SetActive(true);
+        buyButton.gameObject.SetActive(true);
     }
 
     public void DeactivateBuyButton()
     {
-        BuyButton.gameObject.SetActive(false);
+        buyButton.gameObject.SetActive(false);
     }
 
     public void MakeBuyButtonInteractable()
     {
-        BuyButton.interactable = true;
+        buyButton.interactable = true;
     }
 
     public void MakeBuyButtonUninteractable()
     {
-        BuyButton.interactable = false;
+        buyButton.interactable = false;
     }
 
     public void SelectOnClick()
@@ -94,26 +98,50 @@ public class CharacterSelectionUIManager : MonoBehaviour {
 
     public void ActivateSelectButton()
     {
-        SelectButton.gameObject.SetActive(true);
+        selectButton.gameObject.SetActive(true);
     }
 
     public void DeactivateSelectButton()
     {
-        SelectButton.gameObject.SetActive(false);
+        selectButton.gameObject.SetActive(false);
     }
 
     public void MakeSelectButtonInteractable()
     {
-        SelectButton.interactable = true;
+        selectButton.interactable = true;
     }
 
     public void MakeSelectButtonUninteractable()
     {
-        SelectButton.interactable = false;
+        selectButton.interactable = false;
+    }
+
+    public void MakeSwitchButtonsInteractable()
+    {
+        leftSwitchButton.interactable = true;
+        rightSwitchButton.interactable = true;
+    }
+
+    public void MakeSwitchButtonsUninteractable()
+    {
+        leftSwitchButton.interactable = false;
+        rightSwitchButton.interactable = false;
+    }
+
+    public void MakeMenuButtonUninteractable()
+    {
+        goMenuButton.interactable = false;
+    }
+
+    public void MakeMenuButtonInteractable()
+    {
+        goMenuButton.interactable = true;
     }
 
     public void CloseUIOnClick()
     {
         CloseOnClick?.Invoke();
     }
+
+
 }
