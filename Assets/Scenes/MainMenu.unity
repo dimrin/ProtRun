@@ -302,8 +302,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterNameText: {fileID: 721918257}
   characterPriceText: {fileID: 1485592465}
-  BuyButton: {fileID: 752052837}
-  SelectButton: {fileID: 1324588042}
+  buyButton: {fileID: 752052837}
+  selectButton: {fileID: 1324588042}
+  leftSwitchButton: {fileID: 1629958976}
+  rightSwitchButton: {fileID: 1361488643}
+  goMenuButton: {fileID: 189478410}
 --- !u!1 &189478408
 GameObject:
   m_ObjectHideFlags: 0

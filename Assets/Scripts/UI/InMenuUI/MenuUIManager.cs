@@ -23,13 +23,14 @@ public class MenuUIManager : MonoBehaviour
         });
     }
 
-    public event Action<int> SwitchCharacters;
-    public event Action OnGoPlay;
-    public event Action OnFinalVolumeSet;
-    public event Action<float> OnVolumeSet;
-    public event Action<bool> OnVibrationSet;
-    public event Action OnBuyCharacter;
-    public event Action OnSelectCharacter;
+    public static event Action<int> SwitchCharacters;
+    public static event Action OnSelectorOpened;
+    public static event Action OnGoPlay;
+    public static event Action OnFinalVolumeSet;
+    public static event Action<float> OnVolumeSet;
+    public static event Action<bool> OnVibrationSet;
+    public static event Action OnBuyCharacter;
+    public static event Action OnSelectCharacter;
 
     private void OnEnable()
     {
@@ -46,6 +47,8 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.SwitchToPrevious += SwitchUIToPreviousCharacter;
         characterSelectionUIManager.OnBuy += BuyCharacter;
         characterSelectionUIManager.OnSelect += SelectCharacter;
+        MenuCharacter.OnAnimationActivated += MakeButtonsUninteractable;
+        MenuCharacter.OnAnimationFinished += MakeButtonsInteractable;
     }
 
     private void OnDisable()
@@ -63,6 +66,8 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.SwitchToPrevious -= SwitchUIToPreviousCharacter;
         characterSelectionUIManager.OnBuy -= BuyCharacter;
         characterSelectionUIManager.OnSelect -= SelectCharacter;
+        MenuCharacter.OnAnimationActivated -= MakeButtonsUninteractable;
+        MenuCharacter.OnAnimationFinished -= MakeButtonsInteractable;
     }
 
     private void EnterInMenu()
@@ -79,6 +84,7 @@ public class MenuUIManager : MonoBehaviour
         menuScreenUIManager.CloseUI(() =>
         {
             characterSelectionUIManager.OpenUI();
+            OnSelectorOpened?.Invoke();
         });
     }
 
@@ -138,5 +144,21 @@ public class MenuUIManager : MonoBehaviour
     private void SelectCharacter()
     {
         OnSelectCharacter?.Invoke();
+    }
+
+    private void MakeButtonsUninteractable()
+    {
+        characterSelectionUIManager.MakeBuyButtonUninteractable();
+        characterSelectionUIManager.MakeSelectButtonUninteractable();
+        characterSelectionUIManager.MakeSwitchButtonsUninteractable();
+        characterSelectionUIManager.MakeMenuButtonUninteractable();
+    }
+
+    private void MakeButtonsInteractable()
+    {
+        characterSelectionUIManager.MakeBuyButtonInteractable();
+        characterSelectionUIManager.MakeSelectButtonInteractable();
+        characterSelectionUIManager.MakeSwitchButtonsInteractable();
+        characterSelectionUIManager.MakeMenuButtonInteractable();
     }
 }
