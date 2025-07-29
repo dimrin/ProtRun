@@ -21,11 +21,17 @@ public class SaveManager : MonoBehaviour
 
     private List<int> openCharactersList = new List<int>();
 
-    public static SaveManager Instance;
+    private static SaveManager Instance;
 
     private bool isLoaded = false;
 
     private void Awake()
+    {
+        DoNotDestroy();
+    }
+
+
+    private void DoNotDestroy()
     {
         if (Instance != null && Instance != this)
         {
@@ -36,6 +42,21 @@ public class SaveManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void AddPoints(int pointsToAdd)
+    {
+        points += pointsToAdd;
+    }
+
+    public void RemovePoints(int pointsToRemove)
+    {
+        points -= pointsToRemove;
+    }
+
+    public int GetPoints()
+    {
+        return points;
     }
 
     public void Save()
