@@ -50,6 +50,7 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.OnSelect += SelectCharacter;
         MenuCharacter.OnAnimationActivated += MakeButtonsUninteractable;
         MenuCharacter.OnAnimationFinished += MakeButtonsInteractable;
+        CharacterSelectorManaher.OnSentCharacterInfoToUI += SetCharacterInfoToUI;
     }
 
     private void OnDisable()
@@ -69,6 +70,7 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.OnSelect -= SelectCharacter;
         MenuCharacter.OnAnimationActivated -= MakeButtonsUninteractable;
         MenuCharacter.OnAnimationFinished -= MakeButtonsInteractable;
+        CharacterSelectorManaher.OnSentCharacterInfoToUI -= SetCharacterInfoToUI;
     }
 
     private void EnterInMenu()
@@ -146,6 +148,12 @@ public class MenuUIManager : MonoBehaviour
     private void SelectCharacter()
     {
         OnSelectCharacter?.Invoke();
+    }
+
+    private void SetCharacterInfoToUI(int priceInfo, string nameInfo)
+    {
+        characterSelectionUIManager.SetTextToCharacterPrice(priceInfo.ToString());
+        characterSelectionUIManager.SetTextToCharacterName(nameInfo);
     }
 
     private void MakeButtonsUninteractable()

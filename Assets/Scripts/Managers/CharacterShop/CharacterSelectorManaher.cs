@@ -13,6 +13,7 @@ public class CharacterSelectorManaher : MonoBehaviour {
     [SerializeField] private List<Dictionary<int, GameObject>> spawnedList = new List<Dictionary<int, GameObject>>();
 
     public static event Action DoAnimationOnActivated;
+    public static event Action<int, string> OnSentCharacterInfoToUI;
 
     private int currentCharacterIndex = -1;
 
@@ -70,6 +71,8 @@ public class CharacterSelectorManaher : MonoBehaviour {
 
             DeactivateCurrentCharacter();
 
+            SentCharacterInfoToUI(currentCharacterIndex);
+
             ActivateCharacter(currentCharacterIndex);
         }
     }
@@ -84,6 +87,17 @@ public class CharacterSelectorManaher : MonoBehaviour {
                 characterPair[index].SetActive(true);
                 currentMenuCharacter = characterPair[index];
                 DoAnimationOnActivated?.Invoke();
+            }
+        }
+    }
+
+    private void SentCharacterInfoToUI(int index)
+    {
+        foreach (var character in charactersSO)
+        {
+            if(character.index == index)
+            {
+                OnSentCharacterInfoToUI?.Invoke(character.priceInMoney, character.name);
             }
         }
     }
@@ -114,6 +128,7 @@ public class CharacterSelectorManaher : MonoBehaviour {
             currentCharacterIndex = spawnedList.Count - 1;
         }
 
+        SentCharacterInfoToUI(currentCharacterIndex);
 
         ActivateCharacter(currentCharacterIndex);
     }
