@@ -6,7 +6,7 @@ using System.Net.NetworkInformation;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class SaveManager : MonoBehaviour
+public class SaveSystemManager : MonoBehaviour
 {
     [SerializeField] private string saveFileName;
 
@@ -21,11 +21,17 @@ public class SaveManager : MonoBehaviour
 
     private List<int> openCharactersList = new List<int>();
 
-    public static SaveManager Instance;
+    private static SaveSystemManager Instance;
 
     private bool isLoaded = false;
 
     private void Awake()
+    {
+        DoNotDestroy();
+    }
+
+
+    private void DoNotDestroy()
     {
         if (Instance != null && Instance != this)
         {
@@ -37,6 +43,23 @@ public class SaveManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    public void AddPoints(int pointsToAdd)
+    {
+        points += pointsToAdd;
+    }
+
+    public void RemovePoints(int pointsToRemove)
+    {
+        points -= pointsToRemove;
+    }
+
+    public int GetPoints()
+    {
+        return points;
+    }
+
+    public bool IsLoaded () { return isLoaded; }
 
     public void Save()
     {

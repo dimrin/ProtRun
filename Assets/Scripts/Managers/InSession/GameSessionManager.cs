@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSessionManager : MonoBehaviour {
     [SerializeField] private GamePointsManager gamePointsManager;
@@ -10,7 +11,6 @@ public class GameSessionManager : MonoBehaviour {
     public static event Action<int> PointsIncreased;
     public static event Action<int> SentPointsOnGameEnded;
     public static event Action GamePauseOnHide;
-    //public static event Action GameResumeOnWakeUp;
     public static event Action OnGameStarted;
     public static event Action OnGameRun;
     public static event Action OnGamePaused;
@@ -42,6 +42,7 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.PauseTheGame += Pause;
         UIManager.ResumeTheGame += Resume;
         UIManager.OpenAdForRevive += ContinueAfterRevive;
+        UIManager.GoToMainMenu += GoToMenu;
         LevelGeneratorManager.OnStartLevelGenerated += RunGame;
     }
 
@@ -52,6 +53,7 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.PauseTheGame -= Pause;
         UIManager.ResumeTheGame -= Resume;
         UIManager.OpenAdForRevive -= ContinueAfterRevive;
+        UIManager.GoToMainMenu -= GoToMenu;
         LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
     }
 
@@ -114,19 +116,6 @@ public class GameSessionManager : MonoBehaviour {
         else
         {
             Debug.Log("OnHideResume");
-            /*
-            if (CurrentGameState == GameState.Pause)
-            {
-                //GameResumeOnWakeUp?.Invoke();
-                Resume();
-                Debug.Log($"UnPaused {pause} + State {CurrentGameState}");
-            }
-            else
-            {
-                gamePauseManager.Resume();
-                Debug.Log($"UnPaused 1 {pause} + State {CurrentGameState}");
-            }
-            */
 
             if(CurrentGameState == GameState.Finish)
             {
@@ -146,7 +135,6 @@ public class GameSessionManager : MonoBehaviour {
         if (CurrentGameState == GameState.Finish) {
             ChangeGameState(GameState.Run, () =>
             {
-                //gamePauseManager.Resume();
                 OnGameRun?.Invoke();
                 OnRevived?.Invoke();
             });
@@ -163,10 +151,20 @@ public class GameSessionManager : MonoBehaviour {
 
     }
 
+
     private void ChangeGameState(GameState state, Action OnStateChanged)
     {
         CurrentGameState = state;
         OnStateChanged?.Invoke();
+    }
+
+    private void GoToMenu()
+    {
+        if(CurrentGameState == GameState.Finish)
+        {
+            gamePointsManager.SavePoints();
+            SceneManager.LoadScene(0);
+        }
     }
 }
 
