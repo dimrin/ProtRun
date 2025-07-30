@@ -6,11 +6,11 @@ public class GamePointsManager : MonoBehaviour
 {
     [SerializeField] private int points;
 
-    [SerializeField] private SaveManager saveManager;
+    [SerializeField] private SaveSystemManager saveManager;
 
     private void Awake()
     {
-        saveManager = FindAnyObjectByType<SaveManager>();
+        saveManager = FindAnyObjectByType<SaveSystemManager>();
     }
 
     public void IncreasePoints(int point)

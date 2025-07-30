@@ -6,7 +6,7 @@ using System.Net.NetworkInformation;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class SaveManager : MonoBehaviour
+public class SaveSystemManager : MonoBehaviour
 {
     [SerializeField] private string saveFileName;
 
@@ -21,7 +21,7 @@ public class SaveManager : MonoBehaviour
 
     private List<int> openCharactersList = new List<int>();
 
-    private static SaveManager Instance;
+    private static SaveSystemManager Instance;
 
     private bool isLoaded = false;
 
@@ -58,6 +58,8 @@ public class SaveManager : MonoBehaviour
     {
         return points;
     }
+
+    public bool IsLoaded () { return isLoaded; }
 
     public void Save()
     {
