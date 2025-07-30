@@ -61,6 +61,11 @@ public class SaveSystemManager : MonoBehaviour
 
     public bool IsLoaded () { return isLoaded; }
 
+    public int GetCurrentCharacterIndex()
+    {
+        return currentCharacterIndex;
+    }
+
     public void Save()
     {
         PlayerData data = new PlayerData();

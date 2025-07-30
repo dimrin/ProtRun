@@ -31,6 +31,7 @@ public class MenuUIManager : MonoBehaviour
     public static event Action<bool> OnVibrationSet;
     public static event Action OnBuyCharacter;
     public static event Action OnSelectCharacter;
+    public static event Action OnSelectorClosed;
 
     private void OnEnable()
     {
@@ -93,6 +94,7 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.CloseUI(() =>
         {
             menuScreenUIManager.OpenUI();
+            OnSelectorClosed?.Invoke();
         });
     }
 

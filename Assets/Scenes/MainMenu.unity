@@ -185,6 +185,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dog Character 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2790380216858037170, guid: ae9c6b7379b5c3540af3cf9441e3207a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3310916112063500552, guid: ae9c6b7379b5c3540af3cf9441e3207a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2247,6 +2252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a146115421a384988de8c02bbeae9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveSystemManager: {fileID: 0}
+  money: 0
 --- !u!4 &789395763
 Transform:
   m_ObjectHideFlags: 0
@@ -2337,6 +2344,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817326067}
   m_CullTransparentMesh: 1
+--- !u!1 &824708044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 824708046}
+  - component: {fileID: 824708045}
+  m_Layer: 0
+  m_Name: PlayerSpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &824708045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824708044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adae56e249e840342897c07722ce83c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 1736701593}
+  spawnRotationOffset: {x: 0, y: 155, z: 0}
+--- !u!4 &824708046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824708044}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &843185792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,6 +3644,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241280843}
   m_CullTransparentMesh: 1
+--- !u!1 &1291745770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1291745771}
+  - component: {fileID: 1291745772}
+  m_Layer: 0
+  m_Name: CharacterSelectorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1291745771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291745770}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1291745772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291745770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa05ec6b988950f4ea94990afe7716a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charactersSO:
+  - {fileID: 11400000, guid: 3483f34e144b9c242a5a9981bdfcf705, type: 2}
+  - {fileID: 11400000, guid: 0bb9ae66de74fba46b751fccf3def320, type: 2}
+  - {fileID: 11400000, guid: 273ae2aa21feb04418fd70383c11d704, type: 2}
+  spawnInMenuManager: {fileID: 0}
+  saveSystemManager: {fileID: 0}
 --- !u!1 &1294615346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4900,6 +5003,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bear Character
       objectReference: {fileID: 0}
+    - target: {fileID: 3927033358057019795, guid: c583cf5aee1e2db4cb0b55a2f49d9813,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4410273788850684713, guid: c583cf5aee1e2db4cb0b55a2f49d9813,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5869,6 +5977,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Duck Character 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338500635459963186, guid: 964d60a1a2592af4b80bd7d14fd44530,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7970324463409533832, guid: 964d60a1a2592af4b80bd7d14fd44530,
         type: 3}
@@ -6994,3 +7107,5 @@ SceneRoots:
   - {fileID: 1947838988}
   - {fileID: 789395763}
   - {fileID: 1851261929}
+  - {fileID: 1291745771}
+  - {fileID: 824708046}
