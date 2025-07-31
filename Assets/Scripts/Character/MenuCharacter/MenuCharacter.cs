@@ -22,7 +22,7 @@ public class MenuCharacter : MonoBehaviour
         MenuUIManager.OnSelectCharacter += Cheer;
         MenuUIManager.OnSelectorOpened += Wave;
         //MenuUIManager.SwitchCharacters += Dash;
-        CharacterSelectorManaher.DoAnimationOnActivated += Dash;
+        CharacterShopManager.DoAnimationOnActivated += Dash;
     }
 
     private void OnDisable()
@@ -31,7 +31,7 @@ public class MenuCharacter : MonoBehaviour
         MenuUIManager.OnSelectCharacter -= Cheer;
         MenuUIManager.OnSelectorOpened -= Wave;
         //MenuUIManager.SwitchCharacters -= Dash;
-        CharacterSelectorManaher.DoAnimationOnActivated -= Dash;
+        CharacterShopManager.DoAnimationOnActivated -= Dash;
     }
 
     private void Wave()

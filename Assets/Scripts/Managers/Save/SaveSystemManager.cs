@@ -6,8 +6,7 @@ using System.Net.NetworkInformation;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class SaveSystemManager : MonoBehaviour
-{
+public class SaveSystemManager : MonoBehaviour {
     [SerializeField] private string saveFileName;
 
     [SerializeField] private int points = 0;
@@ -19,7 +18,7 @@ public class SaveSystemManager : MonoBehaviour
 
     private int languageIndex = -1;
 
-    private List<int> openCharactersList = new List<int>();
+    [SerializeField] private List<int> openCharactersList = new List<int>();
 
     private static SaveSystemManager Instance;
 
@@ -44,6 +43,11 @@ public class SaveSystemManager : MonoBehaviour
         }
     }
 
+    private void SetDefaultValues()
+    {
+        SetCharacterToList(0);
+    }
+
     public void AddPoints(int pointsToAdd)
     {
         points += pointsToAdd;
@@ -59,11 +63,32 @@ public class SaveSystemManager : MonoBehaviour
         return points;
     }
 
-    public bool IsLoaded () { return isLoaded; }
+    public bool IsLoaded() { return isLoaded; }
 
     public int GetCurrentCharacterIndex()
     {
         return currentCharacterIndex;
+    }
+
+
+    public List<int> GetOpenCharactersList()
+    {
+        return openCharactersList;
+    }
+
+    public void SetCharacterToList(int index)
+    {
+        if (!openCharactersList.Contains(index))
+        {
+            openCharactersList.Add(index);
+        }
+
+        Debug.Log("Set 10-");
+    }
+
+    public void SetCurrentCharacterIndex(int index)
+    {
+        currentCharacterIndex = index;
     }
 
     public void Save()
@@ -88,7 +113,8 @@ public class SaveSystemManager : MonoBehaviour
         Debug.Log("Saved");
     }
 
-    public void Load() {
+    public void Load()
+    {
         string path = Path.Combine(Application.persistentDataPath, saveFileName);
 
         if (File.Exists(path))
@@ -111,7 +137,8 @@ public class SaveSystemManager : MonoBehaviour
         else
         {
             isLoaded = true;
-            openCharactersList.Add(currentCharacterIndex);
+            //openCharactersList.Add(currentCharacterIndex);
+            SetDefaultValues();
             Debug.Log("Has no local Data");
 
         }

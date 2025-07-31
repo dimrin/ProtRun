@@ -21,12 +21,12 @@ public class MenuPointsTransactionManager : MonoBehaviour
 
     private void OnEnable()
     {
-        SaveLoadManager.DataLoaded += GetPointsOnLoad;
+        SaveFileLoaderManager.DataLoaded += GetPointsOnLoad;
     }
 
     private void OnDisable()
     {
-        SaveLoadManager.DataLoaded -= GetPointsOnLoad;
+        SaveFileLoaderManager.DataLoaded -= GetPointsOnLoad;
     }
 
     private void Start()
@@ -43,16 +43,21 @@ public class MenuPointsTransactionManager : MonoBehaviour
         Debug.Log("Money " + money);
     }
 
-    private void AddMoney(int moneyToAdd)
+    public void AddMoney(int moneyToAdd)
     {
         money += moneyToAdd;
         saveSystemManager.AddPoints(moneyToAdd);
         ChangeUIPoints?.Invoke(money);
     }
 
-    private void RemoveMoney(int moneyToRemove) { 
+    public void RemoveMoney(int moneyToRemove) { 
         money -= moneyToRemove;
         saveSystemManager.RemovePoints(moneyToRemove);
         ChangeUIPoints?.Invoke(money);
+    }
+
+    public int GetPlayerMoney()
+    {
+        return money;
     }
 }

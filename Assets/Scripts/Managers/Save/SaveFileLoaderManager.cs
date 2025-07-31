@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveLoadManager : MonoBehaviour
+public class SaveFileLoaderManager : MonoBehaviour
 {
     [SerializeField] private SaveSystemManager saveSystemManager;
     [SerializeField] private MenuPointsTransactionManager menuPointsManager;
