@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterShopManager : MonoBehaviour {
     [SerializeField] private List<CharacterSO> charactersSO = new List<CharacterSO>();
 
-    [SerializeField] private PlayerSpawnInMenuManager spawnInMenuManager;
+    [SerializeField] private PlayerSpawnManager spawnInMenuManager;
 
     [SerializeField] private SaveSystemManager saveSystemManager;
 
@@ -17,6 +17,8 @@ public class CharacterShopManager : MonoBehaviour {
     [SerializeField] private CharacterShop characterShop;
 
     [SerializeField] private MenuPointsTransactionManager menuPointsTransactionManager;
+
+    [SerializeField] private CharacterTransporter characterTransporter;
 
     public static event Action DoAnimationOnActivated;
     public static event Action<int, string> OnSentCharacterInfoToUI;
@@ -33,7 +35,7 @@ public class CharacterShopManager : MonoBehaviour {
     {
         if (spawnInMenuManager == null)
         {
-            spawnInMenuManager = FindAnyObjectByType<PlayerSpawnInMenuManager>();
+            spawnInMenuManager = FindAnyObjectByType<PlayerSpawnManager>();
         }
 
         if (saveSystemManager == null)
@@ -54,6 +56,11 @@ public class CharacterShopManager : MonoBehaviour {
         if(menuPointsTransactionManager  == null)
         {
             menuPointsTransactionManager = FindAnyObjectByType<MenuPointsTransactionManager>();
+        }
+
+        if (characterTransporter == null)
+        {
+            characterTransporter = FindAnyObjectByType<CharacterTransporter>();
         }
 
 
@@ -105,14 +112,13 @@ public class CharacterShopManager : MonoBehaviour {
             DeactivateCurrentCharacter();
 
             SentCharacterInfoToUI(currentShownCharacterIndex);
+            characterTransporter.SetCharacterSOToTransport(currentShownCharacterSO);
 
             ActivateCharacter(currentShownCharacterIndex, () =>
             {
                 CheckShowCharacterStates(currentShownCharacterIndex);
             });
         }
-
-
     }
 
 
@@ -213,6 +219,7 @@ public class CharacterShopManager : MonoBehaviour {
     {
         characterSelector.SelectCharacter(currentShownCharacterIndex, saveSystemManager, () =>
                 {
+                    characterTransporter.SetCharacterSOToTransport(currentShownCharacterSO);
                     OnSelectedCharacterSwitched?.Invoke(true);
                 });
     }

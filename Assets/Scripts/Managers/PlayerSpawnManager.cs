@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpawnInMenuManager : MonoBehaviour
+public class PlayerSpawnManager : MonoBehaviour
 {
     [SerializeField] private Transform spawnPoint;
 
@@ -10,7 +10,8 @@ public class PlayerSpawnInMenuManager : MonoBehaviour
 
     public GameObject SpawnMenuPlayer(GameObject spawnCharacter)
     {
-        return Instantiate(spawnCharacter, spawnPoint.transform.position, Quaternion.Euler(spawnRotationOffset), spawnPoint);
+        //return Instantiate(spawnCharacter, spawnPoint.transform.position, Quaternion.Euler(spawnRotationOffset), spawnPoint);
+        return Instantiate(spawnCharacter, spawnPoint.transform.position, Quaternion.Euler(spawnRotationOffset));
     }
 
 }

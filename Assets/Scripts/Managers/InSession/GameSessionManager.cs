@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameSessionManager : MonoBehaviour {
     [SerializeField] private GamePointsManager gamePointsManager;
     [SerializeField] private GamePauseManager gamePauseManager;
+    [SerializeField] private PlayerSpawnManager playerSpawnManager;
+    [SerializeField] private CharacterTransporter characterTransporter;
+    [SerializeField] private FollowingObject playerFollowingObject;
+    [SerializeField] private LevelLoader levelLoader;
 
     public static event Action<int> PointsIncreased;
     public static event Action<int> SentPointsOnGameEnded;
@@ -24,7 +28,11 @@ public class GameSessionManager : MonoBehaviour {
     {
         if (gamePointsManager == null) gamePointsManager = FindAnyObjectByType<GamePointsManager>();
         if (gamePauseManager == null) gamePauseManager = FindAnyObjectByType<GamePauseManager>();
+        if(playerSpawnManager == null) playerSpawnManager = FindAnyObjectByType<PlayerSpawnManager>();
+        if (characterTransporter == null) characterTransporter = FindAnyObjectByType<CharacterTransporter>();
+        if(levelLoader == null) levelLoader = FindAnyObjectByType<LevelLoader>();
         Application.targetFrameRate = 60;
+        SpawnPlayerOnAwake();
     }
 
     private void Start()
@@ -55,6 +63,15 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.OpenAdForRevive -= ContinueAfterRevive;
         UIManager.GoToMainMenu -= GoToMenu;
         LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
+    }
+
+    private void SpawnPlayerOnAwake()
+    {
+        GameObject characterToSpawn = characterTransporter.GetTransportedCharacter().characterForGame;
+
+        GameObject spawnedPlayer = playerSpawnManager.SpawnMenuPlayer(characterToSpawn);
+
+        playerFollowingObject.SetTargetToFollow(spawnedPlayer);
     }
 
     private void IncreasePoints(int point)
@@ -163,7 +180,8 @@ public class GameSessionManager : MonoBehaviour {
         if(CurrentGameState == GameState.Finish)
         {
             gamePointsManager.SavePoints();
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
+            levelLoader.LoadMainMenu();
         }
     }
 }

@@ -42,4 +42,9 @@ public class FollowingObject : MonoBehaviour, IFollowable {
     {
         laneMovement.Follow();
     }
+
+    public void SetTargetToFollow(GameObject targetToFollow)
+    {
+        target = targetToFollow.transform;
+    }
 }

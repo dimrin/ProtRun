@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveFileLoaderManager : MonoBehaviour
-{
+public class SaveFileLoaderManager : MonoBehaviour {
     [SerializeField] private SaveSystemManager saveSystemManager;
     [SerializeField] private MenuPointsTransactionManager menuPointsManager;
 
@@ -30,7 +29,11 @@ public class SaveFileLoaderManager : MonoBehaviour
 
     private void LoadSaveFile()
     {
-        saveSystemManager.Load();
+        if (!saveSystemManager.IsLoaded())
+        {
+            saveSystemManager.Load();
+        }
+
         if (saveSystemManager.IsLoaded())
         {
             DataLoaded?.Invoke();
