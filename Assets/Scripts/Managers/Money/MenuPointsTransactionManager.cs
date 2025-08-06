@@ -40,7 +40,6 @@ public class MenuPointsTransactionManager : MonoBehaviour
 
         ChangeUIPoints?.Invoke(money);
 
-        Debug.Log("Money " + money);
     }
 
     public void AddMoney(int moneyToAdd)

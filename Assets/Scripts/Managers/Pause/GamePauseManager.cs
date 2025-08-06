@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GamePauseManager : MonoBehaviour
 {
+    /*
     public static GamePauseManager Instance;
 
     private void Awake()
@@ -18,6 +19,7 @@ public class GamePauseManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+    */
 
     public void Pause()
     {

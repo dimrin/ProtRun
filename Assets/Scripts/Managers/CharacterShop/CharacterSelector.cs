@@ -8,12 +8,9 @@ public class CharacterSelector : MonoBehaviour
 {
     [SerializeField] private List<int> openCharacters = new List<int>();
 
-
-
     public void SetOpenCharactersList(List<int> openCharactersList)
     {
         openCharacters = openCharactersList;
-        Debug.Log("Setted");
     }
 
     public bool IsCurrentCharacterOpened(int index)
@@ -31,6 +28,5 @@ public class CharacterSelector : MonoBehaviour
         saveSystemManager.SetCurrentCharacterIndex(characterIndex);
         saveSystemManager.Save();
         OnCharacterSelected?.Invoke();
-        Debug.Log("Selected");
     }
 }

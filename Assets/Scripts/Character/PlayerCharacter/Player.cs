@@ -67,6 +67,20 @@ public class Player : MonoBehaviour {
         playerBuffManager.SetComponentsOnAwake(playerHealth, playerLaneMovement, transform);
     }
 
+    private void Start()
+    {
+        /*
+        playerLaneMovement = GetComponent<PlayerLaneMovement>();
+        playerVerticalMovement = GetComponent<PlayerVerticalMovement>();
+        itemPicker = GetComponent<PlayerItemPicker>();
+        playerHealth = GetComponent<PlayerHealth>();
+        playerBuffManager = GetComponent<PlayerBuffManager>();
+        playerSoundsManager = GetComponent<PlayerSoundsManager>();
+        playerEffectsManager = GetComponent<PlayerEffectsManager>();
+        playerBuffManager.SetComponentsOnAwake(playerHealth, playerLaneMovement, transform);
+        */
+    }
+
     private void Update()
     {
         if (!_canMove) return;
@@ -169,7 +183,6 @@ public class Player : MonoBehaviour {
             playerSoundsManager.PlaySoundOnDestroyObstacle();
         },() =>
         {
-            Debug.Log("Hitted");
             playerAnimationHandler.DeactivateRunAnimation();
             playerAnimationHandler.ActivateDefeatAnimation();
             OnPlayerCrushed?.Invoke();

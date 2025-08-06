@@ -14,29 +14,52 @@ public class SaveFileLoaderManager : MonoBehaviour {
         if (saveSystemManager == null)
         {
             saveSystemManager = FindAnyObjectByType<SaveSystemManager>();
-            Debug.Log("FOund");
         }
 
         if (menuPointsManager == null)
         {
             menuPointsManager = FindAnyObjectByType<MenuPointsTransactionManager>();
-            Debug.Log("FOund 2 ");
         }
 
         LoadSaveFile();
     }
 
+    private void OnEnable()
+    {
+        Debug.Log("Load State 2 " + saveSystemManager.IsLoaded());
+    }
+
+
+    private void Start()
+    {
+        SetDataOnEnterMenu();
+    }
 
     private void LoadSaveFile()
     {
+        Debug.Log("Load State " + saveSystemManager.IsLoaded());
+
         if (!saveSystemManager.IsLoaded())
         {
             saveSystemManager.Load();
+            Debug.Log("Loaded File");
+            DataLoaded?.Invoke();
         }
 
+        /*
         if (saveSystemManager.IsLoaded())
         {
             DataLoaded?.Invoke();
+        }
+        */
+    }
+
+    private void SetDataOnEnterMenu()
+    {
+        if (saveSystemManager.IsLoaded())
+        {
+            DataLoaded?.Invoke();
+            Debug.Log("Invoke On loaded");
         }
     }
 }

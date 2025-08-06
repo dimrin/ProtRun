@@ -75,7 +75,6 @@ public class PlayerLaneMovement : MonoBehaviour {
     {
         isBuffActivated = state;
         forwardSpeed = isBuffActivated ? buffSpeed : currentSpeed;
-        Debug.Log("isBuffActivated " + isBuffActivated);
     }
 
     public void MoveLeft()

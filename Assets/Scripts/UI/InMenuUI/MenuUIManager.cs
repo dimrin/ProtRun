@@ -171,7 +171,6 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.MakeSelectButtonUninteractable();
         characterSelectionUIManager.MakeSwitchButtonsUninteractable();
         characterSelectionUIManager.MakeMenuButtonUninteractable();
-        Debug.Log("sss0");
     }
 
     private void MakeButtonsInteractable()
@@ -180,7 +179,6 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.MakeSelectButtonInteractable();
         characterSelectionUIManager.MakeSwitchButtonsInteractable();
         characterSelectionUIManager.MakeMenuButtonInteractable();
-        Debug.Log("sss00");
         OnCharacterSwitched?.Invoke();
     }
 
@@ -198,7 +196,6 @@ public class MenuUIManager : MonoBehaviour
             characterSelectionUIManager.DeactivateSelectButton();
             characterSelectionUIManager.ActivateBuyButton();
         }
-        Debug.Log("sss1");
     }
 
     private void ChangeSelectButtonState(bool state)
@@ -210,7 +207,6 @@ public class MenuUIManager : MonoBehaviour
         {
             characterSelectionUIManager.MakeSelectButtonInteractable();
         }
-        Debug.Log("sss2");
     }
 
     private void ChageBuyButtonState(bool state)
@@ -222,7 +218,6 @@ public class MenuUIManager : MonoBehaviour
         {
             characterSelectionUIManager.MakeBuyButtonInteractable();
         }
-        Debug.Log("sss3");
     }
 
     private void ChangeToBarPointsUIInfo(int points)

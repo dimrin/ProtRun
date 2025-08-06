@@ -20,7 +20,7 @@ public class SaveSystemManager : MonoBehaviour {
 
     [SerializeField] private List<int> openCharactersList = new List<int>();
 
-    private static SaveSystemManager Instance;
+    public static SaveSystemManager Instance;
 
     private bool isLoaded = false;
 
@@ -41,6 +41,11 @@ public class SaveSystemManager : MonoBehaviour {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        Debug.Log(openCharactersList.Count + " Open List");
     }
 
     private void SetDefaultValues()
@@ -83,7 +88,6 @@ public class SaveSystemManager : MonoBehaviour {
             openCharactersList.Add(index);
         }
 
-        Debug.Log("Set 10-");
     }
 
     public void SetCurrentCharacterIndex(int index)
@@ -99,6 +103,7 @@ public class SaveSystemManager : MonoBehaviour {
         data.musicVolumeValue = musicVolumeValue;
         data.languageIndex = languageIndex;
         data.openCharactersList = openCharactersList;
+        Debug.Log(openCharactersList.Count + " Open List 1");
         data.currentCharacterIndex = currentCharacterIndex;
         data.isVibrating = isVibrating;
 
@@ -127,6 +132,7 @@ public class SaveSystemManager : MonoBehaviour {
 
             currentCharacterIndex = data.currentCharacterIndex;
             openCharactersList = data.openCharactersList;
+            Debug.Log(openCharactersList.Count + " Open List 2");
             points = data.points;
             isVibrating = data.isVibrating;
             musicVolumeValue = data.musicVolumeValue;

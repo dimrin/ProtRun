@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterTransporter : MonoBehaviour
 {
     [SerializeField] private CharacterSO selectedPlayer;
 
-    private static CharacterTransporter Instance;
-
+    public static CharacterTransporter Instance;
 
     private void Awake()
     {
@@ -20,6 +20,8 @@ public class CharacterTransporter : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        Debug.Log(SceneManager.GetActiveScene().name);
     }
 
 
