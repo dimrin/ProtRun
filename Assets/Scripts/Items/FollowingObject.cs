@@ -17,7 +17,7 @@ public class FollowingObject : MonoBehaviour, IFollowable {
 
     private void Start()
     {
-        laneMovement.SetTargetOnStart(target);
+        //laneMovement.SetTargetOnStart(target);
     }
 
     private void OnEnable()
@@ -41,5 +41,11 @@ public class FollowingObject : MonoBehaviour, IFollowable {
     public void Follow()
     {
         laneMovement.Follow();
+    }
+
+    public void SetTargetToFollow(GameObject targetToFollow)
+    {
+        target = targetToFollow.transform;
+        laneMovement.SetTargetOnStart(target);
     }
 }

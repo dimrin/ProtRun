@@ -68,7 +68,6 @@ public class UIManager : MonoBehaviour
 
         gameUIManager.OpenUI(() =>
         {
-            Debug.Log("asdsad");
         });
     }
 

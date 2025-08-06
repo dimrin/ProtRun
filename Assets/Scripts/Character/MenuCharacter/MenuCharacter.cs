@@ -21,7 +21,8 @@ public class MenuCharacter : MonoBehaviour
         MenuUIManager.OnBuyCharacter += Dance;
         MenuUIManager.OnSelectCharacter += Cheer;
         MenuUIManager.OnSelectorOpened += Wave;
-        MenuUIManager.SwitchCharacters += Dash;
+        //MenuUIManager.SwitchCharacters += Dash;
+        CharacterShopManager.DoAnimationOnActivated += Dash;
     }
 
     private void OnDisable()
@@ -29,7 +30,8 @@ public class MenuCharacter : MonoBehaviour
         MenuUIManager.OnBuyCharacter -= Dance;
         MenuUIManager.OnSelectCharacter -= Cheer;
         MenuUIManager.OnSelectorOpened -= Wave;
-        MenuUIManager.SwitchCharacters -= Dash;
+        //MenuUIManager.SwitchCharacters -= Dash;
+        CharacterShopManager.DoAnimationOnActivated -= Dash;
     }
 
     private void Wave()
@@ -48,7 +50,7 @@ public class MenuCharacter : MonoBehaviour
         });
     }
 
-    private void Dash(int index)
+    private void Dash()
     {
         animationHolder.ActivateDashAnimation(() =>
         {

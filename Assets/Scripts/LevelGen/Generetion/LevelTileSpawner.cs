@@ -14,6 +14,7 @@ public class LevelTileSpawner : MonoBehaviour
         tile.GameObject.transform.position = new Vector3(0, 0, spawnZOffset);
         tile.OnSpawn();
         OnSpawnTile?.Invoke();
+
     }
 
 }

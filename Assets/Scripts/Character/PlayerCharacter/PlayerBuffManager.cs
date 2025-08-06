@@ -15,6 +15,18 @@ public class PlayerBuffManager : MonoBehaviour
 
     private void Start()
     {
+        /*
+        _buffs = new Dictionary<ItemType, IBuff>
+        {
+            { ItemType.Shield, new ShieldBuff(playerHealth) },
+            { ItemType.Speed, new SpeedBuff(playerHealth, movement) },
+            { ItemType.Magnet, new MagnetBuff(playerTransform) }
+        };
+        */
+    }
+
+    private void OnEnable()
+    {
         _buffs = new Dictionary<ItemType, IBuff>
         {
             { ItemType.Shield, new ShieldBuff(playerHealth) },

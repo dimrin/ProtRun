@@ -31,6 +31,8 @@ public class MenuUIManager : MonoBehaviour
     public static event Action<bool> OnVibrationSet;
     public static event Action OnBuyCharacter;
     public static event Action OnSelectCharacter;
+    public static event Action OnSelectorClosed;
+    public static event Action OnCharacterSwitched;
 
     private void OnEnable()
     {
@@ -49,6 +51,11 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.OnSelect += SelectCharacter;
         MenuCharacter.OnAnimationActivated += MakeButtonsUninteractable;
         MenuCharacter.OnAnimationFinished += MakeButtonsInteractable;
+        CharacterShopManager.OnSentCharacterInfoToUI += SetCharacterInfoToUI;
+        CharacterShopManager.OnSelectedCharacterSwitched += ChangeSelectButtonState;
+        CharacterShopManager.OnOpenCharacterSwitched += OpenCloseBuySelectButtons;
+        CharacterShopManager.OnPurchaseableCharacterSwitched += ChageBuyButtonState;
+        MenuPointsTransactionManager.ChangeUIPoints += ChangeToBarPointsUIInfo;
     }
 
     private void OnDisable()
@@ -68,6 +75,11 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.OnSelect -= SelectCharacter;
         MenuCharacter.OnAnimationActivated -= MakeButtonsUninteractable;
         MenuCharacter.OnAnimationFinished -= MakeButtonsInteractable;
+        CharacterShopManager.OnSentCharacterInfoToUI -= SetCharacterInfoToUI;
+        CharacterShopManager.OnSelectedCharacterSwitched -= ChangeSelectButtonState;
+        CharacterShopManager.OnOpenCharacterSwitched -= OpenCloseBuySelectButtons;
+        CharacterShopManager.OnPurchaseableCharacterSwitched -= ChageBuyButtonState;
+        MenuPointsTransactionManager.ChangeUIPoints -= ChangeToBarPointsUIInfo;
     }
 
     private void EnterInMenu()
@@ -93,6 +105,7 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.CloseUI(() =>
         {
             menuScreenUIManager.OpenUI();
+            OnSelectorClosed?.Invoke();
         });
     }
 
@@ -146,6 +159,12 @@ public class MenuUIManager : MonoBehaviour
         OnSelectCharacter?.Invoke();
     }
 
+    private void SetCharacterInfoToUI(int priceInfo, string nameInfo)
+    {
+        characterSelectionUIManager.SetTextToCharacterPrice(priceInfo.ToString());
+        characterSelectionUIManager.SetTextToCharacterName(nameInfo);
+    }
+
     private void MakeButtonsUninteractable()
     {
         characterSelectionUIManager.MakeBuyButtonUninteractable();
@@ -160,5 +179,49 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.MakeSelectButtonInteractable();
         characterSelectionUIManager.MakeSwitchButtonsInteractable();
         characterSelectionUIManager.MakeMenuButtonInteractable();
+        OnCharacterSwitched?.Invoke();
+    }
+
+    private void OpenCloseBuySelectButtons(bool state)
+    {
+        if (state) {
+            //characterSelectionUIManager.DeactivateSelectButton();
+            //characterSelectionUIManager.ActivateBuyButton();
+            characterSelectionUIManager.ActivateSelectButton();
+            characterSelectionUIManager.DeactivateBuyButton();
+        } else
+        {
+            //characterSelectionUIManager.ActivateSelectButton();
+            //characterSelectionUIManager.DeactivateBuyButton();
+            characterSelectionUIManager.DeactivateSelectButton();
+            characterSelectionUIManager.ActivateBuyButton();
+        }
+    }
+
+    private void ChangeSelectButtonState(bool state)
+    {
+        if(state)
+        {
+            characterSelectionUIManager.MakeSelectButtonUninteractable();
+        } else
+        {
+            characterSelectionUIManager.MakeSelectButtonInteractable();
+        }
+    }
+
+    private void ChageBuyButtonState(bool state)
+    {
+        if(state)
+        {
+            characterSelectionUIManager.MakeBuyButtonUninteractable();
+        } else
+        {
+            characterSelectionUIManager.MakeBuyButtonInteractable();
+        }
+    }
+
+    private void ChangeToBarPointsUIInfo(int points)
+    {
+        topBarUIManager.UpdateScoreTextUI(points);
     }
 }

@@ -7,6 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameSessionManager : MonoBehaviour {
     [SerializeField] private GamePointsManager gamePointsManager;
     [SerializeField] private GamePauseManager gamePauseManager;
+    [SerializeField] private PlayerSpawnManager playerSpawnManager;
+    [SerializeField] private CharacterTransporter characterTransporter;
+    [SerializeField] private DefaultCharacterHandler defaultCharacterHandler;
+    [SerializeField] private FollowingObject playerFollowingObject;
+    [SerializeField] private LevelLoader levelLoader;
+
+    [SerializeField] private SaveSystemManager saveSystemManager;
 
     public static event Action<int> PointsIncreased;
     public static event Action<int> SentPointsOnGameEnded;
@@ -20,19 +27,29 @@ public class GameSessionManager : MonoBehaviour {
 
     public GameState CurrentGameState { get; private set; }
 
+    //private CharacterSO character;
+
     private void Awake()
     {
         if (gamePointsManager == null) gamePointsManager = FindAnyObjectByType<GamePointsManager>();
+        if (defaultCharacterHandler == null) defaultCharacterHandler = FindAnyObjectByType<DefaultCharacterHandler>();
         if (gamePauseManager == null) gamePauseManager = FindAnyObjectByType<GamePauseManager>();
+        if(playerSpawnManager == null) playerSpawnManager = FindAnyObjectByType<PlayerSpawnManager>();
+        if (characterTransporter == null) characterTransporter = FindAnyObjectByType<CharacterTransporter>();
+        if(levelLoader == null) levelLoader = FindAnyObjectByType<LevelLoader>();
+        if(saveSystemManager == null) saveSystemManager = FindAnyObjectByType<SaveSystemManager>();
         Application.targetFrameRate = 60;
     }
 
     private void Start()
     {
+        SpawnPlayerOnStart(GetCharacterToSpawn());
+
         ChangeGameState(GameState.Start, () =>
         {
             OnGameStarted?.Invoke();
         });
+
     }
 
     private void OnEnable()
@@ -44,6 +61,8 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.OpenAdForRevive += ContinueAfterRevive;
         UIManager.GoToMainMenu += GoToMenu;
         LevelGeneratorManager.OnStartLevelGenerated += RunGame;
+        //LevelLoader.OnLevelLoaded += SpawnPlayerOnAwake;
+        //LevelLoader.OnLevelLoaded += Test;
     }
 
     private void OnDisable()
@@ -55,6 +74,31 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.OpenAdForRevive -= ContinueAfterRevive;
         UIManager.GoToMainMenu -= GoToMenu;
         LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
+        //LevelLoader.OnLevelLoaded -= SpawnPlayerOnAwake;
+    }
+
+    private CharacterSO GetCharacterToSpawn()
+    {
+        if(characterTransporter ==  null)
+        {
+            Debug.Log("Default");
+            return defaultCharacterHandler.GetDefaultCharacter();
+        } else
+        {
+            Debug.Log("Transported");
+            return characterTransporter.GetTransportedCharacter();
+        }
+    }
+
+    private void SpawnPlayerOnStart(CharacterSO characterSOToSpawn)
+    {
+        GameObject characterToSpawn = characterSOToSpawn.characterForGame;
+
+        GameObject spawnedPlayer = playerSpawnManager.SpawnMenuPlayer(characterToSpawn);
+
+        playerFollowingObject.SetTargetToFollow(spawnedPlayer);
+
+        Debug.Log("Spawned");
     }
 
     private void IncreasePoints(int point)
@@ -163,7 +207,9 @@ public class GameSessionManager : MonoBehaviour {
         if(CurrentGameState == GameState.Finish)
         {
             gamePointsManager.SavePoints();
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
+            levelLoader.LoadMainMenu();
+            Debug.Log($"Go to menu {CurrentGameState}");
         }
     }
 }

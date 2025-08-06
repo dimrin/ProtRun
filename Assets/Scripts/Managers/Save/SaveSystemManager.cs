@@ -6,8 +6,7 @@ using System.Net.NetworkInformation;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class SaveSystemManager : MonoBehaviour
-{
+public class SaveSystemManager : MonoBehaviour {
     [SerializeField] private string saveFileName;
 
     [SerializeField] private int points = 0;
@@ -19,9 +18,9 @@ public class SaveSystemManager : MonoBehaviour
 
     private int languageIndex = -1;
 
-    private List<int> openCharactersList = new List<int>();
+    [SerializeField] private List<int> openCharactersList = new List<int>();
 
-    private static SaveSystemManager Instance;
+    public static SaveSystemManager Instance;
 
     private bool isLoaded = false;
 
@@ -44,6 +43,16 @@ public class SaveSystemManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Debug.Log(openCharactersList.Count + " Open List");
+    }
+
+    private void SetDefaultValues()
+    {
+        SetCharacterToList(0);
+    }
+
     public void AddPoints(int pointsToAdd)
     {
         points += pointsToAdd;
@@ -59,7 +68,32 @@ public class SaveSystemManager : MonoBehaviour
         return points;
     }
 
-    public bool IsLoaded () { return isLoaded; }
+    public bool IsLoaded() { return isLoaded; }
+
+    public int GetCurrentCharacterIndex()
+    {
+        return currentCharacterIndex;
+    }
+
+
+    public List<int> GetOpenCharactersList()
+    {
+        return openCharactersList;
+    }
+
+    public void SetCharacterToList(int index)
+    {
+        if (!openCharactersList.Contains(index))
+        {
+            openCharactersList.Add(index);
+        }
+
+    }
+
+    public void SetCurrentCharacterIndex(int index)
+    {
+        currentCharacterIndex = index;
+    }
 
     public void Save()
     {
@@ -69,6 +103,7 @@ public class SaveSystemManager : MonoBehaviour
         data.musicVolumeValue = musicVolumeValue;
         data.languageIndex = languageIndex;
         data.openCharactersList = openCharactersList;
+        Debug.Log(openCharactersList.Count + " Open List 1");
         data.currentCharacterIndex = currentCharacterIndex;
         data.isVibrating = isVibrating;
 
@@ -83,7 +118,8 @@ public class SaveSystemManager : MonoBehaviour
         Debug.Log("Saved");
     }
 
-    public void Load() {
+    public void Load()
+    {
         string path = Path.Combine(Application.persistentDataPath, saveFileName);
 
         if (File.Exists(path))
@@ -96,6 +132,7 @@ public class SaveSystemManager : MonoBehaviour
 
             currentCharacterIndex = data.currentCharacterIndex;
             openCharactersList = data.openCharactersList;
+            Debug.Log(openCharactersList.Count + " Open List 2");
             points = data.points;
             isVibrating = data.isVibrating;
             musicVolumeValue = data.musicVolumeValue;
@@ -106,7 +143,8 @@ public class SaveSystemManager : MonoBehaviour
         else
         {
             isLoaded = true;
-            openCharactersList.Add(currentCharacterIndex);
+            //openCharactersList.Add(currentCharacterIndex);
+            SetDefaultValues();
             Debug.Log("Has no local Data");
 
         }
