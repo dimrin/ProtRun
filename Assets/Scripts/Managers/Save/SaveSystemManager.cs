@@ -70,6 +70,20 @@ public class SaveSystemManager : MonoBehaviour {
 
     public bool IsLoaded() { return isLoaded; }
 
+    public bool IsVibrating() { return isVibrating; }
+
+    public float GetVolume() { return musicVolumeValue; } 
+
+    public void SetVibrationState(bool state)
+    {
+        isVibrating = state;
+    }
+
+    public void SetVolume(float volume)
+    {
+        musicVolumeValue = volume;
+    }
+
     public int GetCurrentCharacterIndex()
     {
         return currentCharacterIndex;

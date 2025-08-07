@@ -56,6 +56,8 @@ public class MenuUIManager : MonoBehaviour
         CharacterShopManager.OnOpenCharacterSwitched += OpenCloseBuySelectButtons;
         CharacterShopManager.OnPurchaseableCharacterSwitched += ChageBuyButtonState;
         MenuPointsTransactionManager.ChangeUIPoints += ChangeToBarPointsUIInfo;
+        SettingsManager.VibrationValueOnDataLoaded += SetSettingsVibrationUI;
+        SettingsManager.VolumeValueOnDataLoaded += SetSettingsVolumeUI;
     }
 
     private void OnDisable()
@@ -80,6 +82,8 @@ public class MenuUIManager : MonoBehaviour
         CharacterShopManager.OnOpenCharacterSwitched -= OpenCloseBuySelectButtons;
         CharacterShopManager.OnPurchaseableCharacterSwitched -= ChageBuyButtonState;
         MenuPointsTransactionManager.ChangeUIPoints -= ChangeToBarPointsUIInfo;
+        SettingsManager.VibrationValueOnDataLoaded -= SetSettingsVibrationUI;
+        SettingsManager.VolumeValueOnDataLoaded -= SetSettingsVolumeUI;
     }
 
     private void EnterInMenu()
@@ -223,5 +227,15 @@ public class MenuUIManager : MonoBehaviour
     private void ChangeToBarPointsUIInfo(int points)
     {
         topBarUIManager.UpdateScoreTextUI(points);
+    }
+
+    private void SetSettingsVolumeUI(float volume)
+    {
+        settingsUIManager.SetVolumeUIValue(volume);
+    }
+
+    private void SetSettingsVibrationUI(bool state)
+    {
+        settingsUIManager.SetVibrationUIValue(state);
     }
 }

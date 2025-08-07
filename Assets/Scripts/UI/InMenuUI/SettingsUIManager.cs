@@ -73,4 +73,14 @@ public class SettingsUIManager : MonoBehaviour
     {
         CloseOnClick?.Invoke();
     }
+
+    public void SetVolumeUIValue(float volume)
+    {
+        volumeSLider.value = volume;
+    }
+
+    public void SetVibrationUIValue(bool state)
+    {
+        vibrationToggle.isOn = state;
+    }
 }
