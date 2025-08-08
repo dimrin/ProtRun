@@ -9,12 +9,12 @@ using UnityEngine;
 public class SaveSystemManager : MonoBehaviour {
     [SerializeField] private string saveFileName;
 
-    [SerializeField] private int points = 0;
+    [SerializeField] private static int points = 0;
 
     private int currentCharacterIndex = 0;
 
-    private bool isVibrating = true;
-    private float musicVolumeValue = 0f;
+    [SerializeField] private static bool isVibrating = true;
+    [SerializeField] private static float musicVolumeValue = 0f;
 
     private int languageIndex = -1;
 
@@ -41,11 +41,6 @@ public class SaveSystemManager : MonoBehaviour {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        Debug.Log(openCharactersList.Count + " Open List");
     }
 
     private void SetDefaultValues()
@@ -157,7 +152,6 @@ public class SaveSystemManager : MonoBehaviour {
         else
         {
             isLoaded = true;
-            //openCharactersList.Add(currentCharacterIndex);
             SetDefaultValues();
             Debug.Log("Has no local Data");
 

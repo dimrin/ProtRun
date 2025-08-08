@@ -44,17 +44,30 @@ public class SettingsManager : MonoBehaviour
 
     private void SetSavedValues()
     {
-        VolumeValueOnDataLoaded?.Invoke(saveSystemManager.GetVolume());
-        gameAudioMixer.SetFloat("volume", saveSystemManager.GetVolume());
-        VibrationValueOnDataLoaded?.Invoke(saveSystemManager.IsVibrating());
-        vibrationManager.SetVibration(saveSystemManager.IsVibrating());
-        Debug.Log("Sent SettingsValues");
+
+        float volumeToSet = saveSystemManager.GetVolume();
+        bool stateToSet = saveSystemManager.IsVibrating();
+
+        VolumeValueOnDataLoaded?.Invoke(volumeToSet);
+        SetVolumeWithoutSave(volumeToSet);
+        vibrationManager.SetVibration(stateToSet);
+        VibrationValueOnDataLoaded?.Invoke(stateToSet);
+
     }
 
     private void SetVolumeValue(float volume)
     {
-        gameAudioMixer.SetFloat("volume", volume);
+        //gameAudioMixer.SetFloat("volume", volume);
+        SetVolumeWithoutSave(volume);
         saveSystemManager.SetVolume(volume);
+    }
+
+    private void SetVolumeWithoutSave(float volumeToSet)
+    {
+        gameAudioMixer.SetFloat("volume", volumeToSet);
+        float mixerVolume = 0f;
+        gameAudioMixer.GetFloat("volume", out mixerVolume);
+        Debug.Log($"Volume {volumeToSet} set, and get {mixerVolume}");
     }
 
     private void SetVibration(bool state)

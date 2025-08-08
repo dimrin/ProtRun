@@ -22,6 +22,7 @@ public class SaveFileLoaderManager : MonoBehaviour {
         }
 
         LoadSaveFile();
+        //SetDataOnEnterMenu();
     }
 
     private void OnEnable()
@@ -44,6 +45,10 @@ public class SaveFileLoaderManager : MonoBehaviour {
             saveSystemManager.Load();
             Debug.Log("Loaded File");
             DataLoaded?.Invoke();
+        } else
+        {
+            DataLoaded?.Invoke();
+            Debug.Log("Invoke On loaded");
         }
 
         /*
@@ -59,7 +64,7 @@ public class SaveFileLoaderManager : MonoBehaviour {
         if (saveSystemManager.IsLoaded())
         {
             DataLoaded?.Invoke();
-            Debug.Log("Invoke On loaded");
+            Debug.Log("Invoke On loaded 2 ");
         }
     }
 }
