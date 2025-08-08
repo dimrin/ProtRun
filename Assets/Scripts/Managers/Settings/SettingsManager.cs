@@ -47,6 +47,7 @@ public class SettingsManager : MonoBehaviour
         VolumeValueOnDataLoaded?.Invoke(saveSystemManager.GetVolume());
         gameAudioMixer.SetFloat("volume", saveSystemManager.GetVolume());
         VibrationValueOnDataLoaded?.Invoke(saveSystemManager.IsVibrating());
+        vibrationManager.SetVibration(saveSystemManager.IsVibrating());
         Debug.Log("Sent SettingsValues");
     }
 
@@ -66,6 +67,7 @@ public class SettingsManager : MonoBehaviour
 
     private void SetVibrationValue(bool isVibrating, Action OnValueSet)
     {
+        vibrationManager.SetVibration(isVibrating);
         saveSystemManager.SetVibrationState(isVibrating);
         
         OnValueSet?.Invoke();
