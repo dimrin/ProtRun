@@ -16,6 +16,10 @@ public class MenuUIManager : MonoBehaviour
     {
         enterScreenUIManager.OpenUI(() =>
         {
+            menuScreenUIManager.OpenUI();
+            topBarUIManager.OpenUI();
+            characterSelectionUIManager.OpenUI();
+            settingsUIManager.OpenUI();
             menuScreenUIManager.CloseUI();
             topBarUIManager.CloseUI();
             characterSelectionUIManager.CloseUI();
@@ -36,6 +40,8 @@ public class MenuUIManager : MonoBehaviour
 
     private void OnEnable()
     {
+        SettingsManager.VibrationValueOnDataLoaded += SetSettingsVibrationUI;
+        SettingsManager.VolumeValueOnDataLoaded += SetSettingsVolumeUI;
         enterScreenUIManager.EnterInMenu += EnterInMenu;
         menuScreenUIManager.OpenCharacterSelectorUI += OpenCharacterSelection;
         menuScreenUIManager.OpenSettingsUI += OpenSettings;
@@ -56,10 +62,14 @@ public class MenuUIManager : MonoBehaviour
         CharacterShopManager.OnOpenCharacterSwitched += OpenCloseBuySelectButtons;
         CharacterShopManager.OnPurchaseableCharacterSwitched += ChageBuyButtonState;
         MenuPointsTransactionManager.ChangeUIPoints += ChangeToBarPointsUIInfo;
+        
+        Debug.Log("Subscrube");
     }
 
     private void OnDisable()
     {
+        SettingsManager.VibrationValueOnDataLoaded -= SetSettingsVibrationUI;
+        SettingsManager.VolumeValueOnDataLoaded -= SetSettingsVolumeUI;
         enterScreenUIManager.EnterInMenu -= EnterInMenu;
         menuScreenUIManager.OpenCharacterSelectorUI -= OpenCharacterSelection;
         menuScreenUIManager.OpenSettingsUI -= OpenSettings;
@@ -223,5 +233,15 @@ public class MenuUIManager : MonoBehaviour
     private void ChangeToBarPointsUIInfo(int points)
     {
         topBarUIManager.UpdateScoreTextUI(points);
+    }
+
+    private void SetSettingsVolumeUI(float volume)
+    {
+        settingsUIManager.SetVolumeUIValue(volume);
+    }
+
+    private void SetSettingsVibrationUI(bool state)
+    {
+        settingsUIManager.SetVibrationUIValue(state);
     }
 }

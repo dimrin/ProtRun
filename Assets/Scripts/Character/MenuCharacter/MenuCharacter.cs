@@ -7,6 +7,7 @@ using UnityEngine;
 public class MenuCharacter : MonoBehaviour
 {
     [SerializeField] private MenuCharacterAnimationHolder animationHolder;
+    [SerializeField] private MenuCharacterMover characterMover;
 
     public static event Action OnAnimationActivated;
     public static event Action OnAnimationFinished;
@@ -14,6 +15,7 @@ public class MenuCharacter : MonoBehaviour
     private void Awake()
     {
         animationHolder = GetComponent<MenuCharacterAnimationHolder>();
+        characterMover = GetComponent<MenuCharacterMover>();
     }
 
     private void OnEnable()
@@ -32,6 +34,16 @@ public class MenuCharacter : MonoBehaviour
         MenuUIManager.OnSelectorOpened -= Wave;
         //MenuUIManager.SwitchCharacters -= Dash;
         CharacterShopManager.DoAnimationOnActivated -= Dash;
+    }
+
+    public void SetFinalPosition(Transform position)
+    {
+        characterMover.SetFinalPosition(position);
+    }
+
+    private void Update()
+    {
+        characterMover.Move();
     }
 
     private void Wave()

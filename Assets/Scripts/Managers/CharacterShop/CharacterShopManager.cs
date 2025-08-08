@@ -20,6 +20,9 @@ public class CharacterShopManager : MonoBehaviour {
 
     [SerializeField] private CharacterTransporter characterTransporter;
 
+    [SerializeField] private Transform finalReachPosition;
+    [SerializeField] private Transform spawnPosition;
+
     public static event Action DoAnimationOnActivated;
     public static event Action<int, string> OnSentCharacterInfoToUI;
     public static event Action<bool> OnOpenCharacterSwitched;
@@ -130,6 +133,7 @@ public class CharacterShopManager : MonoBehaviour {
             {
                 characterPair[index].SetActive(true);
                 currentShownMenuCharacter = characterPair[index];
+                currentShownMenuCharacter.GetComponent<MenuCharacter>().SetFinalPosition(finalReachPosition);
                 OnCharacterActivated?.Invoke();
                 DoAnimationOnActivated?.Invoke();
             }
@@ -153,6 +157,7 @@ public class CharacterShopManager : MonoBehaviour {
         if (currentShownMenuCharacter != null)
         {
             currentShownMenuCharacter.SetActive(false);
+            currentShownMenuCharacter.transform.position = spawnPosition.position;
         }
     }
 

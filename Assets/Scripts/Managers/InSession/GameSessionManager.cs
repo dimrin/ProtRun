@@ -12,6 +12,8 @@ public class GameSessionManager : MonoBehaviour {
     [SerializeField] private DefaultCharacterHandler defaultCharacterHandler;
     [SerializeField] private FollowingObject playerFollowingObject;
     [SerializeField] private LevelLoader levelLoader;
+    [SerializeField] private VibrationManager vibrationManager;
+
 
     [SerializeField] private SaveSystemManager saveSystemManager;
 
@@ -38,11 +40,14 @@ public class GameSessionManager : MonoBehaviour {
         if (characterTransporter == null) characterTransporter = FindAnyObjectByType<CharacterTransporter>();
         if(levelLoader == null) levelLoader = FindAnyObjectByType<LevelLoader>();
         if(saveSystemManager == null) saveSystemManager = FindAnyObjectByType<SaveSystemManager>();
+        if(vibrationManager == null) vibrationManager = FindAnyObjectByType<VibrationManager>();
         Application.targetFrameRate = 60;
     }
 
     private void Start()
     {
+        SetValuesOnStart();
+
         SpawnPlayerOnStart(GetCharacterToSpawn());
 
         ChangeGameState(GameState.Start, () =>
@@ -55,28 +60,31 @@ public class GameSessionManager : MonoBehaviour {
     private void OnEnable()
     {
         Player.OnPickedPoint += IncreasePoints;
+        Player.OnPlayerCrushed += Vibrate;
         Player.OnPlayerCrushed += EndTheGame;
         UIManager.PauseTheGame += Pause;
         UIManager.ResumeTheGame += Resume;
         UIManager.OpenAdForRevive += ContinueAfterRevive;
         UIManager.GoToMainMenu += GoToMenu;
         LevelGeneratorManager.OnStartLevelGenerated += RunGame;
-        //LevelLoader.OnLevelLoaded += SpawnPlayerOnAwake;
-        //LevelLoader.OnLevelLoaded += Test;
     }
 
     private void OnDisable()
     {
         Player.OnPickedPoint -= IncreasePoints;
+        Player.OnPlayerCrushed -= Vibrate;
         Player.OnPlayerCrushed -= EndTheGame;
         UIManager.PauseTheGame -= Pause;
         UIManager.ResumeTheGame -= Resume;
         UIManager.OpenAdForRevive -= ContinueAfterRevive;
         UIManager.GoToMainMenu -= GoToMenu;
         LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
-        //LevelLoader.OnLevelLoaded -= SpawnPlayerOnAwake;
     }
 
+    private void SetValuesOnStart()
+    {
+        vibrationManager.SetVibration(saveSystemManager.IsVibrating());
+    }
     private CharacterSO GetCharacterToSpawn()
     {
         if(characterTransporter ==  null)
@@ -99,6 +107,10 @@ public class GameSessionManager : MonoBehaviour {
         playerFollowingObject.SetTargetToFollow(spawnedPlayer);
 
         Debug.Log("Spawned");
+    }
+    private void Vibrate()
+    {
+        vibrationManager.Vibrate();
     }
 
     private void IncreasePoints(int point)
@@ -207,9 +219,7 @@ public class GameSessionManager : MonoBehaviour {
         if(CurrentGameState == GameState.Finish)
         {
             gamePointsManager.SavePoints();
-            //SceneManager.LoadScene(0);
             levelLoader.LoadMainMenu();
-            Debug.Log($"Go to menu {CurrentGameState}");
         }
     }
 }

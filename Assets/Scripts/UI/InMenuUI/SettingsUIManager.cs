@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SettingsUIManager : MonoBehaviour
@@ -72,5 +73,15 @@ public class SettingsUIManager : MonoBehaviour
     public void CloseUIOnClick()
     {
         CloseOnClick?.Invoke();
+    }
+
+    public void SetVolumeUIValue(float volume)
+    {
+        volumeSLider.value = volume;
+    }
+
+    public void SetVibrationUIValue(bool state)
+    {
+        vibrationToggle.isOn = state;
     }
 }
