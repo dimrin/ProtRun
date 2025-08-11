@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public static event Action PauseTheGame;
     public static event Action ResumeTheGame;
     public static event Action GoToMainMenu;
+    public static event Action GoToMainMenuOnPause;
     public static event Action OpenAdForRevive;
 
     private void Awake()
@@ -110,8 +111,9 @@ public class UIManager : MonoBehaviour
     {
         pauseUIManager.CloseUI(() =>
         {
-            ResumeTheGame?.Invoke();
-            GoToMainMenu?.Invoke();
+            //ResumeTheGame?.Invoke();
+            //GoToMainMenu?.Invoke();
+            GoToMainMenuOnPause?.Invoke();
         });
     }
 

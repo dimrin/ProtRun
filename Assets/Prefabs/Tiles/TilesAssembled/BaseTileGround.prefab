@@ -548,6 +548,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -571,6 +576,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -645,6 +655,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -770,6 +785,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -844,6 +864,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -867,6 +892,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -992,6 +1022,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1015,6 +1050,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -1089,6 +1129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -1214,6 +1259,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1287,6 +1337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_teamBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1362,6 +1417,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1385,6 +1445,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -1460,6 +1525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1533,6 +1603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -1658,6 +1733,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1681,6 +1761,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -1806,6 +1891,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1829,6 +1919,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -1903,6 +1998,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -2028,6 +2128,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2051,6 +2156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -2176,6 +2286,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2199,6 +2314,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -2324,6 +2444,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2347,6 +2472,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -2472,6 +2602,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2495,6 +2630,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -2569,6 +2709,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -2694,6 +2839,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2717,6 +2867,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -2791,6 +2946,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -2916,6 +3076,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2939,6 +3104,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -3013,6 +3183,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -3138,6 +3313,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3161,6 +3341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -3235,6 +3420,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -3360,6 +3550,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3434,6 +3629,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3457,6 +3657,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -3532,6 +3737,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3605,6 +3815,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -3730,6 +3945,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3804,6 +4024,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3827,6 +4052,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -3902,6 +4132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3975,6 +4210,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -4050,6 +4290,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4123,6 +4368,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -4198,6 +4448,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4271,6 +4526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -4346,6 +4606,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4419,6 +4684,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -4544,6 +4814,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4618,6 +4893,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4641,6 +4921,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -4716,6 +5001,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4789,6 +5079,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -4864,6 +5159,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4937,6 +5237,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -5012,6 +5317,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5085,6 +5395,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -5210,6 +5525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5284,6 +5604,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5307,6 +5632,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -5382,6 +5712,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5455,6 +5790,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -5530,6 +5870,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5603,6 +5948,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -5678,6 +6028,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5751,6 +6106,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -5826,6 +6186,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5899,6 +6264,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -5974,6 +6344,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6048,6 +6423,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6121,6 +6501,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -6246,6 +6631,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6320,6 +6710,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_teamBlue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6343,6 +6738,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
@@ -6467,6 +6867,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_teamBlue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4157201173647536875, guid: d728ff394c961f34481da1778c882cbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
