@@ -66,6 +66,7 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.ResumeTheGame += Resume;
         UIManager.OpenAdForRevive += ContinueAfterRevive;
         UIManager.GoToMainMenu += GoToMenu;
+        UIManager.GoToMainMenuOnPause += GoMenuFromPause;
         LevelGeneratorManager.OnStartLevelGenerated += RunGame;
     }
 
@@ -78,6 +79,7 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.ResumeTheGame -= Resume;
         UIManager.OpenAdForRevive -= ContinueAfterRevive;
         UIManager.GoToMainMenu -= GoToMenu;
+        UIManager.GoToMainMenuOnPause -= GoMenuFromPause;
         LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
     }
 
@@ -152,6 +154,8 @@ public class GameSessionManager : MonoBehaviour {
         }
     }
 
+    
+
     private void OnApplicationPause(bool pause)
     {
         if (pause)
@@ -212,6 +216,12 @@ public class GameSessionManager : MonoBehaviour {
     {
         CurrentGameState = state;
         OnStateChanged?.Invoke();
+    }
+
+    private void GoMenuFromPause()
+    {
+        gamePauseManager.Resume();
+        levelLoader.LoadMainMenu();
     }
 
     private void GoToMenu()
