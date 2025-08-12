@@ -6,7 +6,6 @@ public class GameMenuManager : MonoBehaviour
 {
     [SerializeField] private LevelLoader levelLoader;
 
-
     private void Awake()
     {
         if(levelLoader == null) levelLoader = FindAnyObjectByType<LevelLoader>();

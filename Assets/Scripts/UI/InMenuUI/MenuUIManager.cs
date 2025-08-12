@@ -11,9 +11,38 @@ public class MenuUIManager : MonoBehaviour
     [SerializeField] private CharacterSelectionUIManager characterSelectionUIManager;
     [SerializeField] private SettingsUIManager settingsUIManager;
 
+    private static bool isMenuAlreadyEntered = false;
 
     private void Awake()
     {
+        if (!isMenuAlreadyEntered) {
+            enterScreenUIManager.OpenUI(() =>
+            {
+                enterScreenUIManager.ActivateLoadingAnimation();
+                menuScreenUIManager.OpenUI();
+                topBarUIManager.OpenUI();
+                characterSelectionUIManager.OpenUI();
+                settingsUIManager.OpenUI();
+                menuScreenUIManager.CloseUI();
+                topBarUIManager.CloseUI();
+                characterSelectionUIManager.CloseUI();
+                settingsUIManager.CloseUI();
+                isMenuAlreadyEntered = true;
+            });
+        } else
+        {
+            enterScreenUIManager.CloseUI(() =>
+            {
+                menuScreenUIManager.OpenUI();
+                topBarUIManager.OpenUI();
+
+                characterSelectionUIManager.OpenUI();
+                settingsUIManager.OpenUI();
+                characterSelectionUIManager.CloseUI();
+                settingsUIManager.CloseUI();
+            });
+        }
+        /*
         enterScreenUIManager.OpenUI(() =>
         {
             menuScreenUIManager.OpenUI();
@@ -25,6 +54,7 @@ public class MenuUIManager : MonoBehaviour
             characterSelectionUIManager.CloseUI();
             settingsUIManager.CloseUI();
         });
+        */
     }
 
     public static event Action<int> SwitchCharacters;
@@ -243,5 +273,10 @@ public class MenuUIManager : MonoBehaviour
     private void SetSettingsVibrationUI(bool state)
     {
         settingsUIManager.SetVibrationUIValue(state);
+    }
+
+    private void OnApplicationQuit()
+    {
+        isMenuAlreadyEntered = false;
     }
 }
