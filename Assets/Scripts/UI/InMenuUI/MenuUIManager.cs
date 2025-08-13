@@ -3,63 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuUIManager : MonoBehaviour
-{
+public class MenuUIManager : MonoBehaviour {
     [SerializeField] private EnterScreenUIManager enterScreenUIManager;
     [SerializeField] private MenuScreenUIManager menuScreenUIManager;
     [SerializeField] private TopBarUIManager topBarUIManager;
     [SerializeField] private CharacterSelectionUIManager characterSelectionUIManager;
     [SerializeField] private SettingsUIManager settingsUIManager;
+    [SerializeField] private LoadingUIManager loadingUIManager;
 
     private static bool isMenuAlreadyEntered = false;
 
-    private void Awake()
-    {
-        if (!isMenuAlreadyEntered) {
-            enterScreenUIManager.OpenUI(() =>
-            {
-                enterScreenUIManager.ActivateLoadingAnimation();
-                menuScreenUIManager.OpenUI();
-                topBarUIManager.OpenUI();
-                characterSelectionUIManager.OpenUI();
-                settingsUIManager.OpenUI();
-                menuScreenUIManager.CloseUI();
-                topBarUIManager.CloseUI();
-                characterSelectionUIManager.CloseUI();
-                settingsUIManager.CloseUI();
-                isMenuAlreadyEntered = true;
-            });
-        } else
-        {
-            enterScreenUIManager.CloseUI(() =>
-            {
-                menuScreenUIManager.OpenUI();
-                topBarUIManager.OpenUI();
-
-                characterSelectionUIManager.OpenUI();
-                settingsUIManager.OpenUI();
-                characterSelectionUIManager.CloseUI();
-                settingsUIManager.CloseUI();
-            });
-        }
-        /*
-        enterScreenUIManager.OpenUI(() =>
-        {
-            menuScreenUIManager.OpenUI();
-            topBarUIManager.OpenUI();
-            characterSelectionUIManager.OpenUI();
-            settingsUIManager.OpenUI();
-            menuScreenUIManager.CloseUI();
-            topBarUIManager.CloseUI();
-            characterSelectionUIManager.CloseUI();
-            settingsUIManager.CloseUI();
-        });
-        */
-    }
-
     public static event Action<int> SwitchCharacters;
     public static event Action OnSelectorOpened;
-    public static event Action OnGoPlay;
+    public static event Action OnPlayPressed;
+    public static event Action OnLoadingNewLevelAnimationFinished;
     public static event Action OnFinalVolumeSet;
     public static event Action<float> OnVolumeSet;
     public static event Action<bool> OnVibrationSet;
@@ -67,6 +24,45 @@ public class MenuUIManager : MonoBehaviour
     public static event Action OnSelectCharacter;
     public static event Action OnSelectorClosed;
     public static event Action OnCharacterSwitched;
+
+    private void Awake()
+    {
+        if (!isMenuAlreadyEntered)
+        {
+            enterScreenUIManager.OpenUI(() =>
+            {
+                enterScreenUIManager.ActivateLoadingAnimation();
+                menuScreenUIManager.OpenUI();
+                topBarUIManager.OpenUI();
+                characterSelectionUIManager.OpenUI();
+                settingsUIManager.OpenUI();
+                loadingUIManager.OpenUI();
+                loadingUIManager.ActivateCurrentLevelLoadAnimation();
+                menuScreenUIManager.CloseUI();
+                topBarUIManager.CloseUI();
+                characterSelectionUIManager.CloseUI();
+                settingsUIManager.CloseUI();
+                isMenuAlreadyEntered = true;
+            });
+        }
+        else
+        {
+            enterScreenUIManager.CloseUI(() =>
+            {
+                menuScreenUIManager.OpenUI();
+                topBarUIManager.OpenUI();
+                loadingUIManager.OpenUI();
+                loadingUIManager.ActivateCurrentLevelLoadAnimation();
+
+                characterSelectionUIManager.OpenUI();
+                settingsUIManager.OpenUI();
+                characterSelectionUIManager.CloseUI();
+                settingsUIManager.CloseUI();
+            });
+        }
+    }
+
+
 
     private void OnEnable()
     {
@@ -85,6 +81,7 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.SwitchToPrevious += SwitchUIToPreviousCharacter;
         characterSelectionUIManager.OnBuy += BuyCharacter;
         characterSelectionUIManager.OnSelect += SelectCharacter;
+        loadingUIManager.OnAnimationFinished += GoNewLevel;
         MenuCharacter.OnAnimationActivated += MakeButtonsUninteractable;
         MenuCharacter.OnAnimationFinished += MakeButtonsInteractable;
         CharacterShopManager.OnSentCharacterInfoToUI += SetCharacterInfoToUI;
@@ -92,8 +89,6 @@ public class MenuUIManager : MonoBehaviour
         CharacterShopManager.OnOpenCharacterSwitched += OpenCloseBuySelectButtons;
         CharacterShopManager.OnPurchaseableCharacterSwitched += ChageBuyButtonState;
         MenuPointsTransactionManager.ChangeUIPoints += ChangeToBarPointsUIInfo;
-        
-        Debug.Log("Subscrube");
     }
 
     private void OnDisable()
@@ -113,6 +108,7 @@ public class MenuUIManager : MonoBehaviour
         characterSelectionUIManager.SwitchToPrevious -= SwitchUIToPreviousCharacter;
         characterSelectionUIManager.OnBuy -= BuyCharacter;
         characterSelectionUIManager.OnSelect -= SelectCharacter;
+        loadingUIManager.OnAnimationFinished -= GoNewLevel;
         MenuCharacter.OnAnimationActivated -= MakeButtonsUninteractable;
         MenuCharacter.OnAnimationFinished -= MakeButtonsInteractable;
         CharacterShopManager.OnSentCharacterInfoToUI -= SetCharacterInfoToUI;
@@ -124,7 +120,8 @@ public class MenuUIManager : MonoBehaviour
 
     private void EnterInMenu()
     {
-        enterScreenUIManager.CloseUI(() =>{
+        enterScreenUIManager.CloseUI(() =>
+        {
 
             menuScreenUIManager.OpenUI();
             topBarUIManager.OpenUI();
@@ -161,7 +158,7 @@ public class MenuUIManager : MonoBehaviour
 
     private void OpenSettings()
     {
-       settingsUIManager.OpenUI();
+        settingsUIManager.OpenUI();
     }
 
     private void CloseSettings()
@@ -171,7 +168,14 @@ public class MenuUIManager : MonoBehaviour
 
     private void GoPlay()
     {
-        OnGoPlay?.Invoke();
+        loadingUIManager.ActivateNewLevelLoadAnimation();
+        OnPlayPressed?.Invoke();
+    }
+
+    private void GoNewLevel()
+    {
+        OnLoadingNewLevelAnimationFinished?.Invoke();
+        Debug.Log("Anim");
     }
 
     private void FinalVolumeValueSet()
@@ -224,12 +228,14 @@ public class MenuUIManager : MonoBehaviour
 
     private void OpenCloseBuySelectButtons(bool state)
     {
-        if (state) {
+        if (state)
+        {
             //characterSelectionUIManager.DeactivateSelectButton();
             //characterSelectionUIManager.ActivateBuyButton();
             characterSelectionUIManager.ActivateSelectButton();
             characterSelectionUIManager.DeactivateBuyButton();
-        } else
+        }
+        else
         {
             //characterSelectionUIManager.ActivateSelectButton();
             //characterSelectionUIManager.DeactivateBuyButton();
@@ -240,10 +246,11 @@ public class MenuUIManager : MonoBehaviour
 
     private void ChangeSelectButtonState(bool state)
     {
-        if(state)
+        if (state)
         {
             characterSelectionUIManager.MakeSelectButtonUninteractable();
-        } else
+        }
+        else
         {
             characterSelectionUIManager.MakeSelectButtonInteractable();
         }
@@ -251,10 +258,11 @@ public class MenuUIManager : MonoBehaviour
 
     private void ChageBuyButtonState(bool state)
     {
-        if(state)
+        if (state)
         {
             characterSelectionUIManager.MakeBuyButtonUninteractable();
-        } else
+        }
+        else
         {
             characterSelectionUIManager.MakeBuyButtonInteractable();
         }
