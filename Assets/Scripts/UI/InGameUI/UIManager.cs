@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
-{
+public class UIManager : MonoBehaviour {
     [SerializeField] private GameUIManager gameUIManager;
     [SerializeField] private PauseUIManager pauseUIManager;
     [SerializeField] private FinalUIManager finalUIManager;
@@ -31,11 +28,13 @@ public class UIManager : MonoBehaviour
         PauseUIManager.GoToMenuFromPause += GoToMenuFromPause;
         FinalUIManager.GoToMenu += GoToMenu;
         FinalUIManager.ReviveOnAd += GoToAd;
+        FinalUIManager.CloseReviveWindow += CloseAdReviveUI;
         GameUIManager.PauseGame += Pause;
         GameSessionManager.PointsIncreased += PointsToUI;
         GameSessionManager.GamePauseOnHide += Pause;
         //GameSessionManager.GameResumeOnWakeUp += Resume;
         loadingUIManager.OnAnimationFinished += OnLevelAnimationFinished;
+        GameSessionManager.OnGameFinished += OpenAdReviveUI;
         GameSessionManager.SentPointsOnGameEnded += SetFinalUI;
         GameSessionManager.OnRevived += ClosesFinalUIOnRevive;
         Player.OnBuffApplied += itemsHolder.ActivateBuffUI;
@@ -48,11 +47,13 @@ public class UIManager : MonoBehaviour
         PauseUIManager.GoToMenuFromPause -= GoToMenuFromPause;
         FinalUIManager.GoToMenu -= GoToMenu;
         FinalUIManager.ReviveOnAd -= GoToAd;
+        FinalUIManager.CloseReviveWindow -= CloseAdReviveUI;
         GameUIManager.PauseGame -= Pause;
         GameSessionManager.PointsIncreased -= PointsToUI;
         GameSessionManager.GamePauseOnHide -= Pause;
         loadingUIManager.OnAnimationFinished -= OnLevelAnimationFinished;
         //GameSessionManager.GameResumeOnWakeUp -= Resume;
+        GameSessionManager.OnGameFinished -= OpenAdReviveUI;
         GameSessionManager.SentPointsOnGameEnded -= SetFinalUI;
         GameSessionManager.OnRevived -= ClosesFinalUIOnRevive;
         Player.OnBuffApplied -= itemsHolder.ActivateBuffUI;
@@ -63,7 +64,7 @@ public class UIManager : MonoBehaviour
         if (gameUIManager == null) gameUIManager = GetComponentInChildren<GameUIManager>();
         if (pauseUIManager == null) pauseUIManager = GetComponentInChildren<PauseUIManager>();
         if (finalUIManager == null) finalUIManager = GetComponentInChildren<FinalUIManager>();
-        if(loadingUIManager == null) loadingUIManager = GetComponentInChildren<LoadingUIManager>();
+        if (loadingUIManager == null) loadingUIManager = GetComponentInChildren<LoadingUIManager>();
     }
 
     private void SetBaseUI()
@@ -81,7 +82,7 @@ public class UIManager : MonoBehaviour
 
     private void Resume()
     {
-        
+
         pauseUIManager.CloseUI(() =>
         {
             ResumeTheGame?.Invoke();
@@ -131,14 +132,26 @@ public class UIManager : MonoBehaviour
         gameUIManager.SetCurrentPoinsToUIText(points);
     }
 
+    private void OpenAdReviveUI()
+    {
+        finalUIManager.OpenUI();
+        finalUIManager.OpenAdReviveWindow();
+    }
+
+    private void CloseAdReviveUI()
+    {
+        finalUIManager.CloseAdReviveWindow();
+    }
+
     private void SetFinalUI(int points)
     {
         finalUIManager.SetPointsToUIText(points);
-        finalUIManager.OpenUI();
+        finalUIManager.OpenFinalWindow();
     }
 
     private void ClosesFinalUIOnRevive()
     {
+        finalUIManager.CloseAdReviveWindow();
         finalUIManager.CloseUI();
     }
 }
