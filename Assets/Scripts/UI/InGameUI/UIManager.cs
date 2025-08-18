@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour {
         GameSessionManager.OnGameFinished += OpenAdReviveUI;
         GameSessionManager.SentPointsOnGameEnded += SetFinalUI;
         GameSessionManager.OnRevived += ClosesFinalUIOnRevive;
-        Player.OnBuffApplied += itemsHolder.ActivateBuffUI;
+        Player.OnBuffApplied += ActivateBufUI;
     }
 
 
@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour {
         GameSessionManager.OnGameFinished -= OpenAdReviveUI;
         GameSessionManager.SentPointsOnGameEnded -= SetFinalUI;
         GameSessionManager.OnRevived -= ClosesFinalUIOnRevive;
-        Player.OnBuffApplied -= itemsHolder.ActivateBuffUI;
+        Player.OnBuffApplied -= ActivateBufUI;
     }
 
     private void SetNullValues()
@@ -120,6 +120,11 @@ public class UIManager : MonoBehaviour {
             GoToMainMenuOnPause?.Invoke();
             loadingUIManager.ActivateNewLevelLoadAnimation();
         });
+    }
+
+    private void ActivateBufUI(ItemType itemType, int itemValue)
+    {
+        itemsHolder.ActivateBuffUI(itemType, itemValue);
     }
 
     private void OnLevelAnimationFinished()

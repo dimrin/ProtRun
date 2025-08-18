@@ -21,6 +21,11 @@ public class SpeedBuff: IBuff
     {
         _duration = value;
         _timer = 0f;
+        Debug.Log("isActive " + IsActive);
+        if(IsActive)
+        {
+            _playerHealth.TryToMakeHittable();
+        }
         IsActive = true;
         //_playerHealth.ChangeHittableState(IsActive);
         _playerHealth.MakeUnhittable();
@@ -35,7 +40,8 @@ public class SpeedBuff: IBuff
         {
             IsActive = false;
             //_playerHealth.ChangeHittableState(IsActive);
-            _playerHealth.MakeHittable();
+            _playerHealth.TryToMakeHittable();
+            Debug.Log("Speed Stop");
             _movement.ChangeBuffActivationState(IsActive);
             OnBuffEnded?.Invoke();
         }
