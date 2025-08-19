@@ -7,8 +7,12 @@ using UnityEngine;
 public class FinalUIManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI finalPointsText;
 
+    [SerializeField] private GameObject adReviveWindow;
+    [SerializeField] private GameObject finalWindow;
+
     public static event Action GoToMenu;
     public static event Action ReviveOnAd;
+    public static event Action CloseReviveWindow;
 
     private void Awake()
     {
@@ -21,6 +25,26 @@ public class FinalUIManager : MonoBehaviour {
     public void SetPointsToUIText(int points)
     {
         finalPointsText.text = points.ToString();
+    }
+
+    public void OpenAdReviveWindow()
+    {
+        adReviveWindow.SetActive(true);
+    }
+
+    public void CloseAdReviveWindow()
+    {
+        adReviveWindow.SetActive(false);
+    }
+
+    public void OpenFinalWindow()
+    {
+        finalWindow.SetActive(true);
+    }
+
+    public void CloseFinalWindow()
+    {
+        finalWindow.SetActive(false);
     }
 
     public void OpenUI()
@@ -55,4 +79,10 @@ public class FinalUIManager : MonoBehaviour {
     {
         ReviveOnAd?.Invoke();
     }
+
+    public void CloseReviveOnClick()
+    {
+        CloseReviveWindow?.Invoke();  
+    }
+
 }

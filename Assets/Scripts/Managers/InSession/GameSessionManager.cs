@@ -65,6 +65,7 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.PauseTheGame += Pause;
         UIManager.ResumeTheGame += Resume;
         UIManager.OpenAdForRevive += ContinueAfterRevive;
+        UIManager.OnLoadingLevelMenuAnimationFinished += ActivateLoadedScene;
         UIManager.GoToMainMenu += GoToMenu;
         UIManager.GoToMainMenuOnPause += GoMenuFromPause;
         LevelGeneratorManager.OnStartLevelGenerated += RunGame;
@@ -78,6 +79,7 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.PauseTheGame -= Pause;
         UIManager.ResumeTheGame -= Resume;
         UIManager.OpenAdForRevive -= ContinueAfterRevive;
+        UIManager.OnLoadingLevelMenuAnimationFinished -= ActivateLoadedScene;
         UIManager.GoToMainMenu -= GoToMenu;
         UIManager.GoToMainMenuOnPause -= GoMenuFromPause;
         LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
@@ -221,7 +223,7 @@ public class GameSessionManager : MonoBehaviour {
     private void GoMenuFromPause()
     {
         gamePauseManager.Resume();
-        levelLoader.LoadMainMenu();
+        levelLoader.LoadMainMenuInBackground();
     }
 
     private void GoToMenu()
@@ -229,13 +231,19 @@ public class GameSessionManager : MonoBehaviour {
         if(CurrentGameState == GameState.Finish)
         {
             gamePointsManager.SavePoints();
-            levelLoader.LoadMainMenu();
+            levelLoader.LoadMainMenuInBackground();
         }
+    }
+
+    private void ActivateLoadedScene()
+    {
+        levelLoader.ActivateLoadedScene();
     }
 }
 
 [Serializable]
 public enum GameState {
+    LevelLoaded,
     Start,
     Run,
     Pause,

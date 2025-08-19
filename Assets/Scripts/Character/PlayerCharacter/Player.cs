@@ -135,8 +135,9 @@ public class Player : MonoBehaviour {
     {
         AllowMove();
         playerBuffManager.ApplyBuff(ItemType.Speed, onReviveBuffTime);
+        playerAnimationHandler.ActivateSpinningAnimation(onReviveBuffTime);
         OnBuffApplied?.Invoke(ItemType.Speed, onReviveBuffTime);
-        playerAnimationHandler.ActivateRunAnimation();
+        //playerAnimationHandler.ActivateRunAnimation();
         _isPlayedCrashed = false;
     }
 

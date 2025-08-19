@@ -32,12 +32,14 @@ public class PlayerHealth : MonoBehaviour {
     {
         isHittable = false;
         currentNumberOfUnhittableStates++;
+        Debug.Log("currentNumberOfUnhittableStates -  " + currentNumberOfUnhittableStates);
     }
 
-    public void MakeHittable()
+    public void TryToMakeHittable() 
     {
         currentNumberOfUnhittableStates--;
-        if(currentNumberOfUnhittableStates == 0)
+        Debug.Log("currentNumberOfUnhittableStates +  " + currentNumberOfUnhittableStates);
+        if (currentNumberOfUnhittableStates <= 0)
         {
             isHittable = true;
         }

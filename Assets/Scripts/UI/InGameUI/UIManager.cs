@@ -1,20 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
-{
+public class UIManager : MonoBehaviour {
     [SerializeField] private GameUIManager gameUIManager;
     [SerializeField] private PauseUIManager pauseUIManager;
     [SerializeField] private FinalUIManager finalUIManager;
     [SerializeField] private UIBuffItemsHolder itemsHolder;
+    [SerializeField] private LoadingUIManager loadingUIManager;
 
     public static event Action PauseTheGame;
     public static event Action ResumeTheGame;
     public static event Action GoToMainMenu;
     public static event Action GoToMainMenuOnPause;
     public static event Action OpenAdForRevive;
+    public static event Action OnLoadingLevelMenuAnimationFinished;
 
     private void Awake()
     {
@@ -29,13 +28,16 @@ public class UIManager : MonoBehaviour
         PauseUIManager.GoToMenuFromPause += GoToMenuFromPause;
         FinalUIManager.GoToMenu += GoToMenu;
         FinalUIManager.ReviveOnAd += GoToAd;
+        FinalUIManager.CloseReviveWindow += CloseAdReviveUI;
         GameUIManager.PauseGame += Pause;
         GameSessionManager.PointsIncreased += PointsToUI;
         GameSessionManager.GamePauseOnHide += Pause;
         //GameSessionManager.GameResumeOnWakeUp += Resume;
+        loadingUIManager.OnAnimationFinished += OnLevelAnimationFinished;
+        GameSessionManager.OnGameFinished += OpenAdReviveUI;
         GameSessionManager.SentPointsOnGameEnded += SetFinalUI;
         GameSessionManager.OnRevived += ClosesFinalUIOnRevive;
-        Player.OnBuffApplied += itemsHolder.ActivateBuffUI;
+        Player.OnBuffApplied += ActivateBufUI;
     }
 
 
@@ -45,13 +47,16 @@ public class UIManager : MonoBehaviour
         PauseUIManager.GoToMenuFromPause -= GoToMenuFromPause;
         FinalUIManager.GoToMenu -= GoToMenu;
         FinalUIManager.ReviveOnAd -= GoToAd;
+        FinalUIManager.CloseReviveWindow -= CloseAdReviveUI;
         GameUIManager.PauseGame -= Pause;
         GameSessionManager.PointsIncreased -= PointsToUI;
         GameSessionManager.GamePauseOnHide -= Pause;
+        loadingUIManager.OnAnimationFinished -= OnLevelAnimationFinished;
         //GameSessionManager.GameResumeOnWakeUp -= Resume;
+        GameSessionManager.OnGameFinished -= OpenAdReviveUI;
         GameSessionManager.SentPointsOnGameEnded -= SetFinalUI;
         GameSessionManager.OnRevived -= ClosesFinalUIOnRevive;
-        Player.OnBuffApplied -= itemsHolder.ActivateBuffUI;
+        Player.OnBuffApplied -= ActivateBufUI;
     }
 
     private void SetNullValues()
@@ -59,17 +64,15 @@ public class UIManager : MonoBehaviour
         if (gameUIManager == null) gameUIManager = GetComponentInChildren<GameUIManager>();
         if (pauseUIManager == null) pauseUIManager = GetComponentInChildren<PauseUIManager>();
         if (finalUIManager == null) finalUIManager = GetComponentInChildren<FinalUIManager>();
+        if (loadingUIManager == null) loadingUIManager = GetComponentInChildren<LoadingUIManager>();
     }
 
     private void SetBaseUI()
     {
+        loadingUIManager.ActivateCurrentLevelLoadAnimation();
         gameUIManager.OpenUI();
         pauseUIManager.CloseUI();
         finalUIManager.CloseUI();
-
-        gameUIManager.OpenUI(() =>
-        {
-        });
     }
 
     private void Update()
@@ -79,7 +82,7 @@ public class UIManager : MonoBehaviour
 
     private void Resume()
     {
-        
+
         pauseUIManager.CloseUI(() =>
         {
             ResumeTheGame?.Invoke();
@@ -98,6 +101,7 @@ public class UIManager : MonoBehaviour
     {
         finalUIManager.CloseUI(() =>
         {
+            loadingUIManager.ActivateNewLevelLoadAnimation();
             GoToMainMenu?.Invoke();
         });
     }
@@ -114,7 +118,18 @@ public class UIManager : MonoBehaviour
             //ResumeTheGame?.Invoke();
             //GoToMainMenu?.Invoke();
             GoToMainMenuOnPause?.Invoke();
+            loadingUIManager.ActivateNewLevelLoadAnimation();
         });
+    }
+
+    private void ActivateBufUI(ItemType itemType, int itemValue)
+    {
+        itemsHolder.ActivateBuffUI(itemType, itemValue);
+    }
+
+    private void OnLevelAnimationFinished()
+    {
+        OnLoadingLevelMenuAnimationFinished?.Invoke();
     }
 
     private void PointsToUI(int points)
@@ -122,14 +137,26 @@ public class UIManager : MonoBehaviour
         gameUIManager.SetCurrentPoinsToUIText(points);
     }
 
+    private void OpenAdReviveUI()
+    {
+        finalUIManager.OpenUI();
+        finalUIManager.OpenAdReviveWindow();
+    }
+
+    private void CloseAdReviveUI()
+    {
+        finalUIManager.CloseAdReviveWindow();
+    }
+
     private void SetFinalUI(int points)
     {
         finalUIManager.SetPointsToUIText(points);
-        finalUIManager.OpenUI();
+        finalUIManager.OpenFinalWindow();
     }
 
     private void ClosesFinalUIOnRevive()
     {
+        finalUIManager.CloseAdReviveWindow();
         finalUIManager.CloseUI();
     }
 }

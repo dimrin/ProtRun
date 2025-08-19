@@ -6,7 +6,6 @@ public class GameMenuManager : MonoBehaviour
 {
     [SerializeField] private LevelLoader levelLoader;
 
-
     private void Awake()
     {
         if(levelLoader == null) levelLoader = FindAnyObjectByType<LevelLoader>();
@@ -15,16 +14,25 @@ public class GameMenuManager : MonoBehaviour
 
     private void OnEnable()
     {
-        MenuUIManager.OnGoPlay += LoadGame;
+        MenuUIManager.OnPlayPressed += LoadGame;
+        MenuUIManager.OnLoadingNewLevelAnimationFinished += ActivateLoadedScene;
+        
     }
 
     private void OnDisable()
     {
-        MenuUIManager.OnGoPlay -= LoadGame;
+        MenuUIManager.OnPlayPressed -= LoadGame;
+        MenuUIManager.OnLoadingNewLevelAnimationFinished -= ActivateLoadedScene;
     }
 
     private void LoadGame()
     {
-        levelLoader.LoadGameLevel();
+        //levelLoader.LoadGameLevel();
+        levelLoader.LoadGameLevelInBackground();
+    }
+
+    private void ActivateLoadedScene()
+    {
+        levelLoader.ActivateLoadedScene();
     }
 }

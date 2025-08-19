@@ -11,7 +11,7 @@ public class LevelTileRecycler : MonoBehaviour {
             ITile oldestTile = activeTiles.Dequeue();
             oldestTile.OnRecycle();
             OnTileRecycled?.Invoke();
-            Debug.Log("Tile Recycled");
+            //Debug.Log("Tile Recycled");
         }
     }
 }

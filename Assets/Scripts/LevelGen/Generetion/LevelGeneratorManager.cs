@@ -52,14 +52,14 @@ public class LevelGeneratorManager : MonoBehaviour {
     
     private void SpawnNextTile()
     {
-        Debug.Log("Start Generete Tile");
+        //Debug.Log("Start Generete Tile");
         ITile tile = tilePoolManager.GetInactiveRandomTile();
         Transform tileParent = transform;
         tileSpawner.SpawnTile(tile, nextSpawnZ, tileParent, () =>
         {
             nextSpawnZ += tileLength;
             activeTiles.Enqueue(tile);
-            Debug.Log("TileSpawned");
+            //Debug.Log("TileSpawned");
         });
     }
     

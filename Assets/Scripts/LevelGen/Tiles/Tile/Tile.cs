@@ -42,7 +42,7 @@ public class Tile : MonoBehaviour, ITile {
         if (other.gameObject.tag == "Player")
         {
             TileExited?.Invoke();
-            Debug.Log("Player Crossed");
+            //Debug.Log("Player Crossed");
         }
     }
 }
