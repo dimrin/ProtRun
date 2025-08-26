@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileRenderer : MonoBehaviour
 {
-    public void ResetRenderer()
+    public void ResetRenderer(Transform transform)
     {
         foreach (Transform child in transform)
         {
