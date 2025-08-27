@@ -3266,10 +3266,6 @@ MonoBehaviour:
   - {fileID: 414042741059461850, guid: f742a059a06e42347bbef26c7ec0c591, type: 3}
   - {fileID: 414042741059461850, guid: f742a059a06e42347bbef26c7ec0c591, type: 3}
   - {fileID: 414042741059461850, guid: f742a059a06e42347bbef26c7ec0c591, type: 3}
-  - {fileID: 414042741059461850, guid: f742a059a06e42347bbef26c7ec0c591, type: 3}
-  - {fileID: 414042741059461850, guid: f742a059a06e42347bbef26c7ec0c591, type: 3}
-  - {fileID: 414042741059461850, guid: f742a059a06e42347bbef26c7ec0c591, type: 3}
-  - {fileID: 414042741059461850, guid: f742a059a06e42347bbef26c7ec0c591, type: 3}
 --- !u!4 &856032821
 Transform:
   m_ObjectHideFlags: 0
@@ -6511,7 +6507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePoolManager: {fileID: 856032820}
   tileLength: 18
-  tilesInRow: 7
+  tilesInRow: 4
   startSpawnZPosition: 18
   tileRecycler: {fileID: 1871722230}
   tileSpawner: {fileID: 1871722231}

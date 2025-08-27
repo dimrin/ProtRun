@@ -15,6 +15,14 @@ public class TileSpawnerObstacleManager : MonoBehaviour
             obstacleSpawner.ActivateRandomObstacle();
         }
     }
+
+    public void DeactivateObstackes()
+    {
+        foreach (TileSingleObstacleSpawner obstacleSpawner in obstaclesSpawners)
+        {
+            obstacleSpawner.DeactivateObstacle();
+        }
+    }
     
     
 }

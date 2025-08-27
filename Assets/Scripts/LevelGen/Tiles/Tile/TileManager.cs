@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(TileRenderer), typeof(TileItemsHandler))]
-public class Tile : MonoBehaviour, ITile {
+public class TileManager : MonoBehaviour, ITile {
 
     [SerializeField] private TileRenderer tileRenderer;
     [SerializeField] private TileItemsHandler tileItemsHandler;
     [SerializeField] private Transform valueItemsHolder;
     [SerializeField] private TileSpawnerObstacleManager obstacleManager;
+    [SerializeField] private TileBuffItemsSpawnerManager buffItemManager;
 
     public GameObject GameObject => gameObject;
 
@@ -20,17 +21,21 @@ public class Tile : MonoBehaviour, ITile {
         tileRenderer = GetComponent<TileRenderer>();
         tileItemsHandler = GetComponent<TileItemsHandler>();
         obstacleManager = GetComponent<TileSpawnerObstacleManager>();
+        buffItemManager = GetComponent<TileBuffItemsSpawnerManager>();
+        tileItemsHandler.CollectDefaultPositions(valueItemsHolder);
     }
 
     public void OnSpawn()
     {
         obstacleManager.ActivateObstacles();
+        buffItemManager.TryToSpawnBuffs();
         gameObject.SetActive(true);
-        
+        Debug.Log("Spawn");
     }
 
     public void OnRecycle()
     {
+
         gameObject.SetActive(false);
         ResetAllChildren();
     }
@@ -38,6 +43,8 @@ public class Tile : MonoBehaviour, ITile {
     private void ResetAllChildren()
     {
         tileRenderer.ResetRenderer(valueItemsHolder);
+        obstacleManager.DeactivateObstackes();
+        //buffItemManager.DeactivateBuffs();
         tileItemsHandler.ResetPositions();
     }
 
@@ -46,7 +53,6 @@ public class Tile : MonoBehaviour, ITile {
         if (other.gameObject.tag == "Player")
         {
             TileExited?.Invoke();
-            //Debug.Log("Player Crossed");
         }
     }
 }

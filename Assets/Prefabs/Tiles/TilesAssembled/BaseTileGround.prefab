@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7150143952106024154}
   - component: {fileID: 9090284621667239855}
   - component: {fileID: 1798001038516661042}
+  - component: {fileID: 8714032391871495110}
+  - component: {fileID: 481686976338814188}
   m_Layer: 0
   m_Name: BaseTileGround
   m_TagString: Untagged
@@ -125,6 +127,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileRenderer: {fileID: 0}
   tileItemsHandler: {fileID: 0}
+  valueItemsHolder: {fileID: 0}
+  obstacleManager: {fileID: 0}
+  buffItemManager: {fileID: 0}
+--- !u!114 &8714032391871495110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158126546858494539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed288a9f15eddda4494d549106d87b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffItemSpawners: []
+--- !u!114 &481686976338814188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158126546858494539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59731ed4592a6d49b60613a06826f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclesSpawners: []
 --- !u!1001 &15330259830081899
 PrefabInstance:
   m_ObjectHideFlags: 0

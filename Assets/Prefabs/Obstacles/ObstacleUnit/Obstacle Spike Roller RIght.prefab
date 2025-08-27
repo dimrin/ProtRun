@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 5780074159882268468}
   - component: {fileID: 2606063371456636991}
   - component: {fileID: 5337793863174597253}
-  - component: {fileID: 4918209113963753373}
+  - component: {fileID: 3252359757989485785}
   m_Layer: 0
-  m_Name: Obstacle 3
+  m_Name: Obstacle Spike Roller RIght
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,8 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 2443040548027816113}
   animationHandler: {fileID: 2606063371456636991}
---- !u!136 &4918209113963753373
-CapsuleCollider:
+--- !u!65 &3252359757989485785
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -170,11 +170,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.2, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 2, y: 0.8, z: 0.8}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1001 &2726817341572420567
 PrefabInstance:
   m_ObjectHideFlags: 0
