@@ -281,6 +281,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -725,6 +730,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -799,6 +809,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileMedium_forest (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -872,6 +887,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tileMedium_forest (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543076947370112065, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4206460023144886011, guid: f4bd7ef7c98b8614a9c4f7d7ff15f838,
         type: 3}

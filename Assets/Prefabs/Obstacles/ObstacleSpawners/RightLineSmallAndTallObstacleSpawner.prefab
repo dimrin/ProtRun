@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles: []
+  currentObstacle: {fileID: 0}
 --- !u!1001 &227795809799692175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,11 +339,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7680690339568569583, guid: 3631f3dbbfc956044a4b65630c2ed7bd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
