@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.3
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d168c0162d579834493612b46a8d2640, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
   m_UseRadianceAmbientProbe: 0
@@ -3269,7 +3269,6 @@ MonoBehaviour:
   - {fileID: 6655796640939769593, guid: 607b0a0ce4db77c4fb19501634ca2edd, type: 3}
   - {fileID: 5877123973657491482, guid: 61fa4b1aca4e3494395dbef46cfd5d0b, type: 3}
   - {fileID: 300273607619404907, guid: 4b62ee814a408c1489c58e2b2c968a57, type: 3}
-  - {fileID: 4396924051469919013, guid: 11a8db94c9640494b83bb4c4f1cc5d3f, type: 3}
   - {fileID: 3322684422690328366, guid: 012dc7f02168bdd4d9d889b40746aa0b, type: 3}
   - {fileID: 527996664552013088, guid: 2a87d1369fd0d984eae34f515758f047, type: 3}
   - {fileID: 5605912679308205863, guid: 6757514dbbe2e45418d493a7dc44a2d9, type: 3}
@@ -6516,9 +6515,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePoolManager: {fileID: 856032820}
-  tileLength: 18
-  tilesInRow: 7
-  startSpawnZPosition: 18
+  tileLength: 26
+  tilesInRow: 6
+  startSpawnZPosition: 22
   tileRecycler: {fileID: 1871722230}
   tileSpawner: {fileID: 1871722231}
 --- !u!4 &1871722229

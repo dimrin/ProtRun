@@ -8,12 +8,13 @@ public class TileItemsHandler : MonoBehaviour
 
     private void Awake()
     {
-        CollectDefaultPositions();
+        //CollectDefaultPositions();
+        Debug.Log("AwakeHandler");
     }
 
-    private void CollectDefaultPositions()
+    public void CollectDefaultPositions(Transform itemsParantTransform)
     {
-        foreach (Transform pickableChild in transform)
+        foreach (Transform pickableChild in itemsParantTransform)
         {
             if (pickableChild.TryGetComponent<IPickable>(out _))
             {
