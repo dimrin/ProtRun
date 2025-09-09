@@ -14,6 +14,7 @@ public class ObstacleAnimationHandler : MonoBehaviour
 
     public void OnHitAnimate()
     {
-
+        animator.SetTrigger("Obstacle Hitted");
     }
+
 }

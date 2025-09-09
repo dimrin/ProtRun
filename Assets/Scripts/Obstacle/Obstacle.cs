@@ -24,7 +24,22 @@ public class Obstacle : MonoBehaviour, IHittable {
         health.GetDamage(() =>
         {
             animationHandler.OnHitAnimate();
-            health.DeactivateOnDamage();
+            //health.DeactivateOnDamage();
         });
+    }
+
+    public GameObject GetObstacleObject()
+    {
+        return gameObject;
+    }
+
+    public void ActiveItself()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void DeactivateItself()
+    {
+        health.DeactivateOnDamage();
     }
 }
