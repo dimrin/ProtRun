@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles: []
-  currentObstacle: {fileID: 0}
 --- !u!1001 &1097715335249956983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213,7 +212,7 @@ PrefabInstance:
     - target: {fileID: 5621820591362831576, guid: 3631f3dbbfc956044a4b65630c2ed7bd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5621820591362831576, guid: 3631f3dbbfc956044a4b65630c2ed7bd,
         type: 3}

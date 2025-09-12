@@ -17,7 +17,7 @@ public class TileBuffItemsSpawnerManager : MonoBehaviour {
         }
     }
 
-    /*
+    
     public void DeactivateBuffs()
     {
         foreach (TileBuffItemSpawner buffItemSpawner in buffItemSpawners)
@@ -25,7 +25,7 @@ public class TileBuffItemsSpawnerManager : MonoBehaviour {
             buffItemSpawner.DeactivateBuff();
         }
     }
-    */
+    
 
 
 }

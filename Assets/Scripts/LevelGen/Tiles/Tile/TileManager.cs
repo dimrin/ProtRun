@@ -44,7 +44,7 @@ public class TileManager : MonoBehaviour, ITile {
     {
         tileRenderer.ResetRenderer(valueItemsHolder);
         obstacleManager.DeactivateObstackes();
-        //buffItemManager.DeactivateBuffs();
+        buffItemManager.DeactivateBuffs();
         tileItemsHandler.ResetPositions();
     }
 
