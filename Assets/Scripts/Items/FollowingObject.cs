@@ -15,11 +15,6 @@ public class FollowingObject : MonoBehaviour, IFollowable {
         }
     }
 
-    private void Start()
-    {
-        //laneMovement.SetTargetOnStart(target);
-    }
-
     private void OnEnable()
     {
         PlayerSwipeInput.SwipeToLeft += laneMovement.MoveLeft;
@@ -32,15 +27,28 @@ public class FollowingObject : MonoBehaviour, IFollowable {
         PlayerSwipeInput.SwipeToRight -= laneMovement.MoveRight;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         Follow();
     }
 
     public void Follow()
-    {
+    {   float distace = transform.position.z - target.position.z;
+
+        //Debug.Log("Distance: " + distace);
+        if (distace < 2f)
+        {
+            Debug.Log("To Faar");
+            laneMovement.SpeedUp();
+        }
+        else if (distace > 2f)
+        {
+            laneMovement.SetBaseSpeedModifier();
+        }
+
         laneMovement.Follow();
+        
+       
     }
 
     public void SetTargetToFollow(GameObject targetToFollow)
