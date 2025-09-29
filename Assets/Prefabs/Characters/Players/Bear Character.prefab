@@ -721,9 +721,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
   forwardSpeed: 5
-  maxSpeed: 10
-  speedModifier: 0.1
-  buffSpeed: 15
+  maxNormalSpeed: 8
+  normalSpeedModifier: 0.05
+  afterMaxSpeedModifier: 0.01
+  buffSpeedModifier: 1.5
   laneDistance: 2
 --- !u!143 &1866168700478025327
 CharacterController:

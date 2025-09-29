@@ -11,9 +11,10 @@ public class PlayerLaneMovement : MonoBehaviour {
 
     [Header("Speed Settings")]
     [SerializeField] private float forwardSpeed = 10f;
-    [SerializeField] private float maxSpeed = 20f;
-    [SerializeField] private float speedModifier = 0.5f;
-    [SerializeField] private float buffSpeed = 30f;
+    [SerializeField] private float maxNormalSpeed = 20f;
+    [SerializeField] private float normalSpeedModifier = 0.5f;
+    [SerializeField] private float afterMaxSpeedModifier = 0.1f;
+    [SerializeField] private float buffSpeedModifier = 1.5f;
 
     [Header("Lane Settings")]
     [SerializeField] private float laneDistance = 2.5f; // Distance between lanes
@@ -63,18 +64,24 @@ public class PlayerLaneMovement : MonoBehaviour {
 
     public void IncreaseSpeed()
     {
-        if (forwardSpeed < maxSpeed && !isBuffActivated)
+        if (forwardSpeed < maxNormalSpeed && !isBuffActivated)
         {
-            forwardSpeed += speedModifier * Time.deltaTime;
+            forwardSpeed += normalSpeedModifier * Time.deltaTime;
             currentSpeed = forwardSpeed;
-        }
+        } else if(forwardSpeed >= maxNormalSpeed && !isBuffActivated)
+        {
+            forwardSpeed += afterMaxSpeedModifier * Time.deltaTime;
+            currentSpeed = forwardSpeed;
+            Debug.Log("Else");
+        } 
 
     }
 
     public void ChangeBuffActivationState(bool state)
     {
         isBuffActivated = state;
-        forwardSpeed = isBuffActivated ? buffSpeed : currentSpeed;
+        //forwardSpeed = isBuffActivated ? buffSpeedModifier : currentSpeed;
+        forwardSpeed = isBuffActivated ? (currentSpeed * buffSpeedModifier) : currentSpeed;
     }
 
     public void MoveLeft()

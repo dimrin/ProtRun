@@ -37,6 +37,7 @@ public class FollowingObjectLaneMovement : MonoBehaviour
         Vector3 desiredPosition = new Vector3(targetX, transform.position.y, newZ);
 
         transform.position = Vector3.Lerp(transform.position, desiredPosition, laneChangeSpeed * speedModifier * Time.deltaTime);
+
     }
 
     public void SetBaseSpeedModifier()
