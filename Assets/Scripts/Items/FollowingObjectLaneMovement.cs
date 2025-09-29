@@ -5,13 +5,18 @@ using UnityEngine;
 public class FollowingObjectLaneMovement : MonoBehaviour
 {
     [SerializeField] private float laneOffset = 2f; 
-    [SerializeField] private float laneChangeSpeed = 10f; 
+    [SerializeField] private float laneChangeSpeed = 10f;
+    [SerializeField] private float followMovementDistanceOffset = 2f;
+    [SerializeField] private float baseSpeedValue = 1f;
+    [SerializeField] private float speedUpSpeedValue = 1.5f;
 
     private Vector3 offset;
     private int currentLane = 0; 
     private float targetX; 
 
     private Transform target;
+
+    private float speedModifier;
 
     public void SetTargetOnStart(Transform target)
     {
@@ -23,6 +28,7 @@ public class FollowingObjectLaneMovement : MonoBehaviour
     {
         offset = transform.position - target.position;
         targetX = transform.position.x;
+        SetBaseSpeedModifier();
     }
 
     public void Follow()
@@ -30,10 +36,20 @@ public class FollowingObjectLaneMovement : MonoBehaviour
         float newZ = target.position.z + offset.z;
         Vector3 desiredPosition = new Vector3(targetX, transform.position.y, newZ);
 
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, laneChangeSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, laneChangeSpeed * speedModifier * Time.deltaTime);
+
     }
 
-    
+    public void SetBaseSpeedModifier()
+    {
+        speedModifier = baseSpeedValue;
+    }
+
+    public void SpeedUp()
+    {
+        speedModifier = speedUpSpeedValue;
+    }
+
     public void MoveLeft()
     {
         if (currentLane > -1)

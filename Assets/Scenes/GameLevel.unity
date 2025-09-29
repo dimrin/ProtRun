@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.07
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -4750,6 +4750,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403009528}
   m_CullTransparentMesh: 1
+--- !u!1 &1412200417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1412200419}
+  - component: {fileID: 1412200418}
+  m_Layer: 0
+  m_Name: SkyBox Rotating Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1412200418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412200417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74db36f405f98a43b14f9a8d3e2fd2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyboxRotatingSpeed: 3
+--- !u!4 &1412200419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412200417}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422469883
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,22 +5050,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefabs:
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
-  - {fileID: 1158126546858494539, guid: 89d864ba80610d141aa8d3e5138901c0, type: 3}
+  - {fileID: 5877123973657491482, guid: a86e3f414c770a54e88d6b7c8e424397, type: 3}
+  - {fileID: 5877123973657491482, guid: a86e3f414c770a54e88d6b7c8e424397, type: 3}
+  - {fileID: 5877123973657491482, guid: a86e3f414c770a54e88d6b7c8e424397, type: 3}
+  - {fileID: 5877123973657491482, guid: a86e3f414c770a54e88d6b7c8e424397, type: 3}
+  - {fileID: 5877123973657491482, guid: a86e3f414c770a54e88d6b7c8e424397, type: 3}
+  - {fileID: 5877123973657491482, guid: a86e3f414c770a54e88d6b7c8e424397, type: 3}
+  - {fileID: 5877123973657491482, guid: a86e3f414c770a54e88d6b7c8e424397, type: 3}
+  - {fileID: 5877123973657491482, guid: a86e3f414c770a54e88d6b7c8e424397, type: 3}
+  - {fileID: 5877123973657491482, guid: a86e3f414c770a54e88d6b7c8e424397, type: 3}
 --- !u!4 &1458922630
 Transform:
   m_ObjectHideFlags: 0
@@ -6516,7 +6554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePoolManager: {fileID: 856032820}
   tileLength: 26
-  tilesInRow: 6
+  tilesInRow: 7
   startSpawnZPosition: 22
   tileRecycler: {fileID: 1871722230}
   tileSpawner: {fileID: 1871722231}
@@ -7496,3 +7534,4 @@ SceneRoots:
   - {fileID: 941110000}
   - {fileID: 103700398}
   - {fileID: 1984238579}
+  - {fileID: 1412200419}
