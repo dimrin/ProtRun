@@ -65,6 +65,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 1cc846c224dbe794288c595a4fbf9b11,
         type: 3}
+      propertyPath: m_MotionVectors
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1cc846c224dbe794288c595a4fbf9b11,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1cc846c224dbe794288c595a4fbf9b11,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1cc846c224dbe794288c595a4fbf9b11,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1cc846c224dbe794288c595a4fbf9b11,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9418e27a6b9a69a48b4a44112f7b0a7c, type: 2}
@@ -77,6 +97,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tree_forest
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1cc846c224dbe794288c595a4fbf9b11,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
