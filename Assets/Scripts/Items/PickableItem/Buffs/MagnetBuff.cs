@@ -37,10 +37,10 @@ public class MagnetBuff : IBuff {
             return;
         }
 
-        AttractNearbyItems();
+        AttractNearbyItemsBySphere();
     }
 
-    private void AttractNearbyItems()
+    private void AttractNearbyItemsBySphere()
     {
         Collider[] colliders = Physics.OverlapSphere(_playerTransform.position, _radius);
         foreach (var col in colliders)

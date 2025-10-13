@@ -3249,7 +3249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &856032820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5039,7 +5039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1458922629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6561,7 +6561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac8069cbf7546e468706a8c4d86f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePoolManager: {fileID: 856032820}
+  tilePoolManager: {fileID: 1458922629}
   tileLength: 26
   tilesInRow: 10
   startSpawnZPosition: 22

@@ -641,9 +641,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
   forwardSpeed: 5
-  maxSpeed: 8
-  speedModifier: 0.1
-  buffSpeed: 12
+  maxNormalSpeed: 20
+  normalSpeedModifier: 0.5
+  afterMaxSpeedModifier: 0.1
+  buffSpeedModifier: 1.5
   laneDistance: 2
 --- !u!143 &8363247005686518962
 CharacterController:
@@ -974,10 +975,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.8
-  m_Height: 2
+  m_Radius: 0.6
+  m_Height: 2.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.7, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!4 &3310916112063500552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d8c388900cdfc914eacc4a3c1501d30f,
