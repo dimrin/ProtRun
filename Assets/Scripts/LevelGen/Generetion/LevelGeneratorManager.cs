@@ -29,13 +29,15 @@ public class LevelGeneratorManager : MonoBehaviour {
     private void OnEnable()
     {
         TileManager.TileExited += HandleTileExit;
-        GameSessionManager.OnGameStarted += GenerateStartLevel;
+        //GameSessionManager.OnGameStarted += GenerateStartLevel;
+        GameSessionManager.OnGameLoaded += GenerateStartLevel;
     }
 
     private void OnDisable()
     {
         TileManager.TileExited -= HandleTileExit;
-        GameSessionManager.OnGameStarted -= GenerateStartLevel;
+        //GameSessionManager.OnGameStarted -= GenerateStartLevel;
+        GameSessionManager.OnGameLoaded -= GenerateStartLevel;
     }
 
     private void GenerateStartLevel()

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
     public static event Action GoToMainMenuOnPause;
     public static event Action OpenAdForRevive;
     public static event Action OnLoadingLevelMenuAnimationFinished;
+    public static event Action OnStartCountDownEnded;
 
     private void Awake()
     {
@@ -30,8 +31,11 @@ public class UIManager : MonoBehaviour {
         FinalUIManager.ReviveOnAd += GoToAd;
         FinalUIManager.CloseReviveWindow += CloseAdReviveUI;
         GameUIManager.PauseGame += Pause;
+        GameUIManager.OnCountDownFinished += StartGame;
+        GameUIManager.OnCountDownFinished += ResumeOnAnimationEvent;
         GameSessionManager.PointsIncreased += PointsToUI;
         GameSessionManager.GamePauseOnHide += Pause;
+        GameSessionManager.OnGameLoaded += ActivateCountDownUI;
         //GameSessionManager.GameResumeOnWakeUp += Resume;
         loadingUIManager.OnAnimationFinished += OnLevelAnimationFinished;
         GameSessionManager.OnGameFinished += OpenAdReviveUI;
@@ -49,8 +53,11 @@ public class UIManager : MonoBehaviour {
         FinalUIManager.ReviveOnAd -= GoToAd;
         FinalUIManager.CloseReviveWindow -= CloseAdReviveUI;
         GameUIManager.PauseGame -= Pause;
+        GameUIManager.OnCountDownFinished -= StartGame;
+        GameUIManager.OnCountDownFinished -= ResumeOnAnimationEvent;
         GameSessionManager.PointsIncreased -= PointsToUI;
         GameSessionManager.GamePauseOnHide -= Pause;
+        GameSessionManager.OnGameLoaded -= ActivateCountDownUI;
         loadingUIManager.OnAnimationFinished -= OnLevelAnimationFinished;
         //GameSessionManager.GameResumeOnWakeUp -= Resume;
         GameSessionManager.OnGameFinished -= OpenAdReviveUI;
@@ -80,13 +87,28 @@ public class UIManager : MonoBehaviour {
         itemsHolder.UpdateBuffTimer();
     }
 
+    private void ActivateCountDownUI()
+    {
+        gameUIManager.StartCountDownAnimation();
+    }
+
+    private void StartGame()
+    {
+        OnStartCountDownEnded?.Invoke();
+    }
+
     private void Resume()
     {
-
         pauseUIManager.CloseUI(() =>
         {
-            ResumeTheGame?.Invoke();
+            ActivateCountDownUI();
+            //ResumeTheGame?.Invoke();
         });
+    }
+
+    private void ResumeOnAnimationEvent()
+    {
+        ResumeTheGame?.Invoke();
     }
 
     private void Pause()
