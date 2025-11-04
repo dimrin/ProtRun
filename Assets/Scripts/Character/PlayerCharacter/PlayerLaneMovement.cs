@@ -15,6 +15,8 @@ public class PlayerLaneMovement : MonoBehaviour {
     [SerializeField] private float normalSpeedModifier = 0.5f;
     [SerializeField] private float afterMaxSpeedModifier = 0.1f;
     [SerializeField] private float buffSpeedModifier = 1.5f;
+    [SerializeField] private float sideDashSpeed = 25f;
+
 
     [Header("Lane Settings")]
     [SerializeField] private float laneDistance = 2.5f; // Distance between lanes
@@ -50,7 +52,7 @@ public class PlayerLaneMovement : MonoBehaviour {
 
         if (lateralDiff.sqrMagnitude > 0.01f)
         {
-            lateralMove = lateralDiff.normalized * 25f * Time.deltaTime;
+            lateralMove = lateralDiff.normalized * sideDashSpeed * Time.deltaTime;
 
             if (lateralMove.sqrMagnitude > lateralDiff.sqrMagnitude)
                 lateralMove = lateralDiff;

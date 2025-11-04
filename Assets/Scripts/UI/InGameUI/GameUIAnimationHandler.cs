@@ -16,14 +16,7 @@ public class GameUIAnimationHandler : MonoBehaviour
 
     public void ActivateCountDownAnimation()
     {
-        //animator.ResetTrigger("StartCountDown");
         animator.SetTrigger("StartCountDown");
     }
-
-    /*
-    public void DeactivateCountDownAnimation() { 
-        animator.ResetTrigger("StartCountDown");
-    }
-    */
     
 }

@@ -100,7 +100,6 @@ public class GameSessionManager : MonoBehaviour {
 
     private void StartTheGame()
     {
-        Debug.Log("Started oooooooooooooooooooooooooooooooooooooooo");
         if (CurrentGameState == GameState.LevelLoaded)
         {
             ChangeGameState(GameState.Start, () =>
