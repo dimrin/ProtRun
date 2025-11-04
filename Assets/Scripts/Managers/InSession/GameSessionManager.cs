@@ -14,12 +14,12 @@ public class GameSessionManager : MonoBehaviour {
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private VibrationManager vibrationManager;
 
-
     [SerializeField] private SaveSystemManager saveSystemManager;
 
     public static event Action<int> PointsIncreased;
     public static event Action<int> SentPointsOnGameEnded;
     public static event Action GamePauseOnHide;
+    public static event Action OnGameLoaded;
     public static event Action OnGameStarted;
     public static event Action OnGameRun;
     public static event Action OnGamePaused;
@@ -36,11 +36,11 @@ public class GameSessionManager : MonoBehaviour {
         if (gamePointsManager == null) gamePointsManager = FindAnyObjectByType<GamePointsManager>();
         if (defaultCharacterHandler == null) defaultCharacterHandler = FindAnyObjectByType<DefaultCharacterHandler>();
         if (gamePauseManager == null) gamePauseManager = FindAnyObjectByType<GamePauseManager>();
-        if(playerSpawnManager == null) playerSpawnManager = FindAnyObjectByType<PlayerSpawnManager>();
+        if (playerSpawnManager == null) playerSpawnManager = FindAnyObjectByType<PlayerSpawnManager>();
         if (characterTransporter == null) characterTransporter = FindAnyObjectByType<CharacterTransporter>();
-        if(levelLoader == null) levelLoader = FindAnyObjectByType<LevelLoader>();
-        if(saveSystemManager == null) saveSystemManager = FindAnyObjectByType<SaveSystemManager>();
-        if(vibrationManager == null) vibrationManager = FindAnyObjectByType<VibrationManager>();
+        if (levelLoader == null) levelLoader = FindAnyObjectByType<LevelLoader>();
+        if (saveSystemManager == null) saveSystemManager = FindAnyObjectByType<SaveSystemManager>();
+        if (vibrationManager == null) vibrationManager = FindAnyObjectByType<VibrationManager>();
         Application.targetFrameRate = 60;
     }
 
@@ -50,11 +50,13 @@ public class GameSessionManager : MonoBehaviour {
 
         SpawnPlayerOnStart(GetCharacterToSpawn());
 
+        /*
         ChangeGameState(GameState.Start, () =>
         {
             OnGameStarted?.Invoke();
         });
-
+        */
+        ActivateTheGame();
     }
 
     private void OnEnable()
@@ -62,13 +64,15 @@ public class GameSessionManager : MonoBehaviour {
         Player.OnPickedPoint += IncreasePoints;
         Player.OnPlayerCrushed += Vibrate;
         Player.OnPlayerCrushed += EndTheGame;
+        UIManager.OnStartCountDownEnded += StartTheGame;
         UIManager.PauseTheGame += Pause;
         UIManager.ResumeTheGame += Resume;
         UIManager.OpenAdForRevive += ContinueAfterRevive;
         UIManager.OnLoadingLevelMenuAnimationFinished += ActivateLoadedScene;
         UIManager.GoToMainMenu += GoToMenu;
         UIManager.GoToMainMenuOnPause += GoMenuFromPause;
-        LevelGeneratorManager.OnStartLevelGenerated += RunGame;
+
+        //LevelGeneratorManager.OnStartLevelGenerated += RunGame;
     }
 
     private void OnDisable()
@@ -76,13 +80,34 @@ public class GameSessionManager : MonoBehaviour {
         Player.OnPickedPoint -= IncreasePoints;
         Player.OnPlayerCrushed -= Vibrate;
         Player.OnPlayerCrushed -= EndTheGame;
+        UIManager.OnStartCountDownEnded -= StartTheGame;
         UIManager.PauseTheGame -= Pause;
         UIManager.ResumeTheGame -= Resume;
         UIManager.OpenAdForRevive -= ContinueAfterRevive;
         UIManager.OnLoadingLevelMenuAnimationFinished -= ActivateLoadedScene;
         UIManager.GoToMainMenu -= GoToMenu;
         UIManager.GoToMainMenuOnPause -= GoMenuFromPause;
-        LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
+        //LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
+    }
+
+    private void ActivateTheGame()
+    {
+        ChangeGameState(GameState.LevelLoaded, () =>
+        {
+            OnGameLoaded?.Invoke();
+        });
+    }
+
+    private void StartTheGame()
+    {
+        if (CurrentGameState == GameState.LevelLoaded)
+        {
+            ChangeGameState(GameState.Start, () =>
+                    {
+                        OnGameStarted?.Invoke();
+                        RunGame();
+                    });
+        }
     }
 
     private void SetValuesOnStart()
@@ -91,13 +116,12 @@ public class GameSessionManager : MonoBehaviour {
     }
     private CharacterSO GetCharacterToSpawn()
     {
-        if(characterTransporter ==  null)
+        if (characterTransporter == null)
         {
-            Debug.Log("Default");
             return defaultCharacterHandler.GetDefaultCharacter();
-        } else
+        }
+        else
         {
-            Debug.Log("Transported");
             return characterTransporter.GetTransportedCharacter();
         }
     }
@@ -109,8 +133,6 @@ public class GameSessionManager : MonoBehaviour {
         GameObject spawnedPlayer = playerSpawnManager.SpawnMenuPlayer(characterToSpawn);
 
         playerFollowingObject.SetTargetToFollow(spawnedPlayer);
-
-        Debug.Log("Spawned");
     }
     private void Vibrate()
     {
@@ -156,7 +178,7 @@ public class GameSessionManager : MonoBehaviour {
         }
     }
 
-    
+
 
     private void OnApplicationPause(bool pause)
     {
@@ -179,7 +201,7 @@ public class GameSessionManager : MonoBehaviour {
         {
             Debug.Log("OnHideResume");
 
-            if(CurrentGameState == GameState.Finish)
+            if (CurrentGameState == GameState.Finish)
             {
                 gamePauseManager.Resume();
                 Debug.Log($"UnPaused 1 {pause} + State {CurrentGameState}");
@@ -194,7 +216,8 @@ public class GameSessionManager : MonoBehaviour {
 
     private void ContinueAfterRevive()
     {
-        if (CurrentGameState == GameState.Finish) {
+        if (CurrentGameState == GameState.Finish)
+        {
             ChangeGameState(GameState.Run, () =>
             {
                 OnGameRun?.Invoke();
@@ -228,7 +251,7 @@ public class GameSessionManager : MonoBehaviour {
 
     private void GoToMenu()
     {
-        if(CurrentGameState == GameState.Finish)
+        if (CurrentGameState == GameState.Finish)
         {
             gamePointsManager.SavePoints();
             levelLoader.LoadMainMenuInBackground();

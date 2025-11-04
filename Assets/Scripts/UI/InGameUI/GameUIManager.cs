@@ -1,14 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class GameUIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI pointsText;
+    [SerializeField] private GameUIAnimationHandler gameUIAnimationHandler;
 
     public static event Action PauseGame;
+    public static event Action OnCountDownFinished;
 
     private void Awake()
     {
@@ -37,6 +37,16 @@ public class GameUIManager : MonoBehaviour
     {
         OpenUI();
         OnUiOpened?.Invoke();
+    }
+
+    public void StartCountDownAnimation()
+    {
+        gameUIAnimationHandler.ActivateCountDownAnimation();
+    }
+
+    public void OnAnimationEventCountDownFinished()
+    {
+        OnCountDownFinished?.Invoke();
     }
 
     public void CloseUI()

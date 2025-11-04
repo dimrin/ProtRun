@@ -16,7 +16,6 @@ public class Player : MonoBehaviour {
     [SerializeField] private PlayerSoundsManager playerSoundsManager;
     [SerializeField] private PlayerAnimationHandler playerAnimationHandler;
     [SerializeField] private PlayerEffectsManager playerEffectsManager;
-
     [SerializeField] private int onReviveBuffTime = 5;
 
     public static event Action<int> OnPickedPoint;
@@ -26,13 +25,15 @@ public class Player : MonoBehaviour {
     private bool _canMove = false;
     private bool _isPlayedCrashed = false;
 
+    private int jumpDelayedActionAmount = 0;
+
     private void OnEnable()
     {
         PlayerSwipeInput.SwipeToLeft += playerSoundsManager.PlaySoundOnLeftRightSwipe;
         PlayerSwipeInput.SwipeToLeft += playerLaneMovement.MoveLeft;
         PlayerSwipeInput.SwipeToRight += playerSoundsManager.PlaySoundOnLeftRightSwipe;
         PlayerSwipeInput.SwipeToRight += playerLaneMovement.MoveRight;
-        PlayerSwipeInput.SwipeToUp += Jump;
+        PlayerSwipeInput.SwipeToUp += JumpOnSwipeUp;
         PlayerSwipeInput.SwipeToDown += PushDown;
         GameSessionManager.OnGameRun += AllowMove;
         GameSessionManager.OnGamePaused += StopMove;
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour {
         PlayerSwipeInput.SwipeToLeft -= playerLaneMovement.MoveLeft;
         PlayerSwipeInput.SwipeToRight -= playerSoundsManager.PlaySoundOnLeftRightSwipe;
         PlayerSwipeInput.SwipeToRight -= playerLaneMovement.MoveRight;
-        PlayerSwipeInput.SwipeToUp -= Jump;
+        PlayerSwipeInput.SwipeToUp -= JumpOnSwipeUp;
         PlayerSwipeInput.SwipeToDown -= PushDown;
         GameSessionManager.OnGameRun -= AllowMove;
         GameSessionManager.OnGamePaused -= StopMove;
@@ -67,20 +68,6 @@ public class Player : MonoBehaviour {
         playerBuffManager.SetComponentsOnAwake(playerHealth, playerLaneMovement, transform);
     }
 
-    private void Start()
-    {
-        /*
-        playerLaneMovement = GetComponent<PlayerLaneMovement>();
-        playerVerticalMovement = GetComponent<PlayerVerticalMovement>();
-        itemPicker = GetComponent<PlayerItemPicker>();
-        playerHealth = GetComponent<PlayerHealth>();
-        playerBuffManager = GetComponent<PlayerBuffManager>();
-        playerSoundsManager = GetComponent<PlayerSoundsManager>();
-        playerEffectsManager = GetComponent<PlayerEffectsManager>();
-        playerBuffManager.SetComponentsOnAwake(playerHealth, playerLaneMovement, transform);
-        */
-    }
-
     private void Update()
     {
         if (!_canMove) return;
@@ -89,15 +76,20 @@ public class Player : MonoBehaviour {
         playerLaneMovement.Move();
         playerVerticalMovement.ApplyGravity();
         playerVerticalMovement.MoveUp();
-        if(!playerVerticalMovement.IsJumping && !_isPlayedCrashed)
+        if (!playerVerticalMovement.IsJumping && !_isPlayedCrashed)
         {
             playerAnimationHandler.DeactivateJumpAnimation();
             playerAnimationHandler.ActivateRunAnimation();
+            if(jumpDelayedActionAmount > 0)
+            {
+                PerfomeJump();
+            }
         }
         playerBuffManager.UpdateBuffsStates(() =>
         {
             //playerAnimationHandler.DeactivateSpinningAnimation();
         });
+
     }
 
     private void StopMove()
@@ -111,23 +103,37 @@ public class Player : MonoBehaviour {
         playerAnimationHandler.ActivateRunAnimation();
     }
 
-    private void Jump()
+    private void JumpOnSwipeUp()
     {
+        jumpDelayedActionAmount++;
 
-        playerVerticalMovement.Jump(() =>
+        PerfomeJump();
+    }
+
+    private void PerfomeJump()
+    {
+        if (jumpDelayedActionAmount > 0)
         {
-            playerAnimationHandler.DeactivateRunAnimation();
-            playerAnimationHandler.ActivateJUmpAnimation();
-            playerSoundsManager.PlaySoundOnSwipeUp();
-        });
+            playerVerticalMovement.Jump(() =>
+                    {
+                        playerAnimationHandler.DeactivateRunAnimation();
+                        playerAnimationHandler.ActivateJUmpAnimation();
+                        playerSoundsManager.PlaySoundOnSwipeUp();
+                        if (jumpDelayedActionAmount > 0) {
+                            jumpDelayedActionAmount--;
+                        }
+                    });
+        }
+
     }
 
     private void PushDown()
-    {  
-        playerVerticalMovement.PushDown(()=>
+    {
+        playerVerticalMovement.PushDown(() =>
         {
             playerAnimationHandler.ActivateRunAnimation();
             playerSoundsManager.PlaySoundOnSwipeDown();
+            jumpDelayedActionAmount = 0;
         });
     }
 
@@ -182,7 +188,7 @@ public class Player : MonoBehaviour {
         playerHealth.GetHit(hit.gameObject, () =>
         {
             playerSoundsManager.PlaySoundOnDestroyObstacle();
-        },() =>
+        }, () =>
         {
             playerAnimationHandler.DeactivateRunAnimation();
             playerAnimationHandler.ActivateDefeatAnimation();
@@ -191,7 +197,4 @@ public class Player : MonoBehaviour {
             playerSoundsManager.PlaySoundOnCrash();
         });
     }
-
-
-
 }
