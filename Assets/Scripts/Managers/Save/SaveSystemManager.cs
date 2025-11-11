@@ -24,6 +24,12 @@ public class SaveSystemManager : MonoBehaviour {
 
     private bool isLoaded = false;
 
+    private float test1 = 0f;
+    private string test2 = "";
+    private Dictionary<string, float> test3 = new Dictionary<string, float>();
+    private List<String> test4 = new List<string>();
+    private bool test5 = false;
+
     private void Awake()
     {
         DoNotDestroy();
@@ -146,6 +152,59 @@ public class SaveSystemManager : MonoBehaviour {
             isVibrating = data.isVibrating;
             musicVolumeValue = data.musicVolumeValue;
             languageIndex = data.languageIndex;
+
+            test1 = data.test1;
+            Debug.Log($"data.test1 = {data.test1}");
+            test2 = data.test2;
+            Debug.Log($"data.test2 = {data.test2}");
+            test3 = data.test3;
+            Debug.Log($"data.test3 = {data.test3}");
+            test4 = data.test4;
+            Debug.Log($"data.test4 = {data.test4}");
+            test5 = data.test5;
+            Debug.Log($"data.test5 = {data.test5}");
+
+            try
+            {
+                test1 = data.test1;
+            } catch (Exception e)
+            {
+                Debug.LogError($"data.test1 = {e}");
+            }
+
+            try
+            {
+                test2 = data.test2;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"data.test2 = {e}");
+            }
+            try
+            {
+                test3 = data.test3;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"data.test3 = {e}");
+            }
+            try
+            {
+                test4 = data.test4;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"data.test4 = {e}");
+            }
+            try
+            {
+                test5 = data.test5;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"data.test5 = {e}");
+            }
+
             isLoaded = true;
 
         }
@@ -171,5 +230,9 @@ class PlayerData {
     public bool isVibrating;
     public float musicVolumeValue;
     public int languageIndex;
-
+    public float test1;
+    public string test2;
+    public Dictionary<string, float> test3;
+    public List<String> test4;
+    public bool test5;
 }

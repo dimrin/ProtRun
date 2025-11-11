@@ -22,14 +22,14 @@ public class SaveFileLoaderManager : MonoBehaviour {
         }
 
         LoadSaveFile();
-        //SetDataOnEnterMenu();
     }
 
+    /*
     private void OnEnable()
     {
         Debug.Log("Load State 2 " + saveSystemManager.IsLoaded());
     }
-
+    */
 
     private void Start()
     {
@@ -50,13 +50,6 @@ public class SaveFileLoaderManager : MonoBehaviour {
             DataLoaded?.Invoke();
             Debug.Log("Invoke On loaded");
         }
-
-        /*
-        if (saveSystemManager.IsLoaded())
-        {
-            DataLoaded?.Invoke();
-        }
-        */
     }
 
     private void SetDataOnEnterMenu()
