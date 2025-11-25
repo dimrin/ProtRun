@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSessionManager : MonoBehaviour {
+public class GameSessionManager : MonoBehaviour
+{
     [SerializeField] private GamePointsManager gamePointsManager;
     [SerializeField] private GamePauseManager gamePauseManager;
     [SerializeField] private PlayerSpawnManager playerSpawnManager;
@@ -14,10 +15,13 @@ public class GameSessionManager : MonoBehaviour {
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private VibrationManager vibrationManager;
 
+    [SerializeField] private ShowAdManager showAdManager;
+
     [SerializeField] private SaveSystemManager saveSystemManager;
 
     public static event Action<int> PointsIncreased;
     public static event Action<int> SentPointsOnGameEnded;
+    public static event Action<bool> CheckIfRevivable;
     public static event Action GamePauseOnHide;
     public static event Action OnGameLoaded;
     public static event Action OnGameStarted;
@@ -26,10 +30,9 @@ public class GameSessionManager : MonoBehaviour {
     public static event Action OnGameFinished;
     public static event Action OnRevived;
 
+    private bool isRevivable = true;
 
     public GameState CurrentGameState { get; private set; }
-
-    //private CharacterSO character;
 
     private void Awake()
     {
@@ -41,6 +44,7 @@ public class GameSessionManager : MonoBehaviour {
         if (levelLoader == null) levelLoader = FindAnyObjectByType<LevelLoader>();
         if (saveSystemManager == null) saveSystemManager = FindAnyObjectByType<SaveSystemManager>();
         if (vibrationManager == null) vibrationManager = FindAnyObjectByType<VibrationManager>();
+        if (showAdManager == null) showAdManager = FindAnyObjectByType<ShowAdManager>();
         Application.targetFrameRate = 60;
     }
 
@@ -67,10 +71,13 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.OnStartCountDownEnded += StartTheGame;
         UIManager.PauseTheGame += Pause;
         UIManager.ResumeTheGame += Resume;
-        UIManager.OpenAdForRevive += ContinueAfterRevive;
+        UIManager.OpenAdForRevive += ShowAdForRevive;
         UIManager.OnLoadingLevelMenuAnimationFinished += ActivateLoadedScene;
         UIManager.GoToMainMenu += GoToMenu;
         UIManager.GoToMainMenuOnPause += GoMenuFromPause;
+        UIManager.CheckRevivableState += CheckRevivableState;
+        showAdManager.UnPauseOnAdClosed += Resume;
+        showAdManager.RevivePlayerOnReward += ContinueAfterRevive;
 
         //LevelGeneratorManager.OnStartLevelGenerated += RunGame;
     }
@@ -83,10 +90,13 @@ public class GameSessionManager : MonoBehaviour {
         UIManager.OnStartCountDownEnded -= StartTheGame;
         UIManager.PauseTheGame -= Pause;
         UIManager.ResumeTheGame -= Resume;
-        UIManager.OpenAdForRevive -= ContinueAfterRevive;
+        UIManager.OpenAdForRevive -= ShowAdForRevive;
         UIManager.OnLoadingLevelMenuAnimationFinished -= ActivateLoadedScene;
         UIManager.GoToMainMenu -= GoToMenu;
         UIManager.GoToMainMenuOnPause -= GoMenuFromPause;
+        UIManager.CheckRevivableState -= CheckRevivableState;
+        showAdManager.UnPauseOnAdClosed -= Resume;
+        showAdManager.RevivePlayerOnReward -= ContinueAfterRevive;
         //LevelGeneratorManager.OnStartLevelGenerated -= RunGame;
     }
 
@@ -214,6 +224,24 @@ public class GameSessionManager : MonoBehaviour {
         PointsIncreased?.Invoke(gamePointsManager.GetPoints());
     }
 
+    private void CheckRevivableState()
+    {
+        if (!showAdManager.IsAdReadyToBeShown())
+        {
+            CheckIfRevivable?.Invoke(false);
+        }
+        else
+        {
+            CheckIfRevivable?.Invoke(isRevivable);
+        }
+
+    }
+
+    private void ShowAdForRevive()
+    {
+        showAdManager.ShowAd();
+    }
+
     private void ContinueAfterRevive()
     {
         if (CurrentGameState == GameState.Finish)
@@ -221,6 +249,7 @@ public class GameSessionManager : MonoBehaviour {
             ChangeGameState(GameState.Run, () =>
             {
                 OnGameRun?.Invoke();
+                isRevivable = false;
                 OnRevived?.Invoke();
             });
         }
@@ -265,7 +294,8 @@ public class GameSessionManager : MonoBehaviour {
 }
 
 [Serializable]
-public enum GameState {
+public enum GameState
+{
     LevelLoaded,
     Start,
     Run,

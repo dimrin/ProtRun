@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour {
     public static event Action OpenAdForRevive;
     public static event Action OnLoadingLevelMenuAnimationFinished;
     public static event Action OnStartCountDownEnded;
+    public static event Action CheckRevivableState;
 
     private void Awake()
     {
@@ -38,9 +39,10 @@ public class UIManager : MonoBehaviour {
         GameSessionManager.OnGameLoaded += ActivateCountDownUI;
         //GameSessionManager.GameResumeOnWakeUp += Resume;
         loadingUIManager.OnAnimationFinished += OnLevelAnimationFinished;
-        GameSessionManager.OnGameFinished += OpenAdReviveUI;
+        GameSessionManager.OnGameFinished += CheckToOpenReviveUI;
         GameSessionManager.SentPointsOnGameEnded += SetFinalUI;
         GameSessionManager.OnRevived += ClosesFinalUIOnRevive;
+        GameSessionManager.CheckIfRevivable += TryToOpenReviveUI;
         Player.OnBuffApplied += ActivateBufUI;
     }
 
@@ -60,9 +62,10 @@ public class UIManager : MonoBehaviour {
         GameSessionManager.OnGameLoaded -= ActivateCountDownUI;
         loadingUIManager.OnAnimationFinished -= OnLevelAnimationFinished;
         //GameSessionManager.GameResumeOnWakeUp -= Resume;
-        GameSessionManager.OnGameFinished -= OpenAdReviveUI;
+        GameSessionManager.OnGameFinished -= CheckToOpenReviveUI;
         GameSessionManager.SentPointsOnGameEnded -= SetFinalUI;
         GameSessionManager.OnRevived -= ClosesFinalUIOnRevive;
+        GameSessionManager.CheckIfRevivable -= TryToOpenReviveUI;
         Player.OnBuffApplied -= ActivateBufUI;
     }
 
@@ -159,10 +162,32 @@ public class UIManager : MonoBehaviour {
         gameUIManager.SetCurrentPoinsToUIText(points);
     }
 
+    private void CheckToOpenReviveUI()
+    {
+        CheckRevivableState?.Invoke();
+    }
+
+    private void TryToOpenReviveUI(bool state)
+    {
+        if(state)
+        {
+            OpenAdReviveUI();
+        }
+        else
+        {
+            OpenFinalUI();
+        }
+    }
+
     private void OpenAdReviveUI()
     {
-        finalUIManager.OpenUI();
+        OpenFinalUI();
         finalUIManager.OpenAdReviveWindow();
+    }
+
+    private void OpenFinalUI()
+    {
+        finalUIManager.OpenUI();
     }
 
     private void CloseAdReviveUI()

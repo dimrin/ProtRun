@@ -9,6 +9,7 @@ public class SaveFileLoaderManager : MonoBehaviour {
 
     public static event Action DataLoaded;
 
+    /*
     private void Awake()
     {
         if (saveSystemManager == null)
@@ -23,17 +24,32 @@ public class SaveFileLoaderManager : MonoBehaviour {
 
         LoadSaveFile();
     }
-
-    /*
-    private void OnEnable()
-    {
-        Debug.Log("Load State 2 " + saveSystemManager.IsLoaded());
-    }
     */
+
+
 
     private void Start()
     {
         SetDataOnEnterMenu();
+    }
+
+    public void LoadGameSave()
+    {
+        Initialize();
+        LoadSaveFile();
+    }
+
+    private void Initialize()
+    {
+        if (saveSystemManager == null)
+        {
+            saveSystemManager = FindAnyObjectByType<SaveSystemManager>();
+        }
+
+        if (menuPointsManager == null)
+        {
+            menuPointsManager = FindAnyObjectByType<MenuPointsTransactionManager>();
+        }
     }
 
     private void LoadSaveFile()
