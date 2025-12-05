@@ -11,11 +11,28 @@ public class AuthenticationManager : MonoBehaviour
 
     public static event Action OnPlayerSignIn;
 
+    [SerializeField] private GooglePlayAuthenticator googlePlayGamesAuthenticator;
+
+    public static event Action TurnOfLoginGoogleButton;
+
+    private void Awake()
+    {
+        if(googlePlayGamesAuthenticator == null) googlePlayGamesAuthenticator = FindAnyObjectByType<GooglePlayAuthenticator>();
+    }
+
     private void OnEnable()
     {
         UnityServices.Initialized += StartAnonymousSignIn;
+        MenuUIManager.OnLoginGoogleButtonClicked += LoginWithGooglePlayGames;
+        //MenuUIManager.OnLoginGoogleButtonClicked += SignInWIthGooglePlayGames;
     }
-    
+
+    private void OnDisable()
+    {
+        MenuUIManager.OnLoginGoogleButtonClicked -= LoginWithGooglePlayGames;
+        //MenuUIManager.OnLoginGoogleButtonClicked -= SignInWIthGooglePlayGames;
+    }
+
     // initialize in GameEnter 
     public async Task InitializeUnityServices()
     {
@@ -38,6 +55,13 @@ public class AuthenticationManager : MonoBehaviour
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             Debug.Log("Sign in anonymously succeeded!");
             OnPlayerSignIn?.Invoke();
+            //googlePlayGamesAuthenticator.ActivateGooglePlayGames();
+            /*
+            googlePlayGamesAuthenticator.TryToSignInViaGooglePlayGames(()=>
+            {
+                TurnOfLoginGoogleButton?.Invoke();
+            });
+            */
 
             // Shows how to get the playerID
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
@@ -55,5 +79,22 @@ public class AuthenticationManager : MonoBehaviour
             // Notify the player with the proper error message
             Debug.LogException(ex);
         }
+    }
+
+    private void LoginWithGooglePlayGames()
+    {
+        googlePlayGamesAuthenticator.ActivateGooglePlayGames();
+        googlePlayGamesAuthenticator.LoginViaGooglePlayGames(() =>
+        {
+            TurnOfLoginGoogleButton?.Invoke();
+        });
+    }
+
+    private void SignInWIthGooglePlayGames()
+    {
+        googlePlayGamesAuthenticator.TryToSignInViaGooglePlayGames(() =>
+        {
+            //TurnOfLoginGoogleButton?.Invoke();
+        });
     }
 }

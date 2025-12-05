@@ -13,12 +13,15 @@ public class SettingsUIManager : MonoBehaviour
 
     [SerializeField] private SliderPointerEvent volumeSliderPointerEvents;
 
+    [SerializeField] private Button loginGoogleButton;
+
     public event Action<bool> OnVibrationChanged;
 
     public event Action OnFinalVolumeValue;
     public event Action<float> OnVolumeChanged;
 
     public event Action CloseOnClick;
+    public event Action OnLoginGoogleClicked;
 
     private void OnEnable()
     {
@@ -83,5 +86,15 @@ public class SettingsUIManager : MonoBehaviour
     public void SetVibrationUIValue(bool state)
     {
         vibrationToggle.isOn = state;
+    }
+
+    public void LoginGoogleOnClick()
+    {
+        OnLoginGoogleClicked?.Invoke();
+    }
+
+    public void SetLoginGoogleButtonUnclickable()
+    {
+        loginGoogleButton.interactable = false;
     }
 }

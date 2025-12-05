@@ -256,8 +256,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2655,6 +2655,7 @@ MonoBehaviour:
   volumeSLider: {fileID: 684753841}
   vibrationToggle: {fileID: 1584824749}
   volumeSliderPointerEvents: {fileID: 684753842}
+  loginGoogleButton: {fileID: 0}
 --- !u!1 &789395761
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,6 +2694,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789395761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &800210647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 800210648}
+  m_Layer: 0
+  m_Name: ConnectionStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &800210648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800210647}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -3570,10 +3602,10 @@ RectTransform:
   - {fileID: 1544381789}
   m_Father: {fileID: 1821574021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 180, y: 160}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 194.3}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1053904701
 GameObject:
@@ -5465,6 +5497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbabe042e825d54b90c75ae5681cd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  googlePlayGamesAuthenticator: {fileID: 1458790549}
 --- !u!114 &1458790549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5923,7 +5956,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1544381791}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 788761515}
+        m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
+        m_MethodName: LoginGoogleOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1544381791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7285,7 +7330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1861437051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7300,8 +7345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLog: 1
   ShowInEditor: 1
-  Height: 0.5
-  Width: 0.5
+  Height: 0.8
+  Width: 1
   Margin: 20
   AnchorPosition: 2
   FontSize: 14
@@ -7898,7 +7943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -123.8}
+  m_AnchoredPosition: {x: 0, y: -68}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2050519780
@@ -8485,3 +8530,4 @@ SceneRoots:
   - {fileID: 1053904702}
   - {fileID: 1483096815}
   - {fileID: 857991861}
+  - {fileID: 800210648}

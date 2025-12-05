@@ -24,6 +24,7 @@ public class MenuUIManager : MonoBehaviour {
     public static event Action OnSelectCharacter;
     public static event Action OnSelectorClosed;
     public static event Action OnCharacterSwitched;
+    public static event Action OnLoginGoogleButtonClicked;
 
     private void Awake()
     {
@@ -76,6 +77,7 @@ public class MenuUIManager : MonoBehaviour {
         settingsUIManager.OnFinalVolumeValue += FinalVolumeValueSet;
         settingsUIManager.OnVibrationChanged += VibrationChanged;
         settingsUIManager.OnVolumeChanged += VolumeChanged;
+        settingsUIManager.OnLoginGoogleClicked += OnLoginGoogleClicked;
         characterSelectionUIManager.CloseOnClick += CloseCharacterSelector;
         characterSelectionUIManager.SwitchToNext += SwitchUIToNextCharacter;
         characterSelectionUIManager.SwitchToPrevious += SwitchUIToPreviousCharacter;
@@ -89,6 +91,7 @@ public class MenuUIManager : MonoBehaviour {
         CharacterShopManager.OnOpenCharacterSwitched += OpenCloseBuySelectButtons;
         CharacterShopManager.OnPurchaseableCharacterSwitched += ChageBuyButtonState;
         MenuPointsTransactionManager.ChangeUIPoints += ChangeToBarPointsUIInfo;
+        AuthenticationManager.TurnOfLoginGoogleButton += TurnOfLoginGoogleButton;
     }
 
     private void OnDisable()
@@ -103,6 +106,7 @@ public class MenuUIManager : MonoBehaviour {
         settingsUIManager.OnFinalVolumeValue -= FinalVolumeValueSet;
         settingsUIManager.OnVibrationChanged -= VibrationChanged;
         settingsUIManager.OnVolumeChanged -= VolumeChanged;
+        settingsUIManager.OnLoginGoogleClicked -= OnLoginGoogleClicked;
         characterSelectionUIManager.CloseOnClick -= CloseCharacterSelector;
         characterSelectionUIManager.SwitchToNext -= SwitchUIToNextCharacter;
         characterSelectionUIManager.SwitchToPrevious -= SwitchUIToPreviousCharacter;
@@ -116,6 +120,7 @@ public class MenuUIManager : MonoBehaviour {
         CharacterShopManager.OnOpenCharacterSwitched -= OpenCloseBuySelectButtons;
         CharacterShopManager.OnPurchaseableCharacterSwitched -= ChageBuyButtonState;
         MenuPointsTransactionManager.ChangeUIPoints -= ChangeToBarPointsUIInfo;
+        AuthenticationManager.TurnOfLoginGoogleButton -= TurnOfLoginGoogleButton;
     }
 
     private void EnterInMenu()
@@ -281,6 +286,16 @@ public class MenuUIManager : MonoBehaviour {
     private void SetSettingsVibrationUI(bool state)
     {
         settingsUIManager.SetVibrationUIValue(state);
+    }
+
+    private void OnLoginGoogleClicked()
+    {
+        OnLoginGoogleButtonClicked?.Invoke();
+    }
+
+    private void TurnOfLoginGoogleButton()
+    {
+        settingsUIManager.SetLoginGoogleButtonUnclickable();
     }
 
     private void OnApplicationQuit()
